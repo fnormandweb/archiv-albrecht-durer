@@ -10,6 +10,18 @@ TODAY = date.today().isoformat()
 
 STATIC_PAGES = [
     ("", "weekly", "1.0"),
+    ("en/", "weekly", "0.95"),
+    ("en/vie.html", "monthly", "0.88"),
+    ("en/oeuvres.html", "weekly", "0.88"),
+    ("en/gravures.html", "monthly", "0.88"),
+    ("en/autoportraits.html", "monthly", "0.83"),
+    ("en/science.html", "monthly", "0.83"),
+    ("en/voyages.html", "monthly", "0.78"),
+    ("en/chronologie.html", "monthly", "0.78"),
+    ("en/editions.html", "monthly", "0.68"),
+    ("en/sources.html", "monthly", "0.73"),
+    ("en/oeuvre.html", "weekly", "0.62"),
+    ("en/edition.html", "monthly", "0.52"),
     ("vie.html", "monthly", "0.9"),
     ("oeuvres.html", "weekly", "0.9"),
     ("gravures.html", "monthly", "0.9"),
@@ -71,20 +83,22 @@ def main() -> None:
         lines.append("  </url>")
 
     for wid in all_work_ids:
-        lines.append("  <url>")
-        lines.append(f"    <loc>{url('oeuvre.html')}?id={wid}</loc>")
-        lines.append(f"    <lastmod>{TODAY}</lastmod>")
-        lines.append("    <changefreq>monthly</changefreq>")
-        lines.append("    <priority>0.6</priority>")
-        lines.append("  </url>")
+        for prefix in ("", "en/"):
+            lines.append("  <url>")
+            lines.append(f"    <loc>{url(prefix + 'oeuvre.html')}?id={wid}</loc>")
+            lines.append(f"    <lastmod>{TODAY}</lastmod>")
+            lines.append("    <changefreq>monthly</changefreq>")
+            lines.append(f"    <priority>{'0.58' if prefix else '0.6'}</priority>")
+            lines.append("  </url>")
 
     for eid in all_edition_ids:
-        lines.append("  <url>")
-        lines.append(f"    <loc>{url('edition.html')}?id={eid}</loc>")
-        lines.append(f"    <lastmod>{TODAY}</lastmod>")
-        lines.append("    <changefreq>monthly</changefreq>")
-        lines.append("    <priority>0.5</priority>")
-        lines.append("  </url>")
+        for prefix in ("", "en/"):
+            lines.append("  <url>")
+            lines.append(f"    <loc>{url(prefix + 'edition.html')}?id={eid}</loc>")
+            lines.append(f"    <lastmod>{TODAY}</lastmod>")
+            lines.append("    <changefreq>monthly</changefreq>")
+            lines.append(f"    <priority>{'0.48' if prefix else '0.5'}</priority>")
+            lines.append("  </url>")
 
     lines.append("</urlset>")
     out = ROOT / "sitemap.xml"

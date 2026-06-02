@@ -777,3 +777,57 @@ body.archiv-site[data-archiv-page="accueil"] .archiv-museum-hero__inner {
 #archiv-main.archiv-page-main {
     min-height: 50vh;
 }
+
+/* Language switcher */
+.archiv-lang-switch {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.archiv-lang-switch__nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.archiv-lang-switch__link {
+    color: rgba(205, 189, 157, 0.55);
+    text-decoration: none;
+    padding: 0.2rem 0.15rem;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.archiv-lang-switch__link:hover,
+.archiv-lang-switch__link:focus-visible {
+    color: var(--aged-gold);
+}
+
+.archiv-lang-switch__link.is-active {
+    color: var(--soft-white);
+    border-bottom-color: var(--aged-gold);
+}
+
+.archiv-lang-switch__sep {
+    color: rgba(205, 189, 157, 0.35);
+    user-select: none;
+}
+
+.archiv-lang-switch--mobile {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(182, 138, 58, 0.15);
+}
+
+@media (max-width: 991px) {
+    .archiv-museum-nav--desktop .archiv-lang-switch {
+        display: none;
+    }
+}

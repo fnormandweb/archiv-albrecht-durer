@@ -25,9 +25,10 @@
     };
 
     global.archivAbsoluteUrl = function (path) {
-        if (!path) return global.ARCHIV_SITE.origin + "/";
+        var prefix = global.archivBasePath ? global.archivBasePath() : "/";
+        if (!path) return global.ARCHIV_SITE.origin + prefix;
         if (path.indexOf("http://") === 0 || path.indexOf("https://") === 0) return path;
-        return global.ARCHIV_SITE.origin + "/" + path.replace(/^\//, "");
+        return global.ARCHIV_SITE.origin + prefix + path.replace(/^\//, "");
     };
 
     global.ARCHIV_SOURCES = [

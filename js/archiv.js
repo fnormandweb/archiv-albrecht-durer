@@ -10,17 +10,20 @@
             .replace(/"/g, "&quot;");
     }
 
-    var CATEGORY_LABELS = {
-        peinture: "Peinture",
-        bois: "Gravure sur bois",
-        burin: "Gravure au burin",
-        dessin: "Dessin",
-        aquarelle: "Aquarelle",
-        theorie: "Théorie"
-    };
-
     function categoryLabel(cat) {
-        return CATEGORY_LABELS[cat] || cat;
+        var labels = window.ARCHIV_CATEGORY_LABELS ? window.ARCHIV_CATEGORY_LABELS() : {
+            peinture: "Peinture",
+            bois: "Gravure sur bois",
+            burin: "Gravure au burin",
+            dessin: "Dessin",
+            aquarelle: "Aquarelle",
+            theorie: "Théorie"
+        };
+        return labels[cat] || cat;
+    }
+
+    function sortLocale() {
+        return window.archivLocale ? window.archivLocale() : "fr";
     }
 
     function lightboxTitleFromWork(work) {
@@ -75,8 +78,8 @@
         h += '<p class="archiv-artwork-card__institution">' + esc(work.museum) + "</p>";
         h += '<p class="archiv-artwork-card__summary">' + esc(work.summary) + "</p>";
         h += '<footer class="archiv-source-block archiv-card-actions">';
-        h += '<span class="archiv-label">Documentation</span>';
-        h += '<a href="' + esc(work.internalLink) + '">Fiche œuvre</a>';
+        h += '<span class="archiv-label">' + esc(window.archivT ? window.archivT("documentation") : "Documentation") + "</span>";
+        h += '<a href="' + esc(work.internalLink) + '">' + esc(window.archivT ? window.archivT("workSheet") : "Fiche œuvre") + "</a>";
         h += ' · <a href="' + esc(work.source) + '" target="_blank" rel="noopener noreferrer">' + esc(work.sourceLabel) + "</a>";
         h += "</footer></div></div></article>";
         return h;
@@ -94,11 +97,11 @@
             });
         } else if (mode === "title") {
             arr.sort(function (a, b) {
-                return a.title.localeCompare(b.title, "fr");
+                return a.title.localeCompare(b.title, sortLocale());
             });
         } else if (mode === "museum") {
             arr.sort(function (a, b) {
-                return (a.museum || "").localeCompare(b.museum || "", "fr");
+                return (a.museum || "").localeCompare(b.museum || "", sortLocale());
             });
         }
         return arr;
@@ -172,7 +175,7 @@
     function initCollectionCount() {
         var $c = $("#archiv-collection-count");
         if (!$c.length || !window.ARCHIV_OEUVRES) return;
-        $c.text(window.ARCHIV_OEUVRES.length + " œuvres documentées · sources institutionnelles");
+        $c.text(window.ARCHIV_OEUVRES.length + " " + (window.archivT ? window.archivT("worksDocumented") : "œuvres documentées · sources institutionnelles"));
     }
 
     function initEngravingSpotlight() {
@@ -257,7 +260,7 @@
         h += esc(work.museum);
         if (work.dimensions) h += " · " + esc(work.dimensions);
         h += "<br>";
-        h += '<a href="' + esc(work.internalLink) + '">Fiche œuvre</a> · ';
+        h += '<a href="' + esc(work.internalLink) + '">' + esc(window.archivT ? window.archivT("workSheet") : "Fiche œuvre") + "</a> · ";
         h += '<a href="' + esc(work.source) + '" target="_blank" rel="noopener noreferrer">Source : ' + esc(work.sourceLabel) + "</a>";
         h += "</footer></div></article>";
         return h;
@@ -373,25 +376,26 @@
         if (work.sections && work.sections.length) {
             html += '<div class="archiv-oeuvre-lecture">';
             work.sections.forEach(function (sec, idx) {
-                var title = sec.title || (idx === 0 ? "Lecture" : "");
+                var title = sec.title || (idx === 0 ? (window.archivT ? window.archivT("lecture") : "Lecture") : "");
                 if (title) html += "<h2>" + esc(title) + "</h2>";
                 (sec.paragraphs || []).forEach(function (p) {
                     html += "<p>" + esc(p) + "</p>";
                 });
             });
             if (work.visual) {
-                html += "<h2>Regard</h2><p>" + esc(work.visual) + "</p>";
+                html += "<h2>" + esc(window.archivT ? window.archivT("regard") : "Regard") + "</h2><p>" + esc(work.visual) + "</p>";
             }
-            if (work.wikipediaFr) {
-                html += '<p class="archiv-oeuvre-lecture__wiki"><a href="' + esc(work.wikipediaFr) + '" class="archiv-text-link" target="_blank" rel="noopener noreferrer">Approfondir — article Wikipédia</a></p>';
+            var wiki = work.wikipediaEn || work.wikipediaFr;
+            if (wiki) {
+                html += '<p class="archiv-oeuvre-lecture__wiki"><a href="' + esc(wiki) + '" class="archiv-text-link" target="_blank" rel="noopener noreferrer">' + esc(window.archivT ? window.archivT("deepenWiki") : "Approfondir — article Wikipédia") + "</a></p>";
             }
             html += "</div>";
             return html;
         }
-        html += '<h2>Lecture</h2><p class="archiv-lead">' + esc(work.summary) + "</p>";
+        html += "<h2>" + esc(window.archivT ? window.archivT("lecture") : "Lecture") + '</h2><p class="archiv-lead">' + esc(work.summary) + "</p>";
         html += "<p>" + esc(work.importance) + "</p>";
         if (work.visual) {
-            html += "<h2>Regard</h2><p>" + esc(work.visual) + "</p>";
+            html += "<h2>" + esc(window.archivT ? window.archivT("regard") : "Regard") + "</h2><p>" + esc(work.visual) + "</p>";
         }
         return html;
     }
@@ -403,8 +407,8 @@
         var id = params.get("id");
         var work = id ? window.archivGetOeuvre(id) : null;
         if (!work) {
-            $root.html('<p class="archiv-lead">Œuvre introuvable. <a href="oeuvres.html">Retour au catalogue</a>.</p>');
-            document.title = "Œuvre — ARCHIV";
+            $root.html('<p class="archiv-lead">' + esc(window.archivT ? window.archivT("workNotFound") : "Œuvre introuvable.") + ' <a href="' + esc(window.archivPageUrl ? window.archivPageUrl("oeuvres.html") : "oeuvres.html") + '">' + esc(window.archivT ? window.archivT("backCatalogue") : "Retour au catalogue") + "</a>.</p>");
+            document.title = (window.archivLang && window.archivLang() === "en" ? "Work" : "Œuvre") + " — ARCHIV";
             return;
         }
         document.title = work.title + " — Albrecht Dürer | ARCHIV";
@@ -435,7 +439,7 @@
             if (twImg && imgUrl) twImg.setAttribute("content", imgUrl);
         }
 
-        var html = '<nav class="archiv-breadcrumb" aria-label="Fil d\'Ariane"><a href="/">Vue d\'ensemble</a> · <a href="oeuvres.html">Œuvres</a> · <span>' + esc(work.title) + "</span></nav>";
+        var html = '<nav class="archiv-breadcrumb" aria-label="' + esc(window.archivT ? window.archivT("breadcrumbAria") : "Fil d'Ariane") + '"><a href="' + esc(window.archivBasePath ? window.archivBasePath() : "/") + '">' + esc(window.archivT ? window.archivT("overview") : "Vue d'ensemble") + '</a> · <a href="' + esc(window.archivPageUrl ? window.archivPageUrl("oeuvres.html") : "oeuvres.html") + '">' + esc(window.archivT ? window.archivT("oeuvres") : "Œuvres") + "</a> · <span>" + esc(work.title) + "</span></nav>";
         html += '<div class="row archiv-oeuvre-layout">';
         html += '<div class="col-lg-7 mb-4 mb-lg-0">';
         html += '<figure class="archiv-oeuvre-hero">';
@@ -455,14 +459,14 @@
         html += '<p class="archiv-kicker">' + esc(work.date) + "</p>";
         html += "<h1>" + esc(work.title) + "</h1>";
         if (work.titleDe) html += '<p class="archiv-title-de">' + esc(work.titleDe) + "</p>";
-        html += '<div class="archiv-metadata-panel" role="group" aria-label="Métadonnées">';
-        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Technique</span><p class="archiv-metadata-panel__val">' + esc(work.technique) + "</p></div>";
-        if (work.dimensions) html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Dimensions</span><p class="archiv-metadata-panel__val">' + esc(work.dimensions) + "</p></div>";
-        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Collection</span><p class="archiv-metadata-panel__val">' + esc(work.museum);
+        html += '<div class="archiv-metadata-panel" role="group" aria-label="' + esc(window.archivT ? window.archivT("metadata") : "Métadonnées") + '">';
+        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">' + esc(window.archivT ? window.archivT("technique") : "Technique") + "</span><p class=\"archiv-metadata-panel__val\">" + esc(work.technique) + "</p></div>";
+        if (work.dimensions) html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">' + esc(window.archivT ? window.archivT("dimensions") : "Dimensions") + "</span><p class=\"archiv-metadata-panel__val\">" + esc(work.dimensions) + "</p></div>";
+        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">' + esc(window.archivT ? window.archivT("collection") : "Collection") + "</span><p class=\"archiv-metadata-panel__val\">" + esc(work.museum);
         if (work.location) html += " · " + esc(work.location);
         html += "</p></div>";
-        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Source</span><p class="archiv-metadata-panel__val"><a href="' + esc(work.source) + '" target="_blank" rel="noopener">' + esc(work.sourceLabel) + "</a></p></div>";
-        if (work.rights) html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Droits</span><p class="archiv-metadata-panel__val">' + esc(work.rights) + "</p></div>";
+        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">' + esc(window.archivT ? window.archivT("source") : "Source") + "</span><p class=\"archiv-metadata-panel__val\"><a href=\"" + esc(work.source) + '" target="_blank" rel="noopener">' + esc(work.sourceLabel) + "</a></p></div>";
+        if (work.rights) html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">' + esc(window.archivT ? window.archivT("rights") : "Droits") + "</span><p class=\"archiv-metadata-panel__val\">" + esc(work.rights) + "</p></div>";
         html += "</div>";
         html += '<p class="archiv-lead archiv-oeuvre-cartel__lead">' + esc(work.summary) + "</p>";
         html += '<p class="mt-4"><a href="' + esc(work.source) + '" class="archiv-btn archiv-btn--dark" target="_blank" rel="noopener noreferrer">Source : ' + esc(work.sourceLabel) + "</a></p>";
@@ -470,7 +474,7 @@
             html += '<p class="archiv-source-commons mt-2"><a href="' + esc(work.commons) + '" class="archiv-text-link" target="_blank" rel="noopener noreferrer">Reproduction documentée (Wikimedia Commons)</a></p>';
         }
         html += "</div></div></div>";
-        html += '<section class="archiv-oeuvre-lecture-block" aria-label="Lecture de l\'œuvre">';
+        html += '<section class="archiv-oeuvre-lecture-block" aria-label="' + esc(window.archivT ? window.archivT("lecture") : "Lecture de l'œuvre") + '">';
         html += renderWorkLecture(work);
         html += "</section>";
         $root.html(html);
@@ -719,11 +723,11 @@
         var id = params.get("id");
         var ed = id ? window.archivGetEdition(id) : null;
         if (!ed) {
-            $root.html('<p class="archiv-lead">Édition introuvable. <a href="editions.html">Retour aux éditions</a>.</p>');
-            document.title = "Édition — ARCHIV";
+            $root.html('<p class="archiv-lead">' + esc(window.archivT ? window.archivT("editionNotFound") : "Édition introuvable.") + ' <a href="' + esc(window.archivPageUrl ? window.archivPageUrl("editions.html") : "editions.html") + '">' + esc(window.archivT ? window.archivT("backEditions") : "Retour aux éditions") + "</a>.</p>");
+            document.title = (window.archivLang && window.archivLang() === "en" ? "Edition" : "Édition") + " — ARCHIV";
             return;
         }
-        document.title = ed.title + " — Éditions ARCHIV";
+        document.title = ed.title + (window.archivLang && window.archivLang() === "en" ? " — ARCHIV Editions" : " — Éditions ARCHIV");
         var meta = document.querySelector('meta[name="description"]');
         if (meta) meta.setAttribute("content", ed.description);
         if (window.archivAbsoluteUrl) {
@@ -735,7 +739,7 @@
             if (ogImg && ed.image) ogImg.setAttribute("content", window.archivAbsoluteUrl(ed.image.replace(/^\//, "")));
         }
 
-        var html = '<nav class="archiv-breadcrumb" aria-label="Fil d\'Ariane"><a href="/">Vue d\'ensemble</a> · <a href="editions.html">Éditions</a> · <span>' + esc(ed.title) + "</span></nav>";
+        var html = '<nav class="archiv-breadcrumb" aria-label="' + esc(window.archivT ? window.archivT("breadcrumbAria") : "Fil d'Ariane") + '"><a href="' + esc(window.archivBasePath ? window.archivBasePath() : "/") + '">' + esc(window.archivT ? window.archivT("overview") : "Vue d'ensemble") + '</a> · <a href="' + esc(window.archivPageUrl ? window.archivPageUrl("editions.html") : "editions.html") + '">' + esc(window.archivT ? window.archivT("editions") : "Éditions") + "</a> · <span>" + esc(ed.title) + "</span></nav>";
         html += '<div class="row archiv-oeuvre-layout archiv-edition-layout">';
         html += '<div class="col-lg-7 mb-4 mb-lg-0">';
         html += '<figure class="archiv-oeuvre-hero archiv-edition-hero">';
@@ -747,7 +751,7 @@
             }
         }
         html += '<img src="' + esc(edImg) + '" alt="' + esc(ed.imageAlt) + '" width="1200" loading="eager" decoding="async" data-archiv-edition-id="' + esc(ed.id) + '">';
-        html += '<figcaption class="archiv-museum-caption">Reproduction source documentée — ' + esc(ed.credit) + "</figcaption>";
+        html += '<figcaption class="archiv-museum-caption">' + esc(window.archivT ? window.archivT("documentedReproduction") : "Reproduction source documentée") + " — " + esc(ed.credit) + "</figcaption>";
         html += "</figure></div>";
         html += '<div class="col-lg-5"><div class="archiv-oeuvre-cartel">';
         html += '<p class="archiv-edition-card__category">' + esc(ed.category) + "</p>";
@@ -755,28 +759,28 @@
         html += "<h1>" + esc(ed.title) + "</h1>";
         html += '<p class="archiv-lead">' + esc(ed.description) + "</p>";
         html += '<p class="archiv-edition-detail__rights">' + esc(ed.rightsStatus) + "</p>";
-        html += '<div class="archiv-metadata-panel" role="group" aria-label="Métadonnées édition">';
-        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Format</span><p class="archiv-metadata-panel__val">' + esc(ed.format) + "</p></div>";
-        if (ed.paper) html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Support</span><p class="archiv-metadata-panel__val">' + esc(ed.paper) + "</p></div>";
-        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Statut</span><p class="archiv-metadata-panel__val">' + esc(ed.status) + "</p></div>";
+        html += '<div class="archiv-metadata-panel" role="group" aria-label="' + esc(window.archivT ? window.archivT("metadata") : "Métadonnées") + '">';
+        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">' + esc(window.archivT ? window.archivT("format") : "Format") + "</span><p class=\"archiv-metadata-panel__val\">" + esc(ed.format) + "</p></div>";
+        if (ed.paper) html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">' + esc(window.archivT ? window.archivT("support") : "Support") + "</span><p class=\"archiv-metadata-panel__val\">" + esc(ed.paper) + "</p></div>";
+        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">' + esc(window.archivT ? window.archivT("status") : "Statut") + "</span><p class=\"archiv-metadata-panel__val\">" + esc(ed.status) + "</p></div>";
         if (ed.price != null && ed.currency) {
-            html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Tarif</span><p class="archiv-metadata-panel__val">' + esc(ed.price) + " " + esc(ed.currency) + "</p></div>";
+            html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">' + esc(window.archivT ? window.archivT("price") : "Tarif") + "</span><p class=\"archiv-metadata-panel__val\">" + esc(ed.price) + " " + esc(ed.currency) + "</p></div>";
         }
-        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Droits image</span><p class="archiv-metadata-panel__val">' + esc(ed.imageRights) + "</p></div>";
-        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Source</span><p class="archiv-metadata-panel__val"><a href="' + esc(ed.sourceUrl) + '" target="_blank" rel="noopener">' + esc(ed.sourceLabel) + "</a></p></div>";
+        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">' + esc(window.archivT ? window.archivT("imageRights") : "Droits image") + "</span><p class=\"archiv-metadata-panel__val\">" + esc(ed.imageRights) + "</p></div>";
+        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">' + esc(window.archivT ? window.archivT("source") : "Source") + "</span><p class=\"archiv-metadata-panel__val\"><a href=\"" + esc(ed.sourceUrl) + '" target="_blank" rel="noopener">' + esc(ed.sourceLabel) + "</a></p></div>";
         html += "</div>";
         html += '<p class="mt-4"><a href="editions.html#archiv-edition-inquiry" class="archiv-btn archiv-btn--ghost">' + esc(ed.ctaLabel) + "</a></p>";
         html += "</div></div></div>";
 
         html += '<section class="archiv-edition-source-panel" aria-labelledby="edition-source-title">';
-        html += '<h2 id="edition-source-title">Œuvre source</h2>';
+        html += '<h2 id="edition-source-title">' + esc(window.archivT ? window.archivT("sourceWork") : "Œuvre source") + "</h2>";
         html += "<p><strong>" + esc(ed.relatedWork) + "</strong>";
         if (ed.originalWorkDate) html += ", " + esc(ed.originalWorkDate);
         if (ed.originalTechnique) html += " — " + esc(ed.originalTechnique);
         html += ".</p>";
-        html += "<p>Institution de référence : " + esc(ed.museum) + ".</p>";
+        html += "<p>" + esc(window.archivT ? window.archivT("referenceInstitution") : "Institution de référence") + " : " + esc(ed.museum) + ".</p>";
         if (ed.relatedWorkId) {
-            html += '<p><a href="oeuvre.html?id=' + esc(ed.relatedWorkId) + '" class="archiv-text-link">Voir la fiche œuvre</a></p>';
+            html += '<p><a href="' + esc(window.archivPageUrl ? window.archivPageUrl("oeuvre.html?id=" + ed.relatedWorkId) : "oeuvre.html?id=" + ed.relatedWorkId) + '" class="archiv-text-link">' + esc(window.archivT ? window.archivT("viewWorkSheet") : "Voir la fiche œuvre") + "</a></p>";
         }
         html += "</section>";
 
@@ -794,7 +798,7 @@
             "name": ed.title,
             "description": ed.description,
             "url": window.archivAbsoluteUrl ? window.archivAbsoluteUrl("edition.html?id=" + ed.slug) : undefined,
-            "inLanguage": "fr",
+            "inLanguage": window.archivLang ? window.archivLang() : "fr",
             "about": { "@type": "VisualArtwork", "name": ed.relatedWork, "creator": { "@type": "Person", "name": "Albrecht Dürer" } }
         };
         if (!edLd.url) delete edLd.url;
