@@ -153,7 +153,7 @@
     };
 
     global.archivBasePath = function () {
-        return global.archivLang() === "en" ? "/en/" : "/";
+        return global.archivLang() === "fr" ? "/fr/" : "/";
     };
 
     global.archivPageUrl = function (page) {

@@ -10,18 +10,6 @@ TODAY = date.today().isoformat()
 
 STATIC_PAGES = [
     ("", "weekly", "1.0"),
-    ("en/", "weekly", "0.95"),
-    ("en/vie.html", "monthly", "0.88"),
-    ("en/oeuvres.html", "weekly", "0.88"),
-    ("en/gravures.html", "monthly", "0.88"),
-    ("en/autoportraits.html", "monthly", "0.83"),
-    ("en/science.html", "monthly", "0.83"),
-    ("en/voyages.html", "monthly", "0.78"),
-    ("en/chronologie.html", "monthly", "0.78"),
-    ("en/editions.html", "monthly", "0.68"),
-    ("en/sources.html", "monthly", "0.73"),
-    ("en/oeuvre.html", "weekly", "0.62"),
-    ("en/edition.html", "monthly", "0.52"),
     ("vie.html", "monthly", "0.9"),
     ("oeuvres.html", "weekly", "0.9"),
     ("gravures.html", "monthly", "0.9"),
@@ -33,6 +21,18 @@ STATIC_PAGES = [
     ("sources.html", "monthly", "0.75"),
     ("oeuvre.html", "weekly", "0.65"),
     ("edition.html", "monthly", "0.55"),
+    ("fr/", "weekly", "0.88"),
+    ("fr/vie.html", "monthly", "0.82"),
+    ("fr/oeuvres.html", "weekly", "0.82"),
+    ("fr/gravures.html", "monthly", "0.82"),
+    ("fr/autoportraits.html", "monthly", "0.78"),
+    ("fr/science.html", "monthly", "0.78"),
+    ("fr/voyages.html", "monthly", "0.74"),
+    ("fr/chronologie.html", "monthly", "0.74"),
+    ("fr/editions.html", "monthly", "0.65"),
+    ("fr/sources.html", "monthly", "0.7"),
+    ("fr/oeuvre.html", "weekly", "0.58"),
+    ("fr/edition.html", "monthly", "0.48"),
 ]
 
 
@@ -83,21 +83,21 @@ def main() -> None:
         lines.append("  </url>")
 
     for wid in all_work_ids:
-        for prefix in ("", "en/"):
+        for prefix in ("", "fr/"):
             lines.append("  <url>")
             lines.append(f"    <loc>{url(prefix + 'oeuvre.html')}?id={wid}</loc>")
             lines.append(f"    <lastmod>{TODAY}</lastmod>")
             lines.append("    <changefreq>monthly</changefreq>")
-            lines.append(f"    <priority>{'0.58' if prefix else '0.6'}</priority>")
+            lines.append(f"    <priority>{'0.56' if prefix else '0.6'}</priority>")
             lines.append("  </url>")
 
     for eid in all_edition_ids:
-        for prefix in ("", "en/"):
+        for prefix in ("", "fr/"):
             lines.append("  <url>")
             lines.append(f"    <loc>{url(prefix + 'edition.html')}?id={eid}</loc>")
             lines.append(f"    <lastmod>{TODAY}</lastmod>")
             lines.append("    <changefreq>monthly</changefreq>")
-            lines.append(f"    <priority>{'0.48' if prefix else '0.5'}</priority>")
+            lines.append(f"    <priority>{'0.46' if prefix else '0.5'}</priority>")
             lines.append("  </url>")
 
     lines.append("</urlset>")

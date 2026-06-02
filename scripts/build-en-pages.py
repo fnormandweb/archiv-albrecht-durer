@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate English pages under /en/ (mirror of ARCHIV interior pages)."""
+"""Generate English pages at site root (default locale)."""
 import json
 import re
 from pathlib import Path
@@ -7,12 +7,12 @@ from pathlib import Path
 _re = re
 
 ROOT = Path(__file__).resolve().parent.parent
-EN_DIR = ROOT / "en"
+OUT_DIR = ROOT
 SITE_ORIGIN = "https://albrechtdurer.uk"
-ASSET = "../"
-NAV = "\n".join((ROOT / "partials/archiv-nav-en.html").read_text(encoding="utf-8").splitlines()[1:])
-FOOTER = (ROOT / "partials/archiv-footer-en.html").read_text(encoding="utf-8")
-SCRIPTS = (ROOT / "partials/archiv-scripts-en.html").read_text(encoding="utf-8")
+ASSET = ""
+NAV = "\n".join((ROOT / "partials/archiv-nav.html").read_text(encoding="utf-8").splitlines()[1:])
+FOOTER = (ROOT / "partials/archiv-footer.html").read_text(encoding="utf-8")
+SCRIPTS = (ROOT / "partials/archiv-scripts-production.html").read_text(encoding="utf-8")
 SKIP = (ROOT / "partials/archiv-skip-en.html").read_text(encoding="utf-8").strip()
 FAVICON = (ROOT / "partials/archiv-favicon.html").read_text(encoding="utf-8").strip()
 FAVICON = FAVICON.replace('href="img/', f'href="{ASSET}img/').replace('href="img/', f'href="{ASSET}img/')
@@ -43,19 +43,18 @@ SPEC_KNIGHT = f"""<figure class="archiv-archive-hero__specimen">
 
 def abs_url(path: str) -> str:
     path = (path or "").lstrip("/")
-    if path.startswith("en/"):
-        return f"{SITE_ORIGIN}/{path}"
-    return f"{SITE_ORIGIN}/en/{path}" if path else f"{SITE_ORIGIN}/en/"
+    return f"{SITE_ORIGIN}/{path}" if path else f"{SITE_ORIGIN}/"
 
 
 def hreflang_links(canonical_en: str) -> str:
-    fr_path = canonical_en.replace("en/", "", 1) if canonical_en.startswith("en/") else canonical_en
-    fr_url = f"{SITE_ORIGIN}/{fr_path}" if fr_path else f"{SITE_ORIGIN}/"
-    en_url = abs_url(canonical_en)
+    en_path = canonical_en.lstrip("/")
+    en_url = abs_url(en_path)
+    fr_path = f"fr/{en_path}" if en_path else "fr/"
+    fr_url = f"{SITE_ORIGIN}/{fr_path}"
     return (
         f'    <link rel="alternate" hreflang="fr" href="{fr_url}">\n'
         f'    <link rel="alternate" hreflang="en" href="{en_url}">\n'
-        f'    <link rel="alternate" hreflang="x-default" href="{fr_url}">\n'
+        f'    <link rel="alternate" hreflang="x-default" href="{en_url}">\n'
     )
 
 
@@ -150,7 +149,7 @@ def web_page_schema(name, desc, path):
         "description": desc,
         "url": abs_url(path),
         "inLanguage": "en",
-        "isPartOf": {"@type": "WebSite", "name": "ARCHIV — Albrecht Dürer", "url": SITE_ORIGIN + "/en/"},
+        "isPartOf": {"@type": "WebSite", "name": "ARCHIV — Albrecht Dürer", "url": SITE_ORIGIN + "/"},
     }
 
 
@@ -174,8 +173,8 @@ def page(title, desc, page_id, canonical, h1, sub, main, og=None, use_hero=True,
     scripts = SCRIPTS
     if extra_scripts:
         scripts = SCRIPTS.replace(
-            '    <script src="../js/archiv.js" defer></script>',
-            extra_scripts + '\n    <script src="../js/archiv.js" defer></script>',
+            '    <script src="js/archiv.js" defer></script>',
+            extra_scripts + '\n    <script src="js/archiv.js" defer></script>',
         )
     return head(title, desc, page_id, canonical, og, body_class, extra_css, json_ld=ld) + NAV + hero + body + FOOTER + scripts + "\n</body>\n</html>\n"
 
@@ -185,7 +184,7 @@ PAGES = {
         "Albrecht Dürer — Work record | ARCHIV",
         "Documented work by Albrecht Dürer: technique, collection, visual reading and museum source.",
         "oeuvre",
-        "en/oeuvre.html",
+        "oeuvre.html",
         "Work",
         "Documented record",
         """<main id="archiv-main" class="archiv-museum-section archiv-museum-section--paper archiv-page-main"><div class="archiv-page-shell" id="archiv-oeuvre-detail"></div></main>""",
@@ -196,7 +195,7 @@ PAGES = {
         "Albrecht Dürer — Biography, travels and workshop | ARCHIV",
         "Life of Albrecht Dürer from Nuremberg to European courts: training, workshop, artistic maturity and final treatises.",
         "vie",
-        "en/vie.html",
+        "vie.html",
         "Life",
         "From Nuremberg to the courts of Europe",
         """<main class="archiv-museum-section archiv-museum-section--paper"><div class="archiv-page-shell"><div class="archiv-prose-block">
@@ -218,7 +217,7 @@ PAGES = {
         "Works by Albrecht Dürer — Paintings, engravings and drawings | ARCHIV",
         "Explore major works by Albrecht Dürer: paintings, engravings, drawings, watercolours, self-portraits and theoretical books.",
         "oeuvres",
-        "en/oeuvres.html",
+        "oeuvres.html",
         "Works",
         "Documented, filterable catalogue",
         """<main class="archiv-museum-section archiv-museum-section--paper archiv-collection-index"><div class="archiv-page-shell">
@@ -255,7 +254,7 @@ PAGES = {
         "Engravings by Albrecht Dürer — Melencolia I, Rhinoceros, Apocalypse | ARCHIV",
         "Page devoted to Dürer's prints: Melencolia I, St. Jerome, Knight Death and Devil, Rhinoceros and the Apocalypse.",
         "gravures",
-        "en/gravures.html",
+        "gravures.html",
         "Engravings",
         "Print as an autonomous language",
         """<main>
@@ -297,7 +296,7 @@ PAGES = {
         "Dürer as theorist — Science, proportion, measure and perspective | ARCHIV",
         "Dürer the theorist: measurement, perspective, geometry, human proportion, fortification and scientific observation of the visible.",
         "science",
-        "en/science.html",
+        "science.html",
         "Science and proportion",
         "Image as method",
         """<main id="archiv-main" class="archiv-museum-section archiv-museum-section--paper archiv-science-page"><div class="archiv-page-shell">
@@ -332,7 +331,7 @@ PAGES = {
         "Travels of Albrecht Dürer — Nuremberg, Venice and the Low Countries | ARCHIV",
         "Map of Dürer's journeys: Nuremberg, Italy, Venice, Rhineland and Low Countries journal (1520–1521).",
         "voyages",
-        "en/voyages.html",
+        "voyages.html",
         "Travels",
         "Mapping movement",
         """<main class="archiv-museum-section archiv-museum-section--paper"><div class="archiv-page-shell archiv-page-shell--narrow archiv-prose-block">
@@ -356,7 +355,7 @@ PAGES = {
         "Chronology of Albrecht Dürer — Key dates and major works | ARCHIV",
         "Structural dates in Dürer's life (1471–1528): Apocalypse, master prints, Rhinoceros, treatises and European legacy.",
         "chronologie",
-        "en/chronologie.html",
+        "chronologie.html",
         "Chronology",
         "1471 — 1528",
         """<main class="archiv-museum-section archiv-museum-section--paper"><div class="archiv-page-shell archiv-page-shell--narrow">
@@ -368,7 +367,7 @@ PAGES = {
         "Sources and credits — Albrecht Dürer Archive | ARCHIV",
         "Museums, notices, biographical sources and image credits: ARCHIV method, work inventory and documented rights.",
         "sources",
-        "en/sources.html",
+        "sources.html",
         "Sources",
         "Documentation and credits",
         """<main class="archiv-museum-section archiv-museum-section--paper"><div class="archiv-page-shell archiv-page-shell--narrow archiv-prose-block">
@@ -383,7 +382,7 @@ PAGES = {
 <div id="archiv-sources-inventory" class="archiv-table-wrap mt-3"></div>
 <h2 class="mt-5">Work sources</h2>
 <p>See the <a href="oeuvres.html" class="archiv-text-link">catalogue</a> and records: <a href="oeuvre.html?id=melencolia">Melencolia I</a>, <a href="oeuvre.html?id=knight-death-devil">Knight, Death and the Devil</a>, <a href="oeuvre.html?id=rhinoceros">Rhinoceros</a>.</p>
-<nav class="archiv-see-also mt-5" aria-label="Explore"><p class="archiv-kicker">Explore the archive</p><ul><li><a href="/en/">Overview</a></li><li><a href="vie.html">Biography</a></li><li><a href="oeuvres.html">Works</a></li><li><a href="editions.html">Editions</a></li></ul></nav>
+<nav class="archiv-see-also mt-5" aria-label="Explore"><p class="archiv-kicker">Explore the archive</p><ul><li><a href="/">Overview</a></li><li><a href="vie.html">Biography</a></li><li><a href="oeuvres.html">Works</a></li><li><a href="editions.html">Editions</a></li></ul></nav>
 </div></main>""",
         extra_css=f"{ASSET}css/archiv-editions.css",
         extra_scripts=f'    <script src="{ASSET}js/archiv-editions.js" defer></script>',
@@ -495,20 +494,20 @@ def build_static_en(filename: str, canonical: str, extra_script_editions: bool =
     html = html.replace('content="fr_FR"', 'content="en_GB"')
     if extra_script_editions and "archiv-editions.js" not in html:
         html = html.replace(
-            '<script src="../js/archiv.js" defer></script>',
-            '    <script src="../js/archiv-editions.js" defer></script>\n    <script src="../js/archiv.js" defer></script>',
+            '<script src="js/archiv.js" defer></script>',
+            '    <script src="js/archiv-editions.js" defer></script>\n    <script src="js/archiv.js" defer></script>',
         )
-    (EN_DIR / filename).write_text(html, encoding="utf-8")
-    print("OK en/", filename)
+    (OUT_DIR / filename).write_text(html, encoding="utf-8")
+    print("OK", filename)
 
 
 def polish_en_index():
-    path = EN_DIR / "index.html"
+    path = OUT_DIR / "index.html"
     html = path.read_text(encoding="utf-8")
     html = _re.sub(r'\n    <link rel="alternate" hreflang="[^"]+" href="[^"]+">', "", html)
     html = _re.sub(
         r'<link rel="canonical" href="[^"]+">',
-        f'<link rel="canonical" href="{abs_url("en/")}">\n{hreflang_links("en/")}',
+        f'<link rel="canonical" href="{abs_url("")}">\n{hreflang_links("")}',
         html,
         count=1,
     )
@@ -525,9 +524,9 @@ def polish_en_index():
     html = html.replace('twitter:title" content="Albrecht Dürer — Archive numérique | ARCHIV"', f'twitter:title" content="Albrecht Dürer — Digital archive | ARCHIV"')
     html = _re.sub(r'og:description" content="[^"]+"', f'og:description" content="{og_desc}"', html, count=1)
     html = _re.sub(r'twitter:description" content="[^"]+"', f'twitter:description" content="{og_desc}"', html, count=1)
-    html = html.replace('og:url" content="https://albrechtdurer.uk/"', 'og:url" content="https://albrechtdurer.uk/en/"')
+    html = html.replace('og:url" content="https://albrechtdurer.uk/fr/"', 'og:url" content="https://albrechtdurer.uk/"')
     html = html.replace('"inLanguage":"fr"', '"inLanguage":"en"')
-    html = html.replace("https://albrechtdurer.uk/vie.html", "https://albrechtdurer.uk/en/vie.html")
+    html = html.replace("https://albrechtdurer.uk/fr/vie.html", "https://albrechtdurer.uk/vie.html")
     hero_repl = [
         ("Peintre, graveur, dessinateur et théoricien", "Painter, engraver, draughtsman and theorist"),
         ("Cinq axes pour lire Dürer", "Five axes for reading Dürer"),
@@ -549,15 +548,64 @@ def polish_en_index():
     path.write_text(html, encoding="utf-8")
 
 
+def prefix_assets_fr(html: str) -> str:
+    fr_asset = "../"
+    pairs = [
+        ('href="css/', f'href="{fr_asset}css/'),
+        ('href="img/', f'href="{fr_asset}img/'),
+        ('src="js/', f'src="{fr_asset}js/'),
+        ('src="img/', f'src="{fr_asset}img/'),
+        ("url('img/", f"url('{fr_asset}img/"),
+        ('preload" as="image" href="img/', f'preload" as="image" href="{fr_asset}img/'),
+    ]
+    for old, new in pairs:
+        html = html.replace(old, new)
+    return html.replace('data-site-logo="img/', f'data-site-logo="{fr_asset}img/')
+
+
+def preserve_fr_static_pages():
+    """Copy current FR manual pages to /fr/ before overwriting root with EN."""
+    fr_dir = ROOT / "fr"
+    fr_dir.mkdir(parents=True, exist_ok=True)
+    nav_fr = "\n".join((ROOT / "partials/archiv-nav-fr.html").read_text(encoding="utf-8").splitlines()[1:])
+    footer_fr = (ROOT / "partials/archiv-footer-fr.html").read_text(encoding="utf-8")
+    scripts_fr = (ROOT / "partials/archiv-scripts-fr.html").read_text(encoding="utf-8")
+    for filename in ("index.html", "editions.html", "edition.html"):
+        src = ROOT / filename
+        if not src.exists():
+            continue
+        html = src.read_text(encoding="utf-8")
+        html = prefix_assets_fr(html)
+        html = _re.sub(r'\n    <link rel="alternate" hreflang="[^"]+" href="[^"]+">', "", html)
+        html = html.replace('og:url" content="https://albrechtdurer.uk/"', 'og:url" content="https://albrechtdurer.uk/fr/"')
+        start = html.find("<header class=\"archiv-museum-header\"")
+        main_start = html.find("<main", start) if start >= 0 else html.find("<main")
+        footer_start = html.rfind("<footer class=\"archiv-archive-footer")
+        if start >= 0 and main_start >= 0 and footer_start >= 0:
+            html = html[:start] + nav_fr + "\n" + html[main_start:footer_start] + footer_fr + "\n" + scripts_fr + "\n" + html[html.rfind("</body>"):]
+        canon = _re.search(r'<link rel="canonical" href="[^"]+">', html)
+        if canon:
+            fr_canon = f"fr/{filename}" if filename != "index.html" else "fr/"
+            fr_canon_path = fr_canon.rstrip("/") if fr_canon.endswith("/") and filename == "index.html" else fr_canon
+            if filename == "index.html":
+                fr_abs = f"{SITE_ORIGIN}/fr/"
+            else:
+                fr_abs = f"{SITE_ORIGIN}/fr/{filename}"
+            en_key = filename if filename != "index.html" else ""
+            html = html.replace(canon.group(), f'<link rel="canonical" href="{fr_abs}">\n{hreflang_links(en_key)}', 1)
+        (fr_dir / filename).write_text(html, encoding="utf-8")
+        print("OK fr/", filename)
+
+
 def main():
-    EN_DIR.mkdir(parents=True, exist_ok=True)
+    preserve_fr_static_pages()
     for name, html in PAGES.items():
-        (EN_DIR / name).write_text(html, encoding="utf-8")
-        print("OK en/", name)
+        (OUT_DIR / name).write_text(html, encoding="utf-8")
+        print("OK", name)
 
     # Self-portraits: adapt FR page (rich layout)
-    fr_auto = (ROOT / "autoportraits.html").read_text(encoding="utf-8")
-    fr_nav_end = fr_auto.find("</header>")
+    fr_dir = ROOT / "fr"
+    fr_auto = (fr_dir / "autoportraits.html").read_text(encoding="utf-8")
     fr_main_start = fr_auto.find("<main")
     fr_main_end = fr_auto.rfind("</main>") + len("</main>")
     main_block = fr_main_start and fr_auto[fr_main_start:fr_main_end] or ""
@@ -565,7 +613,7 @@ def main():
         "Self-portraits by Albrecht Dürer — The artist as author | ARCHIV",
         "Analysis of Dürer's self-portraits and his role in asserting the artist as author and public image.",
         "autoportraits",
-        "en/autoportraits.html",
+        "autoportraits.html",
         "",
         "",
         localize_autoportraits(main_block),
@@ -573,15 +621,15 @@ def main():
         body_class="archiv-page-portraits",
         extra_css=f"{ASSET}css/archiv-portraits.css",
     )
-    (EN_DIR / "autoportraits.html").write_text(auto_page, encoding="utf-8")
-    print("OK en/autoportraits.html")
+    (OUT_DIR / "autoportraits.html").write_text(auto_page, encoding="utf-8")
+    print("OK autoportraits.html")
 
-    build_static_en("index.html", "en/")
+    build_static_en("index.html", "")
     polish_en_index()
-    build_static_en("editions.html", "en/editions.html", extra_script_editions=True)
-    build_static_en("edition.html", "en/edition.html", extra_script_editions=True)
+    build_static_en("editions.html", "editions.html", extra_script_editions=True)
+    build_static_en("edition.html", "edition.html", extra_script_editions=True)
 
-    print("Done", len(PAGES) + 4, "EN pages")
+    print("Done", len(PAGES) + 4, "EN pages at root")
 
 
 if __name__ == "__main__":

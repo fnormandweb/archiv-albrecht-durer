@@ -4,19 +4,20 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-NAV = "\n".join((ROOT / "partials/archiv-nav.html").read_text(encoding="utf-8").splitlines()[1:])
-FOOTER = (ROOT / "partials/archiv-footer.html").read_text(encoding="utf-8")
-SCRIPTS_LITE = (ROOT / "partials/archiv-scripts-production.html").read_text(encoding="utf-8")
+FR_DIR = ROOT / "fr"
+ASSET = "../"
+NAV = "\n".join((ROOT / "partials/archiv-nav-fr.html").read_text(encoding="utf-8").splitlines()[1:])
+FOOTER = (ROOT / "partials/archiv-footer-fr.html").read_text(encoding="utf-8")
+SCRIPTS_LITE = (ROOT / "partials/archiv-scripts-fr.html").read_text(encoding="utf-8")
 SITE_ORIGIN = "https://albrechtdurer.uk"
-OG_IMAGE_DEFAULT = "img/og/albrecht-durer-archive-og.jpg"
-FAVICON = (ROOT / "partials/archiv-favicon.html").read_text(encoding="utf-8").strip()
-SIGLE_IMG = '<img src="img/sigle_durer.svg" class="archiv-durer-sigle" alt="Monogramme AD — Albrecht Dürer" width="32" height="32" decoding="async">'
-SIGLE_IMG_LARGE = '<img src="img/sigle_durer.svg" class="archiv-durer-sigle" alt="Monogramme AD — Albrecht Dürer" width="72" height="72" decoding="async">'
+OG_IMAGE_DEFAULT = f"{ASSET}img/og/albrecht-durer-archive-og.jpg"
+SIGLE_IMG = f'<img src="{ASSET}img/sigle_durer.svg" class="archiv-durer-sigle" alt="Monogramme AD — Albrecht Dürer" width="32" height="32" decoding="async">'
+SIGLE_IMG_LARGE = f'<img src="{ASSET}img/sigle_durer.svg" class="archiv-durer-sigle" alt="Monogramme AD — Albrecht Dürer" width="72" height="72" decoding="async">'
 OG_IMAGES = {
-    "oeuvres": "img/og/durer-oeuvres-og.jpg",
-    "gravures": "img/og/durer-gravures-og.jpg",
-    "autoportraits": "img/durer/portraits/durer-self-portrait-1500.webp",
-    "science": "img/durer/drawings/durer-young-hare-1502.webp",
+    "oeuvres": f"{ASSET}img/og/durer-oeuvres-og.jpg",
+    "gravures": f"{ASSET}img/og/durer-gravures-og.jpg",
+    "autoportraits": f"{ASSET}img/durer/portraits/durer-self-portrait-1500.webp",
+    "science": f"{ASSET}img/durer/drawings/durer-young-hare-1502.webp",
     "vie": OG_IMAGE_DEFAULT,
     "voyages": OG_IMAGE_DEFAULT,
     "chronologie": OG_IMAGE_DEFAULT,
@@ -27,38 +28,57 @@ OG_IMAGES = {
 
 def abs_url(path: str) -> str:
     path = (path or "").lstrip("/")
-    return f"{SITE_ORIGIN}/{path}"
-SKIP = (ROOT / "partials/archiv-skip.html").read_text(encoding="utf-8").strip()
+    if not path:
+        return f"{SITE_ORIGIN}/fr/"
+    return f"{SITE_ORIGIN}/fr/{path}"
 
-SPEC_MELENCOLIA = """<figure class="archiv-archive-hero__specimen">
-<a href="oeuvre.html?id=melencolia"><img src="img/durer/prints/durer-melencolia-i-1514.webp" alt="Melencolia I, gravure au burin, 1514" width="320" height="420" loading="eager" decoding="async" data-archiv-work-id="melencolia"></a>
+
+def hreflang_links(canonical_fr: str) -> str:
+    fr_path = canonical_fr.replace("fr/", "", 1) if canonical_fr.startswith("fr/") else canonical_fr
+    fr_url = abs_url(fr_path)
+    en_path = fr_path or ""
+    en_url = f"{SITE_ORIGIN}/{en_path}" if en_path else f"{SITE_ORIGIN}/"
+    return (
+        f'    <link rel="alternate" hreflang="fr" href="{fr_url}">\n'
+        f'    <link rel="alternate" hreflang="en" href="{en_url}">\n'
+        f'    <link rel="alternate" hreflang="x-default" href="{en_url}">\n'
+    )
+
+
+SKIP = (ROOT / "partials/archiv-skip.html").read_text(encoding="utf-8").strip()
+FAVICON_FR = (ROOT / "partials/archiv-favicon.html").read_text(encoding="utf-8").strip().replace(
+    'href="img/', f'href="{ASSET}img/'
+)
+
+SPEC_MELENCOLIA = f"""<figure class="archiv-archive-hero__specimen">
+<a href="oeuvre.html?id=melencolia"><img src="{ASSET}img/durer/prints/durer-melencolia-i-1514.webp" alt="Melencolia I, gravure au burin, 1514" width="320" height="420" loading="eager" decoding="async" data-archiv-work-id="melencolia"></a>
 <figcaption class="archiv-museum-caption" style="border:0;padding:0.5rem 0 0;margin:0;color:rgba(205,189,157,0.7);">Melencolia I · 1514 · NGA, Washington</figcaption>
 </figure>"""
 
-SPEC_SELF_1500 = """<figure class="archiv-archive-hero__specimen">
-<a href="oeuvre.html?id=self-portrait-1500"><img src="img/durer/portraits/durer-self-portrait-1500.webp" alt="Autoportrait d'Albrecht Dürer de 1500, visage frontal et manteau sombre" width="280" height="380" loading="eager" decoding="async" data-archiv-work-id="self-portrait-1500"></a>
+SPEC_SELF_1500 = f"""<figure class="archiv-archive-hero__specimen">
+<a href="oeuvre.html?id=self-portrait-1500"><img src="{ASSET}img/durer/portraits/durer-self-portrait-1500.webp" alt="Autoportrait d'Albrecht Dürer de 1500, visage frontal et manteau sombre" width="280" height="380" loading="eager" decoding="async" data-archiv-work-id="self-portrait-1500"></a>
 <figcaption class="archiv-museum-caption" style="border:0;padding:0.5rem 0 0;margin:0;color:rgba(205,189,157,0.7);">Autoportrait · 1500 · Munich</figcaption>
 </figure>"""
 
-SPEC_KNIGHT = """<figure class="archiv-archive-hero__specimen">
-<a href="oeuvre.html?id=knight-death-devil"><img src="img/durer/prints/durer-knight-death-devil-1513.webp" alt="Gravure Le Chevalier, la Mort et le Diable d'Albrecht Dürer, cavalier en armure, 1513" width="320" height="420" loading="eager" decoding="async" data-archiv-work-id="knight-death-devil"></a>
+SPEC_KNIGHT = f"""<figure class="archiv-archive-hero__specimen">
+<a href="oeuvre.html?id=knight-death-devil"><img src="{ASSET}img/durer/prints/durer-knight-death-devil-1513.webp" alt="Gravure Le Chevalier, la Mort et le Diable d'Albrecht Dürer, cavalier en armure, 1513" width="320" height="420" loading="eager" decoding="async" data-archiv-work-id="knight-death-devil"></a>
 <figcaption class="archiv-museum-caption" style="border:0;padding:0.5rem 0 0;margin:0;color:rgba(205,189,157,0.7);">Le Chevalier, la Mort et le Diable · 1513 · NGA, Washington</figcaption>
 </figure>"""
 
-SPEC_HARE = """<figure class="archiv-archive-hero__specimen">
-<a href="oeuvre.html?id=hare"><img src="img/durer/drawings/durer-young-hare-1502.webp" alt="Aquarelle Jeune lièvre d'Albrecht Dürer, animal représenté avec précision naturaliste, 1502" width="280" height="220" loading="eager" decoding="async" data-archiv-work-id="hare"></a>
+SPEC_HARE = f"""<figure class="archiv-archive-hero__specimen">
+<a href="oeuvre.html?id=hare"><img src="{ASSET}img/durer/drawings/durer-young-hare-1502.webp" alt="Aquarelle Jeune lièvre d'Albrecht Dürer, animal représenté avec précision naturaliste, 1502" width="280" height="220" loading="eager" decoding="async" data-archiv-work-id="hare"></a>
 <figcaption class="archiv-museum-caption" style="border:0;padding:0.5rem 0 0;margin:0;color:rgba(205,189,157,0.7);">Jeune lièvre · 1502 · Albertina</figcaption>
 </figure>"""
 
 def head(title, desc, page_id, canonical, og_title=None, body_class="", extra_css="", og_image=None, json_ld=None):
     og = og_title or title
     og_img = og_image or OG_IMAGES.get(page_id) or OG_IMAGE_DEFAULT
-    if og_img.startswith("img/"):
-        og_img_abs = abs_url(og_img)
+    if og_img.startswith(ASSET) or og_img.startswith("img/"):
+        og_img_abs = abs_url(og_img.replace(ASSET, ""))
     else:
         og_img_abs = og_img
     canon_abs = abs_url(canonical)
-    extra_link = f'\n    <link rel="stylesheet" href="{extra_css}">' if extra_css else ""
+    extra_link = f'\n    <link rel="stylesheet" href="{ASSET}{extra_css.lstrip("../")}">' if extra_css else ""
     body_cls = "archiv-site"
     if body_class:
         body_cls += " " + body_class
@@ -89,23 +109,24 @@ def head(title, desc, page_id, canonical, og_title=None, body_class="", extra_cs
     <meta name="twitter:title" content="{og}">
     <meta name="twitter:description" content="{desc}">
     <meta name="twitter:image" content="{og_img_abs}">
-    <link rel="canonical" href="{canon_abs}">{ld_html}
+    <link rel="canonical" href="{canon_abs}">
+{hreflang_links(canonical)}{ld_html}
     <link rel="dns-prefetch" href="https://upload.wikimedia.org">
-    {FAVICON}
+    {FAVICON_FR}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/plugins.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/archiv.css">
-    <link rel="stylesheet" href="css/archiv-museum.css">
-    <link rel="stylesheet" href="css/archiv-system.css">
-    <link rel="stylesheet" href="css/archiv-stable.css">
-    <link rel="stylesheet" href="css/archiv-premium-2026.css">
-    <link rel="stylesheet" href="css/archiv-images.css">
-    <link rel="stylesheet" href="css/archiv-production.css">{extra_link}
+    <link rel="stylesheet" href="{ASSET}css/plugins.css">
+    <link rel="stylesheet" href="{ASSET}css/style.css">
+    <link rel="stylesheet" href="{ASSET}css/archiv.css">
+    <link rel="stylesheet" href="{ASSET}css/archiv-museum.css">
+    <link rel="stylesheet" href="{ASSET}css/archiv-system.css">
+    <link rel="stylesheet" href="{ASSET}css/archiv-stable.css">
+    <link rel="stylesheet" href="{ASSET}css/archiv-premium-2026.css">
+    <link rel="stylesheet" href="{ASSET}css/archiv-images.css">
+    <link rel="stylesheet" href="{ASSET}css/archiv-production.css">{extra_link}
 </head>
-<body class="{body_cls}" data-site-logo="img/logo_Albrecht_Durer.svg" data-archiv-page="{page_id}">
+<body class="{body_cls}" data-site-logo="{ASSET}img/logo_Albrecht_Durer.svg" data-archiv-page="{page_id}">
 {SKIP}
 """
 
@@ -145,7 +166,7 @@ def web_page_schema(name, desc, path):
         "description": desc,
         "url": abs_url(path),
         "inLanguage": "fr",
-        "isPartOf": {"@type": "WebSite", "name": "ARCHIV — Albrecht Dürer", "url": SITE_ORIGIN + "/"},
+        "isPartOf": {"@type": "WebSite", "name": "ARCHIV — Albrecht Dürer", "url": SITE_ORIGIN + "/fr/"},
     }
 
 
@@ -160,8 +181,8 @@ def page(title, desc, page_id, canonical, h1, sub, main, og=None, use_hero=True,
     scripts = SCRIPTS_LITE
     if extra_scripts:
         scripts = SCRIPTS_LITE.replace(
-            '    <script src="js/archiv.js" defer></script>',
-            extra_scripts + '\n    <script src="js/archiv.js" defer></script>',
+            f'    <script src="{ASSET}js/archiv.js" defer></script>',
+            extra_scripts + f'\n    <script src="{ASSET}js/archiv.js" defer></script>',
         )
     return head(title, desc, page_id, canonical, og, body_class, extra_css, json_ld=ld) + NAV + hero + body + FOOTER + scripts + "\n</body>\n</html>\n"
 
@@ -169,17 +190,17 @@ PAGES = {
 "oeuvre.html": page(
     "Œuvre d'Albrecht Dürer — Fiche documentée | ARCHIV",
     "Fiche d'œuvre d'Albrecht Dürer : technique, collection, lecture visuelle et source muséale documentée.",
-    "oeuvre", "oeuvre.html",
+    "oeuvre", "fr/oeuvre.html",
     "Œuvre", "Fiche documentée",
     """<main id="archiv-main" class="archiv-museum-section archiv-museum-section--paper archiv-page-main"><div class="archiv-page-shell" id="archiv-oeuvre-detail"></div></main>""",
     use_hero=False,
-    extra_scripts='    <script src="js/archiv-oeuvre-lectures.js" defer></script>',
+    extra_scripts=f'    <script src="{ASSET}js/archiv-oeuvre-lectures.js" defer></script>',
 ),
 
 "vie.html": page(
     "Biographie d'Albrecht Dürer — Vie, voyages et atelier | ARCHIV",
     "Parcours d'Albrecht Dürer, de Nuremberg aux voyages européens : formation, atelier, maturité artistique et derniers traités.",
-    "vie", "vie.html", "Vie", "De Nuremberg aux cours d'Europe",
+    "vie", "fr/vie.html", "Vie", "De Nuremberg aux cours d'Europe",
     """<main class="archiv-museum-section archiv-museum-section--paper"><div class="archiv-page-shell"><div class="archiv-prose-block">
 <p class="archiv-lead">La vie de Dürer ne se résume pas à une chronologie : c'est l'émergence d'un artiste-auteur dans une cité d'imprimerie, au carrefour des échanges rhénans, italiens et impériaux.</p>
 <article class="archiv-period" id="nuremberg"><p class="archiv-period-years">1471</p><h2>Nuremberg</h2><p>Naissance le 21 mai. Nuremberg, ville libre impériale, concentre imprimeurs, orfèvres et marchands — le milieu où l'image imprimée deviendra le vecteur de la renommée de Dürer.</p></article>
@@ -200,7 +221,7 @@ PAGES = {
 "oeuvres.html": page(
     "Œuvres d'Albrecht Dürer — Peintures, gravures et dessins | ARCHIV",
     "Explorez les œuvres majeures d'Albrecht Dürer : peintures, gravures, dessins, aquarelles, autoportraits et livres théoriques.",
-    "oeuvres", "oeuvres.html", "Œuvres", "Catalogue documenté et filtrable",
+    "oeuvres", "fr/oeuvres.html", "Œuvres", "Catalogue documenté et filtrable",
     """<main class="archiv-museum-section archiv-museum-section--paper archiv-collection-index"><div class="archiv-page-shell">
 <p class="archiv-lead mb-2">Index de collection — fiches, métadonnées et sources institutionnelles.</p>
 <p id="archiv-collection-count" class="archiv-collection-count"></p>
@@ -236,7 +257,7 @@ PAGES = {
 "gravures.html": page(
     "Gravures d'Albrecht Dürer — Melencolia I, Rhinocéros, Apocalypse | ARCHIV",
     "Page consacrée aux gravures de Dürer : Melencolia I, Saint Jérôme, Le Chevalier, le Rhinocéros et l'Apocalypse.",
-    "gravures", "gravures.html", "Gravures", "L'estampe comme langage autonome",
+    "gravures", "fr/gravures.html", "Gravures", "L'estampe comme langage autonome",
     """<main>
 <section class="archiv-museum-section archiv-museum-section--ink archiv-section--engraving"><div class="archiv-page-shell archiv-page-shell--narrow archiv-prose-block">
 <p class="archiv-lead">Chez Dürer, l'estampe n'est pas un accessoire de l'atelier : c'est le médium par lequel l'image devient science, récit et marchandise européenne.</p>
@@ -277,7 +298,7 @@ PAGES = {
 "autoportraits.html": page(
     "Autoportraits d'Albrecht Dürer — L'artiste comme auteur | ARCHIV",
     "Analyse des autoportraits d'Albrecht Dürer et de son rôle dans l'affirmation de l'artiste comme auteur et image publique.",
-    "autoportraits", "autoportraits.html", "", "",
+    "autoportraits", "fr/autoportraits.html", "", "",
     """<main id="archiv-main" class="archiv-portraits-page">
 <header class="archiv-portraits-hero" aria-labelledby="portraits-hero-title">
 <div class="archiv-portraits-hero__texture" aria-hidden="true"></div>
@@ -368,13 +389,13 @@ PAGES = {
     "Autoportraits de Dürer | ARCHIV",
     use_hero=False,
     body_class="archiv-page-portraits",
-    extra_css="css/archiv-portraits.css",
+    extra_css=f"{ASSET}css/archiv-portraits.css",
 ),
 
 "science.html": page(
     "Dürer théoricien — Science, proportion, mesure et perspective | ARCHIV",
     "Dürer théoricien : mesure, perspective, géométrie, proportion humaine, fortification et observation scientifique du visible.",
-    "science", "science.html", "Science et proportion", "L'image comme méthode",
+    "science", "fr/science.html", "Science et proportion", "L'image comme méthode",
     """<main id="archiv-main" class="archiv-museum-section archiv-museum-section--paper archiv-science-page"><div class="archiv-page-shell">
 <p class="archiv-lead">Dürer ne sépare pas l'atelier du laboratoire géométrique : dessin, estampe et traité obéissent à une même exigence de mesure.</p>
 <div class="row g-5 archiv-science-layout align-items-start">
@@ -408,7 +429,7 @@ PAGES = {
 "voyages.html": page(
     "Voyages d'Albrecht Dürer — Nuremberg, Venise et Pays-Bas | ARCHIV",
     "Cartographie des voyages de Dürer : Nuremberg, Italie, Venise, Rhénanie et journal des Pays-Bas (1520–1521).",
-    "voyages", "voyages.html", "Voyages", "Cartographie des déplacements",
+    "voyages", "fr/voyages.html", "Voyages", "Cartographie des déplacements",
     """<main class="archiv-museum-section archiv-museum-section--paper"><div class="archiv-page-shell archiv-page-shell--narrow archiv-prose-block">
 <p class="archiv-lead">Les voyages ne sont pas des digressions : ils alimentent réseau commercial, regard italien et journal intime d'un artiste devenu figure européenne.</p>
 <div class="archiv-map" role="list" aria-label="Lieux des voyages de Dürer">
@@ -455,7 +476,7 @@ PAGES = {
 "chronologie.html": page(
     "Chronologie d'Albrecht Dürer — Dates clés et œuvres majeures | ARCHIV",
     "Dates structurantes de la vie de Dürer (1471–1528) : Apocalypse, maîtres gravures, Rhinocéros, traités et héritage européen.",
-    "chronologie", "chronologie.html", "Chronologie", "1471 — 1528",
+    "chronologie", "fr/chronologie.html", "Chronologie", "1471 — 1528",
     """<main class="archiv-museum-section archiv-museum-section--paper"><div class="archiv-page-shell archiv-page-shell--narrow">
 <p class="archiv-lead mb-5">Dates structurantes — renvoi vers <a href="vie.html" class="archiv-text-link">Vie</a> et fiches œuvre.</p>
 <ul id="archiv-timeline-full" class="archiv-timeline-full"></ul>
@@ -466,7 +487,7 @@ PAGES = {
 "sources.html": page(
     "Sources et crédits — Archive Albrecht Dürer | ARCHIV",
     "Musées, notices, sources biographiques et crédits images : méthode ARCHIV, inventaire des œuvres et droits documentés.",
-    "sources", "sources.html", "Sources", "Documentation et crédits",
+    "sources", "fr/sources.html", "Sources", "Documentation et crédits",
     """<main class="archiv-museum-section archiv-museum-section--paper"><div class="archiv-page-shell archiv-page-shell--narrow archiv-prose-block">
 <p class="archiv-lead">ARCHIV privilégie les notices de musées, les collections publiques et les reproductions documentées. Aucune image n'est affichée sans crédit ni renvoi vers la collection de référence.</p>
 <h2>Méthode de sélection</h2>
@@ -503,13 +524,14 @@ PAGES = {
 <nav class="archiv-see-also mt-5" aria-label="Pages liées"><p class="archiv-kicker">Explorer l'archive</p><ul><li><a href="/">Vue d'ensemble</a></li><li><a href="vie.html">Biographie</a></li><li><a href="oeuvres.html">Œuvres</a></li><li><a href="editions.html">Éditions</a></li></ul></nav>
 </div></main>""",
     "Sources et crédits — ARCHIV",
-    extra_css="css/archiv-editions.css",
-    extra_scripts='    <script src="js/archiv-editions.js" defer></script>',
+    extra_css=f"{ASSET}css/archiv-editions.css",
+    extra_scripts=f'    <script src="{ASSET}js/archiv-editions.js" defer></script>',
 ),
 }
 
+FR_DIR.mkdir(parents=True, exist_ok=True)
 for name, html in PAGES.items():
-    (ROOT / name).write_text(html, encoding="utf-8")
-    print("OK", name)
+    (FR_DIR / name).write_text(html, encoding="utf-8")
+    print("OK fr/", name)
 
-print("Done", len(PAGES), "pages")
+print("Done", len(PAGES), "FR pages")
