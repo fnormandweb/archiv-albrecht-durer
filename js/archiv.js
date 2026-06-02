@@ -435,6 +435,9 @@
             html += "<h2>Regard</h2><p>" + esc(work.visual) + "</p>";
         }
         html += '<p class="mt-4"><a href="' + esc(work.source) + '" class="archiv-btn archiv-btn--dark" target="_blank" rel="noopener noreferrer">Source : ' + esc(work.sourceLabel) + "</a></p>";
+        if (work.commons && work.commons !== work.source) {
+            html += '<p class="archiv-source-commons mt-2"><a href="' + esc(work.commons) + '" class="archiv-text-link" target="_blank" rel="noopener noreferrer">Reproduction documentée (Wikimedia Commons)</a></p>";
+        }
         html += "</div></div></div>";
         $root.html(html);
         if (window.archivInitMuseumImages) window.archivInitMuseumImages($root[0]);

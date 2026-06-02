@@ -194,8 +194,8 @@
             summary: "Oiseau mort posé comme sujet de science du visible — pendant aux études du lièvre et de la touffe d'herbes.",
             importance: "Illustre la stratégie dürerienne : le détail du vivant (ou du corps sans vie) comme preuve de compétence.",
             visual: "Plumage rendu par couches de couleur ; le fond neutre isole l'espèce.",
-            source: "https://www.albertina.at/en/discover/masterpieces/albrecht-duerer",
-            sourceLabel: "Albertina",
+            source: "https://albertina.at/en/collections/collections-online/",
+            sourceLabel: "Albertina — Collections en ligne",
             imageAlt: "Aquarelle d'un rouge-gorge mort, étude naturaliste d'Albrecht Dürer, Albertina",
             rights: "Domaine public",
             featured: false
