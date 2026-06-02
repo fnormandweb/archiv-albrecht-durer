@@ -10,9 +10,9 @@
         "knight-death-devil": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Albrecht_D%C3%BCrer%2C_Knight%2C_Death_and_Devil%2C_1513%2C_NGA_6637.jpg/1280px-Albrecht_D%C3%BCrer%2C_Knight%2C_Death_and_Devil%2C_1513%2C_NGA_6637.jpg",
         "rhinoceros": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Albrecht_D%C3%BCrer%2C_The_Rhinoceros%2C_1515%2C_NGA_47903.jpg/1280px-Albrecht_D%C3%BCrer%2C_The_Rhinoceros%2C_1515%2C_NGA_47903.jpg",
         "apocalypse-four-riders": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Durer_Revelation_Four_Riders.jpg/1280px-Durer_Revelation_Four_Riders.jpg",
-        "large-passion-last-supper": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Albrecht_D%C3%BCrer%2C_The_Last_Supper%2C_1523%2C_NGA_6806.jpg/1280px-Albrecht_D%C3%BCrer%2C_The_Last_Supper%2C_1523%2C_NGA_6806.jpg",
+        "large-passion-last-supper": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Albrecht_D%C3%BCrer_-_The_Last_Supper_%28Large_Passion%29.jpg/1280px-Albrecht_D%C3%BCrer_-_The_Last_Supper_%28Large_Passion%29.jpg",
         "life-of-virgin-nativity": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Albrecht_D%C3%BCrer_-_Life_of_the_Virgin-_Nativity_of_the_Virgin_-_1922.288_-_Cleveland_Museum_of_Art.jpg/1280px-Albrecht_D%C3%BCrer_-_Life_of_the_Virgin-_Nativity_of_the_Virgin_-_1922.288_-_Cleveland_Museum_of_Art.jpg",
-        "large-passion-cycle": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Albrecht_D%C3%BCrer_-_Christ_on_the_Mount_of_Olives_-_Google_Art_Project.jpg/1280px-Albrecht_D%C3%BCrer_-_Christ_on_the_Mount_of_Olives_-_Google_Art_Project.jpg",
+        "large-passion-cycle": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/The_Flagellation%2C_from_The_Large_Passion_MET_DP816589.jpg/1280px-The_Flagellation%2C_from_The_Large_Passion_MET_DP816589.jpg",
         "large-passion-christ-mount": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Albrecht_D%C3%BCrer_-_Christ_on_the_Mount_of_Olives_-_Google_Art_Project.jpg/1280px-Albrecht_D%C3%BCrer_-_Christ_on_the_Mount_of_Olives_-_Google_Art_Project.jpg",
         "self-portrait-1500": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Albrecht_D%C3%BCrer_-_1500_self-portrait_%28High_resolution_and_detail%29.jpg/1280px-Albrecht_D%C3%BCrer_-_1500_self-portrait_%28High_resolution_and_detail%29.jpg",
         "self-portrait-1498": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Selbstportr%C3%A4t%2C_by_Albrecht_D%C3%BCrer%2C_from_Prado_in_Google_Earth.jpg/1280px-Selbstportr%C3%A4t%2C_by_Albrecht_D%C3%BCrer%2C_from_Prado_in_Google_Earth.jpg",
@@ -25,9 +25,18 @@
         "four-apostles": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Vier_Apostel_%28Albrecht_Duerer%29.jpg/1280px-Vier_Apostel_%28Albrecht_Duerer%29.jpg",
         "underweysung": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/D%C3%BCrer_Vitruvius.jpg/800px-D%C3%BCrer_Vitruvius.jpg",
         "winged-roller": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Albrecht_D%C3%BCrer_-_Dead_Blue_Roller%2C_1500_%28or_1512%29_-_Google_Art_Project.jpg/1280px-Albrecht_D%C3%BCrer_-_Dead_Blue_Roller%2C_1500_%28or_1512%29_-_Google_Art_Project.jpg",
-        "life-of-virgin-cycle": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Albrecht_D%C3%BCrer_-_Life_of_the_Virgin-_Nativity_of_the_Virgin_-_1922.288_-_Cleveland_Museum_of_Art.jpg/1280px-Albrecht_D%C3%BCrer_-_Life_of_the_Virgin-_Nativity_of_the_Virgin_-_1922.288_-_Cleveland_Museum_of_Art.jpg",
-        "small-passion-cycle": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Albrecht_D%C3%BCrer%2C_The_Last_Supper%2C_1523%2C_NGA_6806.jpg/1280px-Albrecht_D%C3%BCrer%2C_The_Last_Supper%2C_1523%2C_NGA_6806.jpg",
-        "travel-drawing-antwerp": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Albrecht_D%C3%BCrer_-_View_of_the_Harbour_of_Antwerp_-_WGA6459.jpg/1280px-Albrecht_D%C3%BCrer_-_View_of_the_Harbour_of_Antwerp_-_WGA6459.jpg"
+        "life-of-virgin-cycle": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Albrecht_D%C3%BCrer_-_The_Presentation_in_the_Temple_%28Life_of_the_Virgin%29.jpg/1280px-Albrecht_D%C3%BCrer_-_The_Presentation_in_the_Temple_%28Life_of_the_Virgin%29.jpg",
+        "small-passion-cycle": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Christ_Crowned_with_Thorns%2C_from_The_Small_Passion_MET_DP816006.jpg/1280px-Christ_Crowned_with_Thorns%2C_from_The_Small_Passion_MET_DP816006.jpg",
+        "travel-drawing-antwerp": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Albrecht_D%C3%BCrer_-_View_of_the_Harbour_of_Antwerp_-_WGA6459.jpg/1280px-Albrecht_D%C3%BCrer_-_View_of_the_Harbour_of_Antwerp_-_WGA6459.jpg",
+        "nemesis": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/ADurerFortunaengraving.jpg/1280px-ADurerFortunaengraving.jpg",
+        "st-eustace": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Albrecht_D%C3%BCrer%2C_Saint_Eustace%2C_c._1500-1501%2C_NGA_35100.jpg/1280px-Albrecht_D%C3%BCrer%2C_Saint_Eustace%2C_c._1500-1501%2C_NGA_35100.jpg",
+        "lansquenet": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Albrecht_D%C3%BCrer%2C_Death_and_the_Lansquenet%2C_1510%2C_NGA_34705.jpg/1280px-Albrecht_D%C3%BCrer%2C_Death_and_the_Lansquenet%2C_1510%2C_NGA_34705.jpg",
+        "dream-doctor": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Albrecht_D%C3%BCrer%2C_The_Dream_of_the_Doctor_%28Temptation_of_the_Idler%29%2C_1498-1499%2C_NGA_33799.jpg/1280px-Albrecht_D%C3%BCrer%2C_The_Dream_of_the_Doctor_%28Temptation_of_the_Idler%29%2C_1498-1499%2C_NGA_33799.jpg",
+        "st-paul": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Albrecht_D%C3%BCrer%2C_Saint_Paul%2C_1514%2C_NGA_6644.jpg/1280px-Albrecht_D%C3%BCrer%2C_Saint_Paul%2C_1514%2C_NGA_6644.jpg",
+        "virgin-pear": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Albrecht_D%C3%BCrer%2C_The_Virgin_and_Child_with_the_Pear%2C_1511%2C_NGA_42403.jpg/1280px-Albrecht_D%C3%BCrer%2C_The_Virgin_and_Child_with_the_Pear%2C_1511%2C_NGA_42403.jpg",
+        "large-horse": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Albrecht_D%C3%BCrer%2C_Large_Horse%2C_1505%2C_NGA_6679.jpg/1280px-Albrecht_D%C3%BCrer%2C_Large_Horse%2C_1505%2C_NGA_6679.jpg",
+        "ecce-homo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Albrecht_D%C3%BCrer%2C_Ecce_Homo%2C_probably_c._1509-1510%2C_NGA_6769.jpg/1280px-Albrecht_D%C3%BCrer%2C_Ecce_Homo%2C_probably_c._1509-1510%2C_NGA_6769.jpg",
+        "coat-of-arms-skull": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Albrecht_D%C3%BCrer%2C_Coat_of_Arms_with_a_Skull%2C_1503%2C_NGA_6607.jpg/1280px-Albrecht_D%C3%BCrer%2C_Coat_of_Arms_with_a_Skull%2C_1503%2C_NGA_6607.jpg"
     };
 
     global.ARCHIV_LOCAL_IMAGES = {
@@ -37,12 +46,12 @@
         rhinoceros: "img/durer/prints/durer-rhinoceros-1515.webp",
         "apocalypse-four-riders": "img/durer/prints/durer-four-horsemen-apocalypse-1498.webp",
         "adam-eve": "img/durer/prints/durer-adam-and-eve-1504.webp",
-        "large-passion-cycle": "img/durer/prints/durer-large-passion-cycle.webp",
+        "large-passion-cycle": "img/durer/prints/durer-large-passion-flagellation-1512.webp",
         "large-passion-christ-mount": "img/durer/prints/durer-christ-mount-olives-large-passion.webp",
-        "large-passion-last-supper": "img/durer/prints/durer-last-supper-1523.webp",
-        "small-passion-cycle": "img/durer/prints/durer-small-passion-cycle.webp",
+        "large-passion-last-supper": "img/durer/prints/durer-last-supper-large-passion-1510.webp",
+        "small-passion-cycle": "img/durer/prints/durer-small-passion-christ-thorns.webp",
         "life-of-virgin-nativity": "img/durer/prints/durer-nativity-life-of-virgin-1511.webp",
-        "life-of-virgin-cycle": "img/durer/prints/durer-life-of-virgin-cycle.webp",
+        "life-of-virgin-cycle": "img/durer/prints/durer-life-of-virgin-presentation-1511.webp",
         "self-portrait-1500": "img/durer/portraits/durer-self-portrait-1500.webp",
         "self-portrait-1498": "img/durer/portraits/durer-self-portrait-1498.webp",
         "self-portrait-1493": "img/durer/portraits/durer-self-portrait-1493.webp",
@@ -53,7 +62,16 @@
         "travel-drawing-antwerp": "img/durer/drawings/durer-view-antwerp-1520.webp",
         "adoration-magi": "img/durer/works/durer-adoration-of-the-magi-1504.webp",
         "four-apostles": "img/durer/works/durer-four-apostles-1526.webp",
-        underweysung: "img/durer/books/durer-underweysung-proportion-1525.webp"
+        underweysung: "img/durer/books/durer-underweysung-proportion-1525.webp",
+        nemesis: "img/durer/prints/durer-nemesis-1501.webp",
+        "st-eustace": "img/durer/prints/durer-saint-eustace-1501.webp",
+        lansquenet: "img/durer/prints/durer-death-lansquenet-1510.webp",
+        "dream-doctor": "img/durer/prints/durer-dream-doctor-1498.webp",
+        "st-paul": "img/durer/prints/durer-saint-paul-1514.webp",
+        "virgin-pear": "img/durer/prints/durer-virgin-child-pear-1511.webp",
+        "large-horse": "img/durer/prints/durer-large-horse-1505.webp",
+        "ecce-homo": "img/durer/prints/durer-ecce-homo-1510.webp",
+        "coat-of-arms-skull": "img/durer/prints/durer-coat-of-arms-skull-1503.webp"
     };
 
     var extraOeuvres = [
@@ -74,6 +92,7 @@
             source: "https://www.metmuseum.org/art/collection/search/343133",
             sourceLabel: "The Met — Grande Passion",
             rights: "Domaine public (artiste mort en 1528)",
+            imageAlt: "Gravure sur bois La Flagellation, planche du cycle de la Grande Passion d'Albrecht Dürer",
             featured: false,
             series: true
         },
@@ -93,6 +112,8 @@
             visual: "Riches architectures et foules ; le trait boisé alterne masses sombres et détails d'ornement.",
             source: "https://www.clevelandart.org/art/1922.288",
             sourceLabel: "Cleveland Museum of Art",
+            imageAlt: "Gravure sur bois La Présentation au Temple, cycle Vie de la Vierge d'Albrecht Dürer",
+            imageNeedsReview: true,
             rights: "Domaine public",
             featured: false,
             series: true
@@ -113,6 +134,7 @@
             visual: "Compositions serrées, lisibles à petite échelle ; la ligne reste précise malgré le format.",
             source: "https://www.nga.gov/",
             sourceLabel: "National Gallery of Art",
+            imageAlt: "Gravure sur bois Le Christ couronné d'épines, planche de la Petite Passion d'Albrecht Dürer",
             rights: "Domaine public",
             featured: false,
             series: true
@@ -127,12 +149,14 @@
             dimensions: "Feuille env. 40 × 28,8 cm (Cleveland, ex.)",
             museum: "The Metropolitan Museum of Art ; Cleveland Museum of Art",
             location: "New York / Cleveland",
-            imageCredit: "National Gallery of Art (ex. Petite Passion, 1523) ou collections ouvertes ; voir fiche pour variante de 1510.",
+            imageAlt: "Gravure sur bois La Cène, planche de la Grande Passion d'Albrecht Dürer, apôtres autour de la table",
+            imageCredit: "Wikimedia Commons — planche de la Grande Passion (éd. 1511), domaine public.",
             summary: "Scène eucharistique dans la suite de la Grande Passion : les apôtres autour d'une table sobre, le vin versé au moment de la révélation.",
             importance: "L'une des images les plus citées du répertoire passionnel de Dürer ; lien direct entre récit biblique et estampe.",
             visual: "Composition verticale, halo de Christ tracé au trait parallèle ; profondeur de la salle par les ombres gravées.",
             source: "https://www.metmuseum.org/art/collection/search/388402",
             sourceLabel: "The Met — Last Supper, Large Passion",
+            imageNeedsReview: true,
             rights: "Domaine public",
             featured: false
         },
@@ -146,6 +170,7 @@
             dimensions: "29,8 × 21,1 cm (Cleveland)",
             museum: "Cleveland Museum of Art",
             location: "Cleveland",
+            imageAlt: "Gravure sur bois La Nativité de la Vierge, première planche du cycle Vie de la Vierge, Cleveland Museum of Art",
             imageCredit: "Cleveland Museum of Art, via Wikimedia Commons.",
             summary: "Première planche du cycle de la Vie de la Vierge : naissance de Marie dans un intérieur bourgeois nurembergeois.",
             importance: "Ouvre le cycle Marien et affirme le goût de Dürer pour l'architecture domestique et le détail social.",
@@ -171,6 +196,7 @@
             visual: "Plumage rendu par couches de couleur ; le fond neutre isole l'espèce.",
             source: "https://www.albertina.at/en/discover/masterpieces/albrecht-duerer",
             sourceLabel: "Albertina",
+            imageAlt: "Aquarelle d'un rouge-gorge mort, étude naturaliste d'Albrecht Dürer, Albertina",
             rights: "Domaine public",
             featured: false
         },
@@ -190,14 +216,36 @@
             visual: "Trait rapide, horizon urbain et mâts ; l'économie du trait suggère la notation sur le vif.",
             source: "https://www.metmuseum.org/toah/hd/durr/hd_durr.htm",
             sourceLabel: "The Met — biographie et contexte",
+            imageAlt: "Dessin au trait du port d'Anvers, journal de voyage d'Albrecht Dürer, 1520",
+            imageNeedsReview: true,
+            rights: "Domaine public",
+            featured: false
+        },
+        {
+            id: "large-passion-christ-mount",
+            title: "Christ au mont des Oliviers",
+            titleDe: "Christus am Ölberg",
+            date: "1515 (éd. bois) ; planche Grande Passion",
+            category: "bois",
+            technique: "Gravure sur bois",
+            dimensions: "Feuille env. 39 × 28 cm",
+            museum: "National Gallery of Art, Washington",
+            location: "Washington",
+            imageAlt: "Christ agenouillé au jardin des Oliviers, anges et apôtres endormis, gravure sur bois de Dürer",
+            imageCredit: "National Gallery of Art, via Wikimedia Commons (domaine public).",
+            summary: "Scène de l'agonie : Christ en prière, disciples endormis, ange porteur de coupe — planche de la Grande Passion.",
+            importance: "L'une des images les plus expressives du cycle passionnel sur bois, proche de la publication de 1511.",
+            visual: "Rocaille et nuages gravés en lignes parallèles ; le corps du Christ courbe l'espace vers la prière.",
+            source: "https://www.nga.gov/collection/art-object-page.6651.html",
+            sourceLabel: "National Gallery of Art",
             rights: "Domaine public",
             featured: false
         }
     ];
 
     /**
-     * Priorité : Commons stable (remote) → WebP local si ARCHIV_LOCAL_READY → image données → placeholder.
-     * Évite les chemins locaux absents qui provoquaient des images brisées.
+     * Priorité : WebP local vérifié (ARCHIV_LOCAL_READY) → Commons (remote) → placeholder.
+     * Ne réutilise jamais l’image d’une autre œuvre ; si imageNeedsReview, privilégie remote.
      */
     global.archivMedia = function (work) {
         if (!work || !work.id) {
@@ -208,16 +256,17 @@
         var local = localMap[work.id];
         var remote = (global.ARCHIV_WORK_URLS && global.ARCHIV_WORK_URLS[work.id]) || work.imageRemote || work.image || "";
         var placeholder = global.ARCHIV_PLACEHOLDER_IMAGE || "img/durer/placeholder-artwork.svg";
-        var full;
-        if (local && ready[work.id]) {
-            full = local;
-        } else {
-            full = remote || local || work.image || placeholder;
+        var useLocal = local && ready[work.id] && !work.imageNeedsReview;
+        var full = useLocal ? local : (remote || placeholder);
+        if (!full || full === placeholder) {
+            if (remote) full = remote;
+            else if (local && !work.imageNeedsReview) full = local;
+            else full = placeholder;
         }
         return {
             thumb: full,
             full: full,
-            local: !!(local && ready[work.id]),
+            local: useLocal,
             remote: remote
         };
     };
@@ -244,7 +293,17 @@
             "self-portrait-1498": "52 × 41 cm",
             "self-portrait-1493": "56 × 44 cm",
             "four-apostles": "215 × 76 cm (deux panneaux)",
-            "adoration-magi": "100 × 114 cm"
+            "adoration-magi": "100 × 114 cm",
+            nemesis: "33,3 × 23,2 cm",
+            "st-eustace": "35,7 × 25,7 cm",
+            lansquenet: "24,8 × 18,9 cm",
+            "dream-doctor": "18,7 × 12,1 cm",
+            "st-paul": "14,6 × 9,5 cm",
+            "virgin-pear": "16,8 × 13,7 cm",
+            "large-horse": "16,4 × 11,8 cm",
+            "ecce-homo": "11,8 × 7,5 cm",
+            "coat-of-arms-skull": "22,3 × 15,9 cm",
+            "large-passion-christ-mount": "39,1 × 28,1 cm"
         };
 
         global.ARCHIV_OEUVRES.forEach(function (o) {

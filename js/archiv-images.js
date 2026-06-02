@@ -73,7 +73,9 @@
         var el = $img ? $img[0] : imgEl;
         if (!el || el.tagName !== "IMG") return;
 
-        var chain = global.archivImageFallbackChain(work);
+        var chain = global.archivImageFallbackChain(work).filter(function (u, i, arr) {
+            return u && arr.indexOf(u) === i;
+        });
         var idx = 0;
         var current = el.getAttribute("src") || "";
         for (var i = 0; i < chain.length; i++) {
@@ -85,7 +87,10 @@
 
         function onFail() {
             idx += 1;
-            if (idx < chain.length) {
+            while (idx < chain.length && chain[idx] === global.ARCHIV_PLACEHOLDER_IMAGE && idx < chain.length - 1) {
+                idx += 1;
+            }
+            if (idx < chain.length && chain[idx] !== current) {
                 el.setAttribute("src", chain[idx]);
                 return;
             }

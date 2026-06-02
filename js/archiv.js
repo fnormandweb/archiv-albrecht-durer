@@ -352,7 +352,9 @@
         if (!$el.length) return;
         var ids = [
             "knight-death-devil", "melencolia", "saint-jerome", "apocalypse-four-riders", "rhinoceros",
-            "large-passion-cycle", "life-of-virgin-cycle", "small-passion-cycle", "large-passion-last-supper"
+            "st-eustace", "nemesis", "lansquenet", "st-paul", "ecce-homo",
+            "large-passion-cycle", "life-of-virgin-cycle", "small-passion-cycle", "large-passion-last-supper",
+            "large-passion-christ-mount", "virgin-pear"
         ];
         var html = '<div class="row g-4">';
         ids.forEach(function (id) {
