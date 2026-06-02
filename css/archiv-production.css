@@ -242,6 +242,23 @@ body.archiv-site .archiv-text-link {
     text-underline-offset: 3px;
 }
 
+body.archiv-site .archiv-see-also ul {
+    list-style: none;
+    margin: 0.75rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+}
+
+body.archiv-site .archiv-see-also a {
+    font-family: var(--font-ui, "Outfit", sans-serif);
+    font-size: 0.95rem;
+    color: var(--aged-gold, #b68a3a);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
 /* —— Footer cohérent —— */
 .archiv-archive-footer a:hover {
     color: var(--text-light, #f2ebdd);

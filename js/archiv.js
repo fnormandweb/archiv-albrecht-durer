@@ -449,12 +449,19 @@
             "name": work.title,
             "dateCreated": work.date,
             "artMedium": work.technique,
+            "artform": work.category || undefined,
             "creator": { "@type": "Person", "name": "Albrecht Dürer" },
-            "image": work.image,
-            "description": work.summary
+            "image": work.image && work.image.indexOf("http") === 0 ? work.image : (window.archivAbsoluteUrl ? window.archivAbsoluteUrl((work.image || "").replace(/^\//, "")) : work.image),
+            "description": work.summary,
+            "url": window.archivAbsoluteUrl ? window.archivAbsoluteUrl("oeuvre.html?id=" + work.id) : undefined
         };
+        if (!ld.artform) delete ld.artform;
+        if (!ld.url) delete ld.url;
         var s = document.createElement("script");
         s.type = "application/ld+json";
+        s.id = "archiv-oeuvre-ld";
+        var prev = document.getElementById("archiv-oeuvre-ld");
+        if (prev) prev.remove();
         s.textContent = JSON.stringify(ld);
         document.head.appendChild(s);
     }
@@ -734,6 +741,24 @@
 
         html += '<p class="archiv-editions-disclaimer mt-4">' + esc(window.ARCHIV_EDITIONS_DISCLAIMER || "") + "</p>";
         $root.html(html);
+
+        var edLd = {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": ed.title,
+            "description": ed.description,
+            "url": window.archivAbsoluteUrl ? window.archivAbsoluteUrl("edition.html?id=" + ed.slug) : undefined,
+            "inLanguage": "fr",
+            "about": { "@type": "VisualArtwork", "name": ed.relatedWork, "creator": { "@type": "Person", "name": "Albrecht Dürer" } }
+        };
+        if (!edLd.url) delete edLd.url;
+        var edScript = document.createElement("script");
+        edScript.type = "application/ld+json";
+        edScript.id = "archiv-edition-ld";
+        var prevEd = document.getElementById("archiv-edition-ld");
+        if (prevEd) prevEd.remove();
+        edScript.textContent = JSON.stringify(edLd);
+        document.head.appendChild(edScript);
     }
 
     function initArchivShell() {

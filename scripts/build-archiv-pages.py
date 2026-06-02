@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Génère / met à jour les pages ARCHIV intérieures."""
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -7,7 +8,18 @@ NAV = "\n".join((ROOT / "partials/archiv-nav.html").read_text(encoding="utf-8").
 FOOTER = (ROOT / "partials/archiv-footer.html").read_text(encoding="utf-8")
 SCRIPTS_LITE = (ROOT / "partials/archiv-scripts-production.html").read_text(encoding="utf-8")
 SITE_ORIGIN = "https://albrechtdurer.uk"
-OG_IMAGE_DEFAULT = "img/durer/portraits/durer-self-portrait-1500.webp"
+OG_IMAGE_DEFAULT = "img/og/albrecht-durer-archive-og.jpg"
+OG_IMAGES = {
+    "oeuvres": "img/og/durer-oeuvres-og.jpg",
+    "gravures": "img/og/durer-gravures-og.jpg",
+    "autoportraits": "img/durer/portraits/durer-self-portrait-1500.webp",
+    "science": "img/durer/drawings/durer-young-hare-1502.webp",
+    "vie": OG_IMAGE_DEFAULT,
+    "voyages": OG_IMAGE_DEFAULT,
+    "chronologie": OG_IMAGE_DEFAULT,
+    "sources": OG_IMAGE_DEFAULT,
+    "oeuvre": OG_IMAGE_DEFAULT,
+}
 
 
 def abs_url(path: str) -> str:
@@ -35,9 +47,9 @@ SPEC_HARE = """<figure class="archiv-archive-hero__specimen">
 <figcaption class="archiv-museum-caption" style="border:0;padding:0.5rem 0 0;margin:0;color:rgba(205,189,157,0.7);">Jeune lièvre · 1502 · Albertina</figcaption>
 </figure>"""
 
-def head(title, desc, page_id, canonical, og_title=None, body_class="", extra_css="", og_image=None):
+def head(title, desc, page_id, canonical, og_title=None, body_class="", extra_css="", og_image=None, json_ld=None):
     og = og_title or title
-    og_img = og_image or OG_IMAGE_DEFAULT
+    og_img = og_image or OG_IMAGES.get(page_id) or OG_IMAGE_DEFAULT
     if og_img.startswith("img/"):
         og_img_abs = abs_url(og_img)
     else:
@@ -47,6 +59,10 @@ def head(title, desc, page_id, canonical, og_title=None, body_class="", extra_cs
     body_cls = "archiv-site"
     if body_class:
         body_cls += " " + body_class
+    ld_blocks = json_ld or []
+    ld_html = ""
+    for block in ld_blocks:
+        ld_html += f'\n    <script type="application/ld+json">\n    {json.dumps(block, ensure_ascii=False)}\n    </script>'
     return f"""<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -57,17 +73,20 @@ def head(title, desc, page_id, canonical, og_title=None, body_class="", extra_cs
     <meta name="description" content="{desc}">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#15100C">
+    <meta property="og:site_name" content="ARCHIV — Albrecht Dürer">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{og}">
     <meta property="og:description" content="{desc}">
     <meta property="og:url" content="{canon_abs}">
     <meta property="og:image" content="{og_img_abs}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:locale" content="fr_FR">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{og}">
     <meta name="twitter:description" content="{desc}">
     <meta name="twitter:image" content="{og_img_abs}">
-    <link rel="canonical" href="{canon_abs}">
+    <link rel="canonical" href="{canon_abs}">{ld_html}
     <link rel="dns-prefetch" href="https://upload.wikimedia.org">
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -104,15 +123,49 @@ def archive_hero(h1, sub, text_only=True, specimen=""):
     </header>
 """
 
-def page(title, desc, page_id, canonical, h1, sub, main, og=None, use_hero=True, body_class="", extra_css="", hero_specimen=""):
+NAV_SEE_ALSO = {
+    "vie": '<nav class="archiv-see-also mt-5" aria-label="Pages liées"><p class="archiv-kicker">Voir aussi</p><ul><li><a href="chronologie.html">Chronologie</a></li><li><a href="voyages.html">Voyages</a></li><li><a href="autoportraits.html">Autoportraits</a></li><li><a href="sources.html">Sources et crédits</a></li></ul></nav>',
+    "oeuvres": '<nav class="archiv-see-also mt-5" aria-label="Pages liées"><p class="archiv-kicker">Voir aussi</p><ul><li><a href="gravures.html">Gravures</a></li><li><a href="autoportraits.html">Autoportraits</a></li><li><a href="science.html">Science et proportion</a></li><li><a href="sources.html">Sources et crédits</a></li></ul></nav>',
+    "gravures": '<nav class="archiv-see-also mt-5" aria-label="Pages liées"><p class="archiv-kicker">Voir aussi</p><ul><li><a href="oeuvre.html?id=melencolia">Melencolia I</a></li><li><a href="oeuvre.html?id=rhinoceros">Rhinocéros</a></li><li><a href="oeuvre.html?id=apocalypse-four-riders">Les Quatre cavaliers</a></li><li><a href="oeuvres.html">Catalogue complet</a></li></ul></nav>',
+    "science": '<nav class="archiv-see-also mt-5" aria-label="Pages liées"><p class="archiv-kicker">Voir aussi</p><ul><li><a href="oeuvre.html?id=hare">Jeune lièvre</a></li><li><a href="oeuvre.html?id=melencolia">Melencolia I</a></li><li><a href="sources.html">Sources et crédits</a></li></ul></nav>',
+    "voyages": '<nav class="archiv-see-also mt-5" aria-label="Pages liées"><p class="archiv-kicker">Voir aussi</p><ul><li><a href="vie.html">Biographie</a></li><li><a href="chronologie.html">Chronologie</a></li><li><a href="sources.html">Sources</a></li></ul></nav>',
+    "chronologie": '<nav class="archiv-see-also mt-5" aria-label="Pages liées"><p class="archiv-kicker">Voir aussi</p><ul><li><a href="vie.html">Biographie</a></li><li><a href="oeuvres.html">Œuvres</a></li><li><a href="gravures.html">Gravures</a></li></ul></nav>',
+    "autoportraits": '<nav class="archiv-see-also mt-5" aria-label="Pages liées"><p class="archiv-kicker">Voir aussi</p><ul><li><a href="vie.html">Biographie</a></li><li><a href="oeuvre.html?id=self-portrait-1500">Autoportrait de 1500</a></li><li><a href="sources.html">Sources</a></li></ul></nav>',
+}
+
+
+def web_page_schema(name, desc, path):
+    return {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": name,
+        "description": desc,
+        "url": abs_url(path),
+        "inLanguage": "fr",
+        "isPartOf": {"@type": "WebSite", "name": "ARCHIV — Albrecht Dürer", "url": SITE_ORIGIN + "/"},
+    }
+
+
+def page(title, desc, page_id, canonical, h1, sub, main, og=None, use_hero=True, body_class="", extra_css="", hero_specimen="", json_ld=None, extra_scripts=""):
     body = main if main.strip().startswith("<main") else f'<main id="archiv-main" class="archiv-page-main">{main}</main>'
+    if page_id in NAV_SEE_ALSO and NAV_SEE_ALSO[page_id] not in body:
+        body = body.replace("</main>", NAV_SEE_ALSO[page_id] + "\n</main>", 1)
     hero = archive_hero(h1, sub, text_only=not hero_specimen, specimen=hero_specimen) if use_hero else ""
-    return head(title, desc, page_id, canonical, og, body_class, extra_css) + NAV + hero + body + FOOTER + SCRIPTS_LITE + "\n</body>\n</html>\n"
+    ld = json_ld
+    if ld is None:
+        ld = [web_page_schema(h1 or title.split("—")[0].strip(), desc, canonical)]
+    scripts = SCRIPTS_LITE
+    if extra_scripts:
+        scripts = SCRIPTS_LITE.replace(
+            '    <script src="js/archiv.js" defer></script>',
+            extra_scripts + '\n    <script src="js/archiv.js" defer></script>',
+        )
+    return head(title, desc, page_id, canonical, og, body_class, extra_css, json_ld=ld) + NAV + hero + body + FOOTER + scripts + "\n</body>\n</html>\n"
 
 PAGES = {
 "oeuvre.html": page(
-    "Œuvre — Albrecht Dürer | ARCHIV",
-    "Fiche d'œuvre documentée : technique, conservation, lecture visuelle et source muséale.",
+    "Œuvre d'Albrecht Dürer — Fiche documentée | ARCHIV",
+    "Fiche d'œuvre d'Albrecht Dürer : technique, collection, lecture visuelle et source muséale documentée.",
     "oeuvre", "oeuvre.html",
     "Œuvre", "Fiche documentée",
     """<main id="archiv-main" class="archiv-museum-section archiv-museum-section--paper archiv-page-main"><div class="archiv-page-shell" id="archiv-oeuvre-detail"></div></main>""",
@@ -120,8 +173,8 @@ PAGES = {
 ),
 
 "vie.html": page(
-    "Biographie d'Albrecht Dürer — vie et parcours | ARCHIV",
-    "Biographie par périodes : Nuremberg, formation, Italie, cour de Maximilien, Pays-Bas et traités (1471–1528).",
+    "Biographie d'Albrecht Dürer — Vie, voyages et atelier | ARCHIV",
+    "Parcours d'Albrecht Dürer, de Nuremberg aux voyages européens : formation, atelier, maturité artistique et derniers traités.",
     "vie", "vie.html", "Vie", "De Nuremberg aux cours d'Europe",
     """<main class="archiv-museum-section archiv-museum-section--paper"><div class="archiv-page-shell"><div class="archiv-prose-block">
 <p class="archiv-lead">La vie de Dürer ne se résume pas à une chronologie : c'est l'émergence d'un artiste-auteur dans une cité d'imprimerie, au carrefour des échanges rhénans, italiens et impériaux.</p>
@@ -141,8 +194,8 @@ PAGES = {
 ),
 
 "oeuvres.html": page(
-    "Œuvres d'Albrecht Dürer — catalogue | ARCHIV",
-    "Catalogue filtrable : peinture, gravure sur bois, burin, dessin, aquarelle et traités. Fiches documentées et sources muséales.",
+    "Œuvres d'Albrecht Dürer — Peintures, gravures et dessins | ARCHIV",
+    "Explorez les œuvres majeures d'Albrecht Dürer : peintures, gravures, dessins, aquarelles, autoportraits et livres théoriques.",
     "oeuvres", "oeuvres.html", "Œuvres", "Catalogue documenté et filtrable",
     """<main class="archiv-museum-section archiv-museum-section--paper archiv-collection-index"><div class="archiv-page-shell">
 <p class="archiv-lead mb-2">Index de collection — fiches, métadonnées et sources institutionnelles.</p>
@@ -177,8 +230,8 @@ PAGES = {
 ),
 
 "gravures.html": page(
-    "Gravures d'Albrecht Dürer — estampe et Renaissance nordique | ARCHIV",
-    "Apocalypse, burin, Melencolia I, Saint Jérôme, Chevalier et Rhinocéros : comment Dürer fit de l'estampe un art majeur.",
+    "Gravures d'Albrecht Dürer — Melencolia I, Rhinocéros, Apocalypse | ARCHIV",
+    "Page consacrée aux gravures de Dürer : Melencolia I, Saint Jérôme, Le Chevalier, le Rhinocéros et l'Apocalypse.",
     "gravures", "gravures.html", "Gravures", "L'estampe comme langage autonome",
     """<main>
 <section class="archiv-museum-section archiv-museum-section--ink archiv-section--engraving"><div class="archiv-page-shell archiv-page-shell--narrow archiv-prose-block">
@@ -218,8 +271,8 @@ PAGES = {
 ),
 
 "autoportraits.html": page(
-    "Autoportraits de Dürer — artiste-auteur | ARCHIV",
-    "Autoportraits de 1493, 1498 et 1500 : monogramme AD, regard frontal et naissance de l'artiste-auteur.",
+    "Autoportraits d'Albrecht Dürer — L'artiste comme auteur | ARCHIV",
+    "Analyse des autoportraits d'Albrecht Dürer et de son rôle dans l'affirmation de l'artiste comme auteur et image publique.",
     "autoportraits", "autoportraits.html", "", "",
     """<main id="archiv-main" class="archiv-portraits-page">
 <header class="archiv-portraits-hero" aria-labelledby="portraits-hero-title">
@@ -243,7 +296,7 @@ PAGES = {
 <li>Albrecht Dürer · Autoportrait à 28 ans</li>
 <li>1500 · Huile sur panneau de tilleul</li>
 <li>Alte Pinakothek, Munich</li>
-<li><a href="https://www.sammlung.pinakothek.de/en/artist/albrecht-durer" target="_blank" rel="noopener">Alte Pinakothek</a></li>
+<li><a href="https://www.pinakothek.de/en/alte-pinakothek" target="_blank" rel="noopener noreferrer">Alte Pinakothek</a></li>
 </ul>
 </figure>
 </div>
@@ -302,7 +355,7 @@ PAGES = {
 <p>Regard direct, main gantée, chevelure en symétrie : la narration cède la place à la présence.</p>
 <ul class="archiv-museum-caption archiv-portraits-hero__caption" style="margin-top:1.5rem;border-top:1px solid rgba(182,138,58,0.2);padding-top:1rem;">
 <li>Albrecht Dürer · 1500</li>
-<li><a href="oeuvre.html?id=self-portrait-1500">Fiche œuvre</a> · <a href="https://www.sammlung.pinakothek.de/en/artist/albrecht-durer" target="_blank" rel="noopener">Source Pinakothek</a></li>
+<li><a href="oeuvre.html?id=self-portrait-1500">Fiche œuvre</a> · <a href="https://www.pinakothek.de/en/alte-pinakothek" target="_blank" rel="noopener noreferrer">Source Pinakothek</a></li>
 </ul>
 </div>
 </div>
@@ -315,8 +368,8 @@ PAGES = {
 ),
 
 "science.html": page(
-    "Dürer théoricien — science et proportion humaine | ARCHIV",
-    "Mesure, perspective, proportion, fortification : les traités de Dürer (1525–1528) et l'art comme méthode.",
+    "Dürer théoricien — Science, proportion, mesure et perspective | ARCHIV",
+    "Dürer théoricien : mesure, perspective, géométrie, proportion humaine, fortification et observation scientifique du visible.",
     "science", "science.html", "Science et proportion", "L'image comme méthode",
     """<main class="archiv-museum-section archiv-museum-section--paper archiv-science-grid"><div class="archiv-page-shell">
 <div class="row g-5">
@@ -341,8 +394,8 @@ PAGES = {
 ),
 
 "voyages.html": page(
-    "Voyages d'Albrecht Dürer — carte narrative | ARCHIV",
-    "Nuremberg, Italie, Pays-Bas : cartographie des déplacements et du journal de voyage (1520–1521).",
+    "Voyages d'Albrecht Dürer — Nuremberg, Venise et Pays-Bas | ARCHIV",
+    "Cartographie des voyages de Dürer : Nuremberg, Italie, Venise, Rhénanie et journal des Pays-Bas (1520–1521).",
     "voyages", "voyages.html", "Voyages", "Cartographie des déplacements",
     """<main class="archiv-museum-section archiv-museum-section--paper"><div class="archiv-page-shell archiv-page-shell--narrow archiv-prose-block">
 <p class="archiv-lead">Les voyages ne sont pas des digressions : ils alimentent réseau commercial, regard italien et journal intime d'un artiste devenu figure européenne.</p>
@@ -388,8 +441,8 @@ PAGES = {
 ),
 
 "chronologie.html": page(
-    "Chronologie d'Albrecht Dürer (1471–1528) | ARCHIV",
-    "Dates majeures : Apocalypse, maîtres gravures, Rhinocéros, traités et décès à Nuremberg.",
+    "Chronologie d'Albrecht Dürer — Dates clés et œuvres majeures | ARCHIV",
+    "Dates structurantes de la vie de Dürer (1471–1528) : Apocalypse, maîtres gravures, Rhinocéros, traités et héritage européen.",
     "chronologie", "chronologie.html", "Chronologie", "1471 — 1528",
     """<main class="archiv-museum-section archiv-museum-section--paper"><div class="archiv-page-shell archiv-page-shell--narrow">
 <p class="archiv-lead mb-5">Dates structurantes — renvoi vers <a href="vie.html" class="archiv-text-link">Vie</a> et fiches œuvre.</p>
@@ -399,40 +452,47 @@ PAGES = {
 ),
 
 "sources.html": page(
-    "Sources et crédits — ARCHIV Albrecht Dürer",
-    "Musées, collections et crédits images : Met, NGA, British Museum, Albertina, Pinakothek, Wikimedia Commons.",
+    "Sources et crédits — Archive Albrecht Dürer | ARCHIV",
+    "Musées, notices, sources biographiques et crédits images : méthode ARCHIV, inventaire des œuvres et droits documentés.",
     "sources", "sources.html", "Sources", "Documentation et crédits",
     """<main class="archiv-museum-section archiv-museum-section--paper"><div class="archiv-page-shell archiv-page-shell--narrow archiv-prose-block">
 <p class="archiv-lead">ARCHIV privilégie les notices de musées, les collections publiques et les reproductions documentées. Aucune image n'est affichée sans crédit ni renvoi vers la collection de référence.</p>
 <h2>Méthode de sélection</h2>
-<p>Les faits biographiques et techniques sont vérifiés sur les sites institutionnels (Met, NGA, British Museum, Albertina, Pinakothek, Prado, Louvre, MFA, Cleveland). Les visuels proviennent de fichiers en <strong>domaine public</strong> (artiste mort en 1528) hébergés sur Wikimedia Commons lorsque l'institution ne fournit pas d'URL stable, ou de copies WebP optimisées produites par ARCHIV à partir de ces fichiers.</p>
+<p>Les faits biographiques et techniques sont vérifiés sur les sites institutionnels (Met, NGA, British Museum, Albertina, Pinakothek, Prado, Louvre, MFA, Cleveland, Uffizi). Les visuels proviennent de fichiers en <strong>domaine public</strong> (artiste mort en 1528) hébergés sur Wikimedia Commons lorsque l'institution ne fournit pas d'URL stable, ou de copies WebP optimisées produites par ARCHIV à partir de ces fichiers.</p>
 <h2>Musées et collections</h2>
 <ul class="archiv-sources-list">
-<li><a href="https://www.metmuseum.org/" target="_blank" rel="noopener">The Metropolitan Museum of Art</a> — estampes, cycles, Heilbrunn Timeline.</li>
-<li><a href="https://www.nga.gov/" target="_blank" rel="noopener">National Gallery of Art, Washington</a> — Melencolia I, maîtres gravures (ex. fichiers NGA sur Commons).</li>
-<li><a href="https://www.britishmuseum.org/" target="_blank" rel="noopener">British Museum</a> — estampes et Rhinocéros.</li>
-<li><a href="https://www.albertina.at/" target="_blank" rel="noopener">Albertina, Vienne</a> — dessins et aquarelles.</li>
-<li><a href="https://www.pinakothek.de/en/alte-pinakothek" target="_blank" rel="noopener">Alte Pinakothek, Munich</a> — autoportraits, Quatre Apôtres.</li>
-<li><a href="https://www.museodelprado.es/" target="_blank" rel="noopener">Museo del Prado</a> — autoportrait de 1498.</li>
-<li><a href="https://collections.louvre.fr/" target="_blank" rel="noopener">Musée du Louvre</a> — autoportrait de 1493.</li>
-<li><a href="https://www.mfa.org/" target="_blank" rel="noopener">Museum of Fine Arts, Boston</a> — Adam et Ève.</li>
-<li><a href="https://www.clevelandart.org/" target="_blank" rel="noopener">Cleveland Museum of Art</a> — Vie de la Vierge.</li>
-<li><a href="https://www.uffizi.it/" target="_blank" rel="noopener">Gallerie degli Uffizi</a> — Adoration des Mages.</li>
+<li><a href="https://www.metmuseum.org/" target="_blank" rel="noopener noreferrer">The Metropolitan Museum of Art</a> — estampes, cycles, Heilbrunn Timeline.</li>
+<li><a href="https://www.nga.gov/" target="_blank" rel="noopener noreferrer">National Gallery of Art, Washington</a> — Melencolia I, maîtres gravures.</li>
+<li><a href="https://www.britishmuseum.org/" target="_blank" rel="noopener noreferrer">British Museum</a> — estampes et Rhinocéros.</li>
+<li><a href="https://www.albertina.at/" target="_blank" rel="noopener noreferrer">Albertina, Vienne</a> — dessins et aquarelles.</li>
+<li><a href="https://www.pinakothek.de/en/alte-pinakothek" target="_blank" rel="noopener noreferrer">Alte Pinakothek, Munich</a> — autoportraits, Quatre Apôtres.</li>
+<li><a href="https://www.museodelprado.es/" target="_blank" rel="noopener noreferrer">Museo del Prado</a> — autoportrait de 1498.</li>
+<li><a href="https://collections.louvre.fr/" target="_blank" rel="noopener noreferrer">Musée du Louvre</a> — autoportrait de 1493.</li>
+<li><a href="https://www.mfa.org/" target="_blank" rel="noopener noreferrer">Museum of Fine Arts, Boston</a> — Adam et Ève.</li>
+<li><a href="https://www.clevelandart.org/" target="_blank" rel="noopener noreferrer">Cleveland Museum of Art</a> — Vie de la Vierge.</li>
+<li><a href="https://www.uffizi.it/" target="_blank" rel="noopener noreferrer">Gallerie degli Uffizi</a> — Adoration des Mages.</li>
 </ul>
-<h2 class="mt-5">Images utilisées</h2>
-<p>Inventaire généré depuis le catalogue œuvres (titres, dates, collections, crédits). Les fichiers locaux sont stockés sous <code>img/durer/</code> (works, portraits, prints, drawings, books).</p>
+<h2 id="archiv-editions-sources" class="mt-5">Sources des éditions</h2>
+<p>Chaque édition ARCHIV renvoie à une œuvre source documentée. Tant que les droits de reproduction commerciale ne sont pas confirmés, le statut reste « À venir » — sans prix ni commande en ligne.</p>
+<div id="archiv-editions-sources-inventory" class="archiv-table-wrap mt-3"></div>
+<p class="archiv-editions-disclaimer mt-3">ARCHIV n'est pas affilié aux institutions muséales mentionnées. Les sources et crédits sont indiqués à des fins documentaires.</p>
+<h2 class="mt-5">Sources des images</h2>
+<p>Inventaire généré depuis le catalogue œuvres (titres, dates, collections, crédits). Les fichiers locaux sont stockés sous <code>img/durer/</code> (portraits, prints, drawings, books).</p>
 <div id="archiv-sources-inventory" class="archiv-table-wrap mt-3"></div>
-<h2 class="mt-5">Œuvres principales</h2>
-<p>Voir le <a href="oeuvres.html" class="archiv-text-link">catalogue</a> et les fiches : Melencolia I, maîtres gravures, Apocalypse, Rhinocéros, autoportraits, études naturalistes, traités.</p>
+<h2 class="mt-5">Sources des œuvres</h2>
+<p>Voir le <a href="oeuvres.html" class="archiv-text-link">catalogue</a> et les fiches : <a href="oeuvre.html?id=melencolia">Melencolia I</a>, <a href="oeuvre.html?id=knight-death-devil">Le Chevalier, la Mort et le Diable</a>, <a href="oeuvre.html?id=rhinoceros">Rhinocéros</a>, <a href="oeuvre.html?id=apocalypse-four-riders">Les Quatre cavaliers</a>, <a href="autoportraits.html">autoportraits</a>.</p>
 <h2 class="mt-4">Sources biographiques et traités</h2>
 <ul>
-<li><a href="https://www.metmuseum.org/toah/hd/durr/hd_durr.htm" target="_blank" rel="noopener">The Met — Heilbrunn Timeline, Albrecht Dürer</a></li>
-<li>Notices des musées cités sur chaque fiche œuvre.</li>
+<li><a href="https://www.metmuseum.org/toah/hd/durr/hd_durr.htm" target="_blank" rel="noopener noreferrer">The Met — Heilbrunn Timeline, Albrecht Dürer</a></li>
+<li>Notices des musées cités sur chaque <a href="oeuvre.html" class="archiv-text-link">fiche œuvre</a>.</li>
 </ul>
-<h2 class="mt-4">Notes sur les droits</h2>
+<h2 class="mt-4">Droits et crédits</h2>
 <p>Œuvres de Dürer : domaine public dans l'Union européenne et aux États-Unis (décès 1528). Les musées peuvent restreindre la <em>photographie</em> de leurs exemplaires ; ARCHIV indique la collection de référence et n'affirme pas la libre réutilisation commerciale sans vérifier la politique du détenteur. Textes éditoriaux © ARCHIV.</p>
+<nav class="archiv-see-also mt-5" aria-label="Pages liées"><p class="archiv-kicker">Explorer l'archive</p><ul><li><a href="/">Vue d'ensemble</a></li><li><a href="vie.html">Biographie</a></li><li><a href="oeuvres.html">Œuvres</a></li><li><a href="editions.html">Éditions</a></li></ul></nav>
 </div></main>""",
-    "Sources ARCHIV — Albrecht Dürer",
+    "Sources et crédits — ARCHIV",
+    extra_css="css/archiv-editions.css",
+    extra_scripts='    <script src="js/archiv-editions.js" defer></script>',
 ),
 }
 

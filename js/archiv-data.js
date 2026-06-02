@@ -14,7 +14,7 @@
     global.ARCHIV_SITE = {
         origin: "https://albrechtdurer.uk",
         home: "https://albrechtdurer.uk/",
-        defaultOgImage: "https://albrechtdurer.uk/img/durer/portraits/durer-self-portrait-1500.webp"
+        defaultOgImage: "https://albrechtdurer.uk/img/og/albrecht-durer-archive-og.jpg"
     };
 
     global.ARCHIV_META = {
