@@ -10,7 +10,7 @@ SCRIPTS_LITE = (ROOT / "partials/archiv-scripts-production.html").read_text(enco
 SITE_ORIGIN = "https://albrechtdurer.uk"
 OG_IMAGE_DEFAULT = "img/og/albrecht-durer-archive-og.jpg"
 FAVICON = (ROOT / "partials/archiv-favicon.html").read_text(encoding="utf-8").strip()
-SIGLE_IMG = '<img src="img/sigle_durer.svg" class="archiv-durer-sigle" alt="Monogramme AD — Albrecht Dürer" width="52" height="52" decoding="async">'
+SIGLE_IMG = '<img src="img/sigle_durer.svg" class="archiv-durer-sigle" alt="Monogramme AD — Albrecht Dürer" width="32" height="32" decoding="async">'
 SIGLE_IMG_LARGE = '<img src="img/sigle_durer.svg" class="archiv-durer-sigle" alt="Monogramme AD — Albrecht Dürer" width="72" height="72" decoding="async">'
 OG_IMAGES = {
     "oeuvres": "img/og/durer-oeuvres-og.jpg",

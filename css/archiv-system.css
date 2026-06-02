@@ -598,15 +598,24 @@ body.archiv-site .archiv-collection-index .archiv-work-card {
 }
 
 .archiv-archive-footer__sigle {
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.65rem;
     line-height: 0;
+}
+
+/* Annule style.css img { width: 100% } dans le footer */
+.archiv-archive-footer__sigle .archiv-durer-sigle {
+    display: block;
+    width: 32px;
+    height: 32px;
+    max-width: 32px;
+    max-height: 32px;
+    object-fit: contain;
+    opacity: 0.88;
 }
 
 .archiv-durer-sigle {
     display: block;
-    width: auto;
-    height: 52px;
-    max-width: 56px;
+    object-fit: contain;
     opacity: 0.92;
 }
 
