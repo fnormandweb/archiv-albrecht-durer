@@ -1,0 +1,27 @@
+# OS & éditeur
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+.cursor/
+
+# Secrets
+.env
+.env.*
+*.pem
+
+# Téléchargements temporaires (script images)
+img/durer/**/*.jpg
+img/durer/**/*.jpeg
+
+# Fichier de référence non utilisé sur le site
+img/durer/hero-accueil.png
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dépendances (si ajoutées plus tard)
+node_modules/

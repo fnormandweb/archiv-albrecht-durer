@@ -1,0 +1,189 @@
+/**
+ * ARCHIV — cadres d’images musée (cover / contain, passe-partout)
+ */
+
+.archiv-museum-frame {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+    min-height: 0;
+    background: var(--black-brown, #15100c);
+}
+
+.archiv-museum-frame--mat-paper {
+    background: linear-gradient(180deg, #ebe3d0 0%, #d8c7a5 100%);
+}
+
+.archiv-museum-frame--mat-dark {
+    background: var(--ink, #11100d);
+}
+
+.archiv-museum-frame--card,
+.archiv-home-work__frame.archiv-museum-frame {
+    aspect-ratio: 4 / 5;
+}
+
+.archiv-museum-frame--print {
+    aspect-ratio: 3 / 4;
+}
+
+.archiv-museum-frame--portrait {
+    aspect-ratio: 4 / 5;
+}
+
+.archiv-museum-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    color: transparent;
+    font-size: 0;
+}
+
+.archiv-museum-img--cover {
+    object-fit: cover;
+}
+
+.archiv-museum-img--contain {
+    object-fit: contain;
+    padding: clamp(0.35rem, 2vw, 0.85rem);
+}
+
+.archiv-museum-frame.is-image-error {
+    background: linear-gradient(180deg, #ebe3d0 0%, #d8c7a5 100%);
+}
+
+.archiv-museum-frame.is-image-error .archiv-museum-img.is-image-error {
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    pointer-events: none;
+}
+
+/* Cartes catalogue : cadre uniforme, vignette en cover */
+.archiv-artwork-card__frame.archiv-museum-frame--card .archiv-museum-img--cover,
+a.archiv-artwork-card__frame .archiv-museum-img--cover {
+    padding: 0;
+}
+
+body.archiv-site .archiv-artwork-card__frame,
+body.archiv-site a.archiv-artwork-card__frame {
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+    border-bottom: 1px solid rgba(74, 56, 40, 0.12);
+}
+
+body.archiv-site .archiv-artwork-card__frame img,
+body.archiv-site a.archiv-artwork-card__frame img {
+    padding: 0;
+}
+
+body.archiv-site .archiv-artwork-card--feature .archiv-museum-frame {
+    aspect-ratio: 16 / 11;
+    max-height: min(72vh, 640px);
+}
+
+body.archiv-site .archiv-artwork-card--feature .archiv-museum-img--contain {
+    padding: clamp(0.5rem, 2vw, 1.25rem);
+}
+
+/* Accueil */
+.archiv-home-work__frame {
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+}
+
+.archiv-home-work__frame .archiv-museum-img {
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* Fiche œuvre */
+.archiv-oeuvre-hero .archiv-museum-frame,
+.archiv-oeuvre-hero figure.archiv-museum-frame--detail {
+    aspect-ratio: auto;
+    min-height: min(70vh, 720px);
+    max-height: 85vh;
+    background: var(--ink, #11100d);
+}
+
+.archiv-oeuvre-hero .archiv-museum-img--contain {
+    max-height: min(70vh, 720px);
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    padding: clamp(1rem, 3vw, 2rem);
+}
+
+/* Autoportraits */
+.archiv-portrait-obj__frame.archiv-museum-frame {
+    aspect-ratio: 4 / 5;
+}
+
+/* Lightbox */
+.mfp-archiv .mfp-img {
+    object-fit: contain !important;
+    max-height: 88vh;
+    width: auto;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.mfp-archiv .mfp-figure {
+    background: #11100d;
+}
+
+/* Hero immersif : pas de zone vide */
+.archiv-immersive-hero__bg {
+    min-height: 100%;
+}
+
+.archiv-immersive-hero__bg.is-image-error {
+    background-color: #11100d !important;
+    background-image: none !important;
+}
+
+/* Heroes intérieurs — specimen (gravures, etc.) */
+.archiv-archive-hero__specimen img {
+    display: block;
+    width: 100%;
+    max-height: min(52vh, 420px);
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    background: linear-gradient(180deg, #ebe3d0 0%, #d8c7a5 100%);
+}
+
+.archiv-archive-hero__specimen a {
+    display: block;
+    line-height: 0;
+}
+
+.archiv-engraving-spotlight__cell a {
+    display: block;
+    line-height: 0;
+}
+
+.archiv-engraving-spotlight__cell .archiv-museum-frame {
+    max-height: 280px;
+    margin: 0 auto;
+}
+
+.archiv-engraving-spotlight__cell .archiv-museum-img--contain {
+    max-height: 260px;
+}
+
+.archiv-engraving-detail__img img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    background: linear-gradient(180deg, #ebe3d0 0%, #d8c7a5 100%);
+}

@@ -1,0 +1,704 @@
+/**
+ * ARCHIV — couche muséale (logique Rijks / Met / BM / Albertina / NG)
+ * Composants : MuseumHero, ArtworkCard, MetadataPanel, MuseumCaption, SourceBlock, GalleryLightbox
+ */
+
+/* —— Fond global plus sévère —— */
+body.archiv-site {
+    background-color: var(--aged-paper);
+    color: var(--ink);
+}
+
+body.archiv-site .archiv-section--paper {
+    background: var(--paper);
+}
+
+/* Labels institutionnels (petites capitales) */
+.archiv-label,
+.archiv-kicker {
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.22em;
+    font-size: 0.72rem;
+}
+
+/* —— MuseumHero —— */
+.archiv-museum-hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: stretch;
+    background: var(--black-brown);
+    overflow: hidden;
+}
+
+.archiv-museum-hero__bg {
+    position: absolute;
+    inset: 0;
+    background-color: var(--black-brown);
+    background-size: cover;
+    background-position: center 35%;
+    opacity: 0.22;
+    filter: grayscale(1) contrast(1.08);
+}
+
+.archiv-museum-hero__veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        118deg,
+        rgba(11, 9, 7, 0.97) 0%,
+        rgba(11, 9, 7, 0.82) 45%,
+        rgba(17, 16, 13, 0.55) 70%,
+        rgba(11, 9, 7, 0.94) 100%
+    );
+    pointer-events: none;
+}
+
+.archiv-museum-hero__grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.archiv-museum-hero__inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: clamp(8rem, 18vh, 11rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 10vh, 6rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(12rem, 0.55fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: end;
+}
+
+@media (max-width: 991px) {
+    .archiv-museum-hero__inner {
+        grid-template-columns: 1fr;
+        padding-top: 7.5rem;
+    }
+}
+
+.archiv-museum-hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 11vw, 6.5rem);
+    font-weight: 500;
+    line-height: 0.92;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--soft-white);
+    margin: 0 0 0.5rem;
+}
+
+.archiv-museum-hero__subtitle {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    font-weight: 400;
+    color: var(--aged-gold);
+    margin: 0 0 2rem;
+    max-width: 22rem;
+    line-height: 1.35;
+}
+
+.archiv-museum-hero__text {
+    max-width: 34rem;
+    font-size: 1.05rem;
+    line-height: 1.72;
+    color: rgba(242, 235, 221, 0.78);
+    margin-bottom: 2.5rem;
+}
+
+.archiv-museum-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    align-items: center;
+}
+
+.archiv-museum-hero__specimen {
+    justify-self: end;
+    align-self: center;
+    max-width: 16rem;
+    border: var(--border-hairline);
+    padding: 0.5rem;
+    background: rgba(17, 16, 13, 0.65);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.4s var(--ease-out);
+}
+
+.archiv-museum-hero__specimen:hover {
+    border-color: var(--aged-gold);
+}
+
+.archiv-museum-hero__specimen img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: contrast(1.05);
+}
+
+.archiv-museum-hero__specimen figcaption {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--aged-paper);
+    padding: 0.65rem 0.25rem 0.15rem;
+    line-height: 1.45;
+    opacity: 0.85;
+}
+
+.archiv-museum-hero__scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(205, 189, 157, 0.45);
+    text-decoration: none;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(182, 138, 58, 0.25);
+}
+
+/* Boutons musée (pas SaaS) */
+body.archiv-site .archiv-btn {
+    border-radius: 0;
+    font-variant-caps: normal;
+}
+
+body.archiv-site .archiv-btn--ghost {
+    border-color: rgba(182, 138, 58, 0.4);
+}
+
+body.archiv-site .archiv-btn--text {
+    border: none;
+    padding: 0;
+    letter-spacing: 0.18em;
+    border-bottom: 1px solid var(--dark-gold);
+}
+
+body.archiv-site .archiv-btn--text:hover {
+    background: transparent;
+    color: var(--aged-gold);
+}
+
+/* —— ArtworkCard (cartel enrichi) —— */
+.archiv-artwork-card,
+.archiv-work-card {
+    position: relative;
+    border-radius: 0;
+    background: var(--paper);
+    border: 1px solid rgba(17, 16, 13, 0.14);
+    box-shadow: none;
+}
+
+.archiv-artwork-card:hover,
+.archiv-work-card:hover {
+    transform: none;
+    border-color: rgba(140, 103, 40, 0.45);
+}
+
+.archiv-artwork-card::before,
+.archiv-work-card::before {
+    height: 1px;
+    background: var(--aged-gold);
+    opacity: 0;
+}
+
+.archiv-artwork-card:hover::before,
+.archiv-work-card:hover::before {
+    opacity: 1;
+}
+
+.archiv-artwork-card__frame,
+.archiv-work-card__img {
+    aspect-ratio: 1 / 1;
+    background: var(--black-brown);
+    border-bottom: 1px solid rgba(17, 16, 13, 0.2);
+}
+
+.archiv-artwork-card__frame img,
+.archiv-work-card__img img {
+    object-fit: contain;
+    padding: 0.75rem;
+    transform: none;
+}
+
+.archiv-artwork-card:hover .archiv-artwork-card__frame img,
+.archiv-work-card:hover .archiv-work-card__img img {
+    transform: none;
+    opacity: 0.94;
+}
+
+.archiv-work-card__badge,
+.archiv-artwork-card__category {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: auto;
+    border-radius: 0;
+    background: var(--ink);
+    border: none;
+    border-right: 1px solid rgba(182, 138, 58, 0.35);
+    border-bottom: 1px solid rgba(182, 138, 58, 0.35);
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.14em;
+}
+
+.archiv-artwork-card__cartel,
+.archiv-work-card__body {
+    padding: 1.35rem 1.25rem 1.5rem;
+    background: var(--paper);
+}
+
+.archiv-artwork-card__date-line,
+.archiv-work-card__meta {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    color: var(--dark-gold);
+    text-transform: none;
+    margin-bottom: 0.35rem;
+}
+
+.archiv-artwork-card__title,
+.archiv-work-card h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+}
+
+.archiv-artwork-card__institution {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--verdigris);
+    margin: 0 0 0.75rem;
+}
+
+.archiv-artwork-card__summary {
+    font-size: var(--text-sm);
+    line-height: 1.65;
+    color: var(--walnut);
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* SourceBlock */
+.archiv-source-block,
+.archiv-card-actions {
+    margin-top: auto;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(17, 16, 13, 0.1);
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+}
+
+.archiv-source-block .archiv-label {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--verdigris);
+}
+
+.archiv-source-block a,
+.archiv-card-actions a {
+    color: var(--walnut);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(140, 103, 40, 0.4);
+}
+
+.archiv-source-block a:hover,
+.archiv-card-actions a:hover {
+    color: var(--dark-gold);
+    border-color: var(--aged-gold);
+}
+
+/* —— ArchiveSection —— */
+.archiv-archive-section {
+    padding: var(--section-space) clamp(1.25rem, 4vw, 3rem);
+}
+
+.archiv-archive-section__head {
+    max-width: 36rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(17, 16, 13, 0.12);
+}
+
+.archiv-archive-section__head h2 {
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.65rem;
+}
+
+/* —— Index collection (œuvres) —— */
+.archiv-collection-index {
+    background: var(--aged-paper);
+}
+
+.archiv-collection-spotlight {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+    border-bottom: 1px solid rgba(17, 16, 13, 0.12);
+}
+
+.archiv-collection-spotlight__label {
+    margin-bottom: 1.5rem;
+}
+
+.archiv-collection-spotlight .archiv-artwork-card--feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    border: var(--border-hairline);
+    background: var(--paper);
+}
+
+@media (max-width: 991px) {
+    .archiv-collection-spotlight .archiv-artwork-card--feature {
+        grid-template-columns: 1fr;
+    }
+}
+
+.archiv-artwork-card--feature .archiv-artwork-card__frame {
+    aspect-ratio: auto;
+    min-height: 22rem;
+}
+
+.archiv-artwork-card--feature .archiv-artwork-card__frame img {
+    padding: 1.25rem;
+}
+
+.archiv-artwork-card--feature .archiv-artwork-card__cartel {
+    padding: 2rem 2rem 2.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.archiv-artwork-card--feature .archiv-artwork-card__title {
+    font-size: clamp(1.75rem, 3vw, 2.35rem);
+}
+
+.archiv-collection-grid {
+    --grid-gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* Filtres type catalogue */
+.archiv-work-filter .archiv-filter-btn,
+.archiv-work-filter .archiv-sort-btn {
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 0.4rem 0;
+    margin-right: 1.25rem;
+}
+
+.archiv-work-filter .archiv-filter-btn.is-active,
+.archiv-work-filter .archiv-sort-btn.is-active {
+    background: transparent;
+    color: var(--ink);
+    border-bottom-color: var(--aged-gold);
+}
+
+.archiv-toolbar {
+    border-bottom: 1px solid rgba(17, 16, 13, 0.14);
+    padding-bottom: 2rem;
+}
+
+/* —— Page gravures —— */
+body.archiv-site[data-archiv-page="gravures"] {
+    background: var(--black-brown);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-page-hero {
+    background: var(--black-brown);
+    border-bottom: var(--border-hairline);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-section--engraving {
+    background: var(--ink);
+}
+
+.archiv-engraving-spotlight {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(182, 138, 58, 0.2);
+    margin: 3rem 0;
+}
+
+@media (max-width: 991px) {
+    .archiv-engraving-spotlight {
+        grid-template-columns: 1fr;
+    }
+}
+
+.archiv-engraving-spotlight__cell {
+    background: var(--black-brown);
+    padding: 1rem;
+    text-align: center;
+}
+
+.archiv-engraving-spotlight__cell .archiv-museum-img,
+.archiv-engraving-spotlight__cell img {
+    max-height: 280px;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+    filter: grayscale(1);
+    transition: filter 0.5s;
+}
+
+.archiv-engraving-spotlight__cell:hover .archiv-museum-img,
+.archiv-engraving-spotlight__cell:hover img {
+    filter: grayscale(0);
+}
+
+.archiv-engraving-spotlight__cell figcaption {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--aged-paper);
+    margin-top: 0.85rem;
+    opacity: 0.8;
+}
+
+.archiv-engraving-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: var(--border-hairline);
+    margin: 3rem 0;
+}
+
+@media (max-width: 767px) {
+    .archiv-engraving-detail {
+        grid-template-columns: 1fr;
+    }
+}
+
+.archiv-engraving-detail__img {
+    background: var(--black-brown);
+    padding: 2rem;
+}
+
+.archiv-engraving-detail__img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.archiv-engraving-detail__text {
+    padding: 2.5rem;
+    background: var(--ink);
+    color: var(--aged-paper);
+}
+
+/* —— MetadataPanel (fiche œuvre) —— */
+.archiv-metadata-panel {
+    border: var(--border-hairline);
+    background: var(--soft-white);
+    padding: 0;
+    margin: 0 0 2rem;
+}
+
+.archiv-metadata-panel__row {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 1rem;
+    padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid rgba(17, 16, 13, 0.08);
+    font-size: var(--text-sm);
+}
+
+.archiv-metadata-panel__row:last-child {
+    border-bottom: none;
+}
+
+.archiv-metadata-panel__key {
+    font-family: var(--font-ui);
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.14em;
+    font-size: var(--text-xs);
+    color: var(--verdigris);
+}
+
+.archiv-metadata-panel__val {
+    color: var(--ink);
+    margin: 0;
+}
+
+.archiv-metadata-panel__val a {
+    color: var(--walnut);
+    border-bottom: 1px solid rgba(140, 103, 40, 0.35);
+}
+
+/* MuseumCaption */
+.archiv-museum-caption {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    line-height: 1.55;
+    color: rgba(205, 189, 157, 0.75);
+    padding: 1rem 0 0;
+    border-top: 1px solid rgba(182, 138, 58, 0.2);
+    margin-top: 0.5rem;
+}
+
+/* —— GalleryLightbox —— */
+.mfp-archiv.mfp-bg {
+    background: rgba(11, 9, 7, 0.96);
+}
+
+.mfp-archiv .mfp-container {
+    padding: 2rem 1rem;
+}
+
+.mfp-archiv .mfp-content {
+    max-width: min(96vw, 1400px);
+}
+
+.mfp-archiv .mfp-figure {
+    background: var(--black-brown);
+    border: var(--border-hairline);
+}
+
+.mfp-archiv .mfp-figure figure {
+    background: var(--black-brown);
+}
+
+.mfp-archiv .mfp-img {
+    padding: 1.5rem;
+    background: var(--black-brown);
+}
+
+.mfp-archiv .mfp-bottom-bar {
+    position: relative;
+    margin-top: 0;
+    background: var(--ink);
+    border-top: var(--border-hairline);
+}
+
+.mfp-archiv .mfp-title {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    padding: 1.5rem 1.75rem 1.75rem;
+    color: var(--aged-paper);
+    position: relative;
+    text-align: left;
+    max-width: 42rem;
+}
+
+.mfp-archiv .mfp-title strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--soft-white);
+    margin-bottom: 0.65rem;
+}
+
+.mfp-archiv .mfp-gallery-lightbox__meta {
+    display: grid;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(182, 138, 58, 0.2);
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+}
+
+.mfp-archiv .mfp-close {
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 2rem;
+    opacity: 0.7;
+}
+
+.mfp-archiv .mfp-arrow {
+    opacity: 0.5;
+}
+
+.mfp-archiv .mfp-arrow:hover {
+    opacity: 1;
+}
+
+/* —— TimelineItem —— */
+.archiv-timeline-item {
+    border-left: 1px solid rgba(182, 138, 58, 0.35);
+}
+
+/* —— EditorialQuote —— */
+.archiv-editorial-quote {
+    margin: 2.5rem 0;
+    padding: 1.75rem 0 1.75rem 2rem;
+    border-left: 2px solid var(--aged-gold);
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--walnut);
+    max-width: 32rem;
+}
+
+/* —— Nav musée —— */
+body.archiv-site .archiv-nav {
+    background: rgba(11, 9, 7, 0.92);
+    border-bottom: 1px solid rgba(182, 138, 58, 0.12);
+    backdrop-filter: blur(8px);
+}
+
+body.archiv-site.nav-scroll-active .nav-scroll {
+    background: rgba(11, 9, 7, 0.98) !important;
+}
+
+/* Piliers : moins SaaS */
+.archiv-pillar {
+    border-radius: 0;
+    background: transparent;
+    border: 1px solid rgba(182, 138, 58, 0.2);
+    padding: 2rem 1.75rem;
+}
+
+.archiv-section--walnut .archiv-pillar {
+    background: rgba(11, 9, 7, 0.2);
+}
+
+/* Masquer chrome template */
+body.archiv-site .mouse.smoothscroll {
+    display: none !important;
+}
+
+/* Compteur collection */
+.archiv-collection-count {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    color: var(--verdigris);
+    margin-bottom: 1.5rem;
+}

@@ -1,0 +1,428 @@
+/**
+ * ARCHIV — Musée premium 2026 (amélioration de l’existant, sans refonte)
+ */
+
+:root {
+    --ink: #11100D;
+    --black-brown: #15100C;
+    --deep-brown: #24150F;
+    --deep-walnut: #24150F;
+    --walnut: #3A2418;
+    --paper: #E6D8BF;
+    --aged-paper: #D8C7A5;
+    --aged-gold: #B68A3A;
+    --dark-gold: #8C6728;
+    --verdigris: #58695D;
+    --text-light: #F2EBDD;
+    --text-muted: #CDBD9D;
+    --text-dark: #1A120D;
+    --text-brown: #4A3828;
+    --soft-white: var(--text-light);
+    --archiv-header-h: 88px;
+    --archiv-nav-inactive: #E6D8BF;
+    --archiv-nav-active: #B68A3A;
+    --archiv-nav-hover: #F2EBDD;
+    --archiv-header-bg: #15100C;
+    --archiv-text-on-dark: var(--text-light);
+    --archiv-text-on-dark-muted: var(--text-muted);
+    --archiv-text-on-paper: var(--text-dark);
+    --archiv-text-on-paper-muted: var(--text-brown);
+    --prose-width: min(47.5rem, 100%);
+    --content-max: 76rem;
+    --section-space: clamp(4rem, 8vw, 7rem);
+    --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Base */
+body.archiv-site {
+    font-size: clamp(17px, 1.05vw, 19px);
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 767px) {
+    body.archiv-site {
+        font-size: 16px;
+    }
+}
+
+/* Header / menu — écrase archiv-system (micro caps 0.62rem) */
+.archiv-museum-header {
+    background: var(--archiv-header-bg);
+    border-bottom: 1px solid rgba(182, 138, 58, 0.25);
+}
+
+.archiv-museum-header__inner {
+    min-height: var(--archiv-header-h);
+}
+
+body.archiv-site .archiv-museum-nav__list {
+    flex-wrap: nowrap;
+    gap: 0;
+}
+
+body.archiv-site .archiv-museum-nav__list a {
+    font-size: 15px;
+    font-variant-caps: normal;
+    text-transform: none;
+    letter-spacing: 0.03em;
+    font-weight: 400;
+    color: var(--archiv-nav-inactive);
+    padding: 0 clamp(14px, 1.6vw, 24px);
+}
+
+body.archiv-site .archiv-museum-nav__list a:hover {
+    color: var(--archiv-nav-hover);
+}
+
+body.archiv-site .archiv-museum-nav__list a.active {
+    color: var(--archiv-nav-active);
+}
+
+body.archiv-site .archiv-museum-nav__list a.active::after {
+    background: var(--archiv-nav-active);
+}
+
+@media (min-width: 1200px) {
+    body.archiv-site .archiv-museum-nav__list a {
+        font-size: 16px;
+    }
+}
+
+body.archiv-site .archiv-museum-nav-mobile__list a {
+    font-variant-caps: normal;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    color: var(--archiv-nav-inactive);
+}
+
+body.archiv-site .archiv-museum-nav-mobile__list a:hover,
+body.archiv-site .archiv-museum-nav-mobile__list a.active {
+    color: var(--archiv-nav-active);
+}
+
+.archiv-museum-nav-mobile__list a {
+    font-size: 1.125rem;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+/* Hero accueil */
+body.archiv-site .archiv-immersive-hero h1.archiv-immersive-hero__title {
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    letter-spacing: 0.06em;
+    line-height: 1.02;
+}
+
+body.archiv-site .archiv-immersive-hero .archiv-immersive-hero__subtitle {
+    font-size: clamp(1.35rem, 2.8vw, 2.125rem);
+    max-width: 32rem;
+}
+
+body.archiv-site .archiv-immersive-hero .archiv-immersive-hero__text {
+    font-size: clamp(17px, 1.05vw, 18px);
+    max-width: 720px;
+    line-height: 1.7;
+}
+
+.archiv-immersive-hero__veil {
+    background: linear-gradient(
+        90deg,
+        rgba(17, 16, 13, 0.94) 0%,
+        rgba(17, 16, 13, 0.78) 42%,
+        rgba(17, 16, 13, 0.45) 100%
+    );
+}
+
+/* Sections accueil — éditorial */
+.archiv-home-section {
+    padding: var(--section-space) 0;
+}
+
+.archiv-home-section--paper {
+    background: linear-gradient(180deg, #ebe3d0 0%, var(--paper) 12%);
+}
+
+.archiv-home-section__head .archiv-kicker,
+.archiv-museum-section__head .archiv-kicker {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dark-gold);
+    margin: 0 0 0.5rem;
+}
+
+.archiv-home-section__head {
+    max-width: 720px;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+body.archiv-site.archiv-home .archiv-home-section__title {
+    font-size: clamp(2.25rem, 4vw, 4rem);
+}
+
+.archiv-home-section__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 4vw, 4rem);
+    font-weight: 500;
+    line-height: 1.08;
+    color: var(--text-dark);
+    margin: 0 0 0.75rem;
+    letter-spacing: 0.02em;
+}
+
+.archiv-home-section__intro {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-brown);
+    max-width: 680px;
+    margin: 0;
+}
+
+/* Cinq piliers — composition éditoriale */
+.archiv-home-pillars-section .archiv-kicker {
+    color: var(--dark-gold);
+    margin-bottom: 0.5rem;
+}
+
+.archiv-home-pillars {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    border-top: 1px solid rgba(74, 56, 40, 0.15);
+    padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+@media (max-width: 1199px) {
+    .archiv-home-pillars {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 599px) {
+    .archiv-home-pillars {
+        grid-template-columns: 1fr;
+    }
+}
+
+.archiv-home-pillar {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.archiv-home-pillar__num {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--aged-gold);
+    margin-bottom: 0.65rem;
+}
+
+.archiv-home-pillar a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.25s var(--ease-premium);
+}
+
+.archiv-home-pillar a:hover h3 {
+    color: var(--dark-gold);
+}
+
+.archiv-home-pillar h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
+    font-weight: 500;
+    color: var(--text-dark);
+    margin: 0 0 0.5rem;
+    line-height: 1.25;
+}
+
+.archiv-home-pillar p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-brown);
+    margin: 0;
+    max-width: 28ch;
+}
+
+/* Cartes œuvres (accueil + catalogue) */
+.archiv-home-work__frame {
+    border: 1px solid rgba(74, 56, 40, 0.12);
+    transition: border-color 0.3s var(--ease-premium);
+}
+
+.archiv-home-work:hover .archiv-home-work__frame {
+    border-color: rgba(182, 138, 58, 0.45);
+}
+
+.archiv-home-work__frame img {
+    transition: opacity 0.35s var(--ease-premium);
+}
+
+.archiv-home-work:hover .archiv-home-work__frame img {
+    opacity: 0.92;
+}
+
+.archiv-home-work__title {
+    font-size: 1.05rem;
+}
+
+.archiv-home-work__meta {
+    display: block;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: var(--text-brown);
+}
+
+.archiv-home-work__institution {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+body.archiv-site .archiv-artwork-card,
+body.archiv-site .archiv-work-card {
+    border-radius: 0;
+    transition: border-color 0.3s var(--ease-premium);
+}
+
+body.archiv-site .archiv-artwork-card:hover,
+body.archiv-site .archiv-work-card:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Images musée — voir archiv-images.css */
+body.archiv-site .archiv-artwork-card__frame.archiv-museum-frame--print .archiv-museum-img--contain {
+    padding: clamp(0.5rem, 2vw, 1rem);
+}
+
+body.archiv-site .archiv-collection-index .archiv-artwork-card,
+body.archiv-site .archiv-collection-index .archiv-work-card {
+    background: #f5eedc !important;
+    border-color: rgba(74, 56, 40, 0.14) !important;
+}
+
+body.archiv-site .archiv-artwork-card__summary,
+body.archiv-site .archiv-work-card__body p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+body.archiv-site .archiv-artwork-card__date-line {
+    font-size: 1rem;
+}
+
+/* Explorer */
+.archiv-home-explore {
+    gap: 0;
+    border: 1px solid rgba(74, 56, 40, 0.12);
+}
+
+.archiv-home-explore__item {
+    background: rgba(255, 255, 255, 0.25);
+    padding: clamp(1.75rem, 3vw, 2.25rem);
+    transition: background 0.3s var(--ease-premium);
+}
+
+.archiv-home-explore__item:hover {
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.archiv-home-explore__item h3 {
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+}
+
+.archiv-home-explore__item p {
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+/* Pages intérieures — hero + prose */
+body.archiv-site .archiv-archive-hero h1 {
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    color: var(--text-light);
+}
+
+body.archiv-site .archiv-archive-hero .archiv-archive-hero__sub {
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    color: var(--text-muted);
+}
+
+body.archiv-site .archiv-museum-section--paper {
+    background: linear-gradient(180deg, #ebe3d0 0%, var(--paper) 10%);
+}
+
+body.archiv-site .archiv-prose-block,
+body.archiv-site .archiv-lead {
+    max-width: min(47.5rem, 100%);
+}
+
+body.archiv-site .archiv-lead {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--text-brown);
+}
+
+body.archiv-site .archiv-museum-section__head h2,
+body.archiv-site .archiv-section-head h2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    line-height: 1.12;
+}
+
+body.archiv-site .archiv-text-link {
+    color: var(--dark-gold);
+    text-underline-offset: 3px;
+}
+
+body.archiv-site .archiv-text-link:hover {
+    color: var(--aged-gold);
+}
+
+/* Footer */
+.archiv-archive-footer {
+    background: var(--ink);
+    padding: clamp(3.5rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
+}
+
+.archiv-archive-footer__intro {
+    line-height: 1.65;
+    color: var(--text-muted);
+}
+
+/* Filtres catalogue */
+body.archiv-site .archiv-filter-btn {
+    font-size: 13px !important;
+    min-height: 40px;
+}
+
+/* Responsive global */
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+.archiv-page-shell {
+    padding-left: clamp(1.25rem, 5vw, 3rem);
+    padding-right: clamp(1.25rem, 5vw, 3rem);
+}
+
+@media (max-width: 1199px) {
+    .archiv-museum-nav--desktop {
+        display: none;
+    }
+
+    .archiv-museum-header__toggle {
+        display: inline-flex;
+    }
+}

@@ -1,0 +1,502 @@
+/**
+ * ARCHIV — Stabilisation UI (lisibilité, structure, contrastes)
+ * Chargé en dernier — pas d’effets décoratifs.
+ */
+
+:root {
+    --archiv-header-h: 88px;
+    --archiv-text-on-dark: #F2EBDD;
+    --archiv-text-on-dark-muted: #CDBD9D;
+    --archiv-text-on-paper: #1A120D;
+    --archiv-text-on-paper-muted: #4A3828;
+    --archiv-nav-inactive: #E6D8BF;
+    --archiv-nav-active: #B68A3A;
+    --archiv-nav-hover: #F2EBDD;
+    --archiv-header-bg: #15100C;
+}
+
+/* —— Base lisible —— */
+body.archiv-site {
+    font-size: 17px;
+    line-height: 1.65;
+}
+
+@media (max-width: 767px) {
+    body.archiv-site {
+        font-size: 16px;
+    }
+}
+
+/* Masquer tout chrome template (doublons menu) */
+body.archiv-site .navbar:not(.archiv-museum-header),
+body.archiv-site > .navbar,
+body.archiv-site .nav-scroll,
+body.archiv-site .archiv-nav.navbar,
+body.archiv-site #preloader,
+body.archiv-site .preloader-bg,
+body.archiv-site .cursor,
+body.archiv-site .mouse.smoothscroll,
+body.archiv-site .progress-wrap,
+body.archiv-site .kenburns-section {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* —— Header 88px —— */
+.archiv-museum-header {
+    position: sticky;
+    top: 0;
+    z-index: 1040;
+    background: var(--archiv-header-bg);
+    border-bottom: 1px solid rgba(182, 138, 58, 0.25);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.archiv-museum-header__inner {
+    min-height: var(--archiv-header-h);
+    max-width: none;
+    padding-left: clamp(1.25rem, 4vw, 2.5rem);
+    padding-right: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.archiv-museum-header__logo {
+    width: auto;
+    height: 48px;
+    max-height: 52px;
+    filter: none;
+}
+
+.archiv-museum-nav__list {
+    flex-wrap: nowrap;
+    gap: 0;
+}
+
+.archiv-museum-nav__list a {
+    font-family: var(--font-ui);
+    font-size: 15px;
+    font-weight: 400;
+    font-variant-caps: normal;
+    text-transform: none;
+    letter-spacing: 0.03em;
+    color: var(--archiv-nav-inactive);
+    padding: 0 clamp(16px, 1.5vw, 26px);
+    white-space: nowrap;
+}
+
+.archiv-museum-nav__list a:hover {
+    color: var(--archiv-nav-hover);
+}
+
+.archiv-museum-nav__list a.active {
+    color: var(--archiv-nav-active);
+    font-weight: 500;
+}
+
+.archiv-museum-nav__list a.active::after {
+    display: none;
+}
+
+.archiv-museum-header__rule {
+    display: none;
+}
+
+.archiv-museum-header__toggle {
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    font-variant-caps: normal;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+@media (min-width: 1200px) {
+    .archiv-museum-nav__list a {
+        font-size: 16px;
+        padding: 0 22px;
+    }
+}
+
+/* Menu mobile lisible */
+.archiv-museum-nav-mobile__list a {
+    font-size: 1.25rem;
+    color: var(--archiv-text-on-dark);
+}
+
+.archiv-museum-nav-mobile__list a.active {
+    color: var(--archiv-nav-active);
+}
+
+/* Labels minimum 12px */
+.archiv-kicker,
+.archiv-label {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-variant-caps: normal;
+    text-transform: uppercase;
+    opacity: 1;
+}
+
+/* Boutons lisibles */
+body.archiv-site .archiv-btn {
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    font-variant-caps: normal;
+    text-transform: none;
+    padding: 0.75rem 1.35rem;
+    font-weight: 500;
+    border-radius: 0;
+}
+
+/* —— Boutons sur fond papier / clair (vie, œuvres, sources…) —— */
+body.archiv-site .archiv-museum-section--paper .archiv-btn,
+body.archiv-site .archiv-home-section--paper .archiv-btn,
+body.archiv-site .archiv-section--paper .archiv-btn,
+body.archiv-site .archiv-prose-block .archiv-btn {
+    color: var(--archiv-text-on-paper);
+    background: #F2EBDD;
+    border: 1px solid var(--dark-gold);
+}
+
+body.archiv-site .archiv-museum-section--paper .archiv-btn:hover,
+body.archiv-site .archiv-home-section--paper .archiv-btn:hover,
+body.archiv-site .archiv-section--paper .archiv-btn:hover,
+body.archiv-site .archiv-prose-block .archiv-btn:hover {
+    color: #F2EBDD;
+    background: var(--dark-gold);
+    border-color: var(--dark-gold);
+}
+
+body.archiv-site .archiv-museum-section--paper .archiv-btn--dark,
+body.archiv-site .archiv-home-section--paper .archiv-btn--dark,
+body.archiv-site .archiv-prose-block .archiv-btn--dark {
+    color: #F2EBDD;
+    background: var(--walnut);
+    border-color: var(--dark-gold);
+}
+
+body.archiv-site .archiv-museum-section--paper .archiv-btn--dark:hover,
+body.archiv-site .archiv-home-section--paper .archiv-btn--dark:hover,
+body.archiv-site .archiv-prose-block .archiv-btn--dark:hover {
+    color: #F2EBDD;
+    background: var(--dark-gold);
+    border-color: var(--dark-gold);
+}
+
+body.archiv-site .archiv-museum-section--paper .archiv-btn--ghost,
+body.archiv-site .archiv-home-section--paper .archiv-btn--ghost,
+body.archiv-site .archiv-prose-block .archiv-btn--ghost {
+    color: var(--archiv-text-on-paper);
+    background: transparent;
+    border: 1px solid var(--dark-gold);
+}
+
+body.archiv-site .archiv-museum-section--paper .archiv-btn--ghost:hover,
+body.archiv-site .archiv-home-section--paper .archiv-btn--ghost:hover,
+body.archiv-site .archiv-prose-block .archiv-btn--ghost:hover {
+    color: #F2EBDD;
+    background: var(--dark-gold);
+    border-color: var(--dark-gold);
+}
+
+/* —— Boutons sur fond sombre (hero, footer, sections ink) —— */
+body.archiv-site .archiv-immersive-hero .archiv-btn,
+body.archiv-site .archiv-archive-hero .archiv-btn,
+body.archiv-site .archiv-archive-footer .archiv-btn,
+body.archiv-site .archiv-section--ink .archiv-btn,
+body.archiv-site .archiv-museum-section--ink .archiv-btn,
+body.archiv-site .archiv-section--walnut .archiv-btn,
+body.archiv-site .archiv-museum-section--walnut .archiv-btn,
+body.archiv-site .archiv-cta-band .archiv-btn {
+    color: var(--archiv-text-on-dark);
+    background: transparent;
+    border: 1px solid rgba(182, 138, 58, 0.55);
+}
+
+body.archiv-site .archiv-immersive-hero .archiv-btn:hover,
+body.archiv-site .archiv-archive-hero .archiv-btn:hover,
+body.archiv-site .archiv-archive-footer .archiv-btn:hover,
+body.archiv-site .archiv-section--ink .archiv-btn:hover,
+body.archiv-site .archiv-museum-section--ink .archiv-btn:hover,
+body.archiv-site .archiv-cta-band .archiv-btn:hover {
+    color: var(--archiv-text-on-dark);
+    background: rgba(182, 138, 58, 0.25);
+    border-color: var(--aged-gold);
+}
+
+body.archiv-site .archiv-section--ink .archiv-btn--dark,
+body.archiv-site .archiv-museum-section--ink .archiv-btn--dark,
+body.archiv-site .archiv-cta-band .archiv-btn--dark {
+    color: #F2EBDD;
+    background: var(--walnut);
+    border-color: var(--aged-gold);
+}
+
+/* —— Accueil : header solide, pas de superposition —— */
+body.archiv-home .archiv-museum-header {
+    position: sticky;
+    background: var(--archiv-header-bg);
+}
+
+body.archiv-home {
+    background: var(--archiv-header-bg);
+}
+
+/* Hero stable */
+.archiv-immersive-hero {
+    position: relative;
+    min-height: calc(100vh - var(--archiv-header-h));
+    min-height: calc(100dvh - var(--archiv-header-h));
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #11100D;
+    margin: 0;
+}
+
+.archiv-immersive-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center 22%;
+    background-repeat: no-repeat;
+    transform: none;
+    filter: brightness(0.75);
+}
+
+.archiv-immersive-hero__veil {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        90deg,
+        rgba(17, 16, 13, 0.92) 0%,
+        rgba(17, 16, 13, 0.75) 45%,
+        rgba(17, 16, 13, 0.5) 100%
+    );
+}
+
+.archiv-immersive-hero__inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 720px;
+    margin: 0;
+    padding: 3rem clamp(1.25rem, 8vw, 9vw);
+    box-sizing: border-box;
+}
+
+/* Spécificité > body.archiv-site h1 { color: var(--ink) } dans archiv.css */
+body.archiv-site .archiv-immersive-hero h1.archiv-immersive-hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #F2EBDD;
+    margin: 0 0 1rem;
+    max-width: none;
+    text-shadow: 0 2px 28px rgba(0, 0, 0, 0.45);
+}
+
+body.archiv-site .archiv-immersive-hero .archiv-immersive-hero__subtitle {
+    color: #F2EBDD;
+}
+
+body.archiv-site .archiv-immersive-hero .archiv-immersive-hero__text {
+    color: #E6D8BF;
+}
+
+.archiv-immersive-hero__subtitle {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+    margin: 0 0 1.5rem;
+    max-width: 28rem;
+    line-height: 1.4;
+    opacity: 1;
+}
+
+.archiv-immersive-hero__text {
+    font-size: 17px;
+    line-height: 1.65;
+    max-width: 720px;
+    margin: 0 0 2rem;
+    opacity: 1;
+}
+
+@media (max-width: 767px) {
+    .archiv-immersive-hero__text {
+        font-size: 16px;
+    }
+}
+
+body.archiv-home .archiv-immersive-hero .archiv-btn {
+    font-size: 14px;
+    color: var(--archiv-text-on-dark);
+}
+
+body.archiv-home .archiv-immersive-hero .archiv-btn--ghost {
+    color: var(--archiv-text-on-dark-muted);
+    border-color: rgba(242, 235, 221, 0.4);
+}
+
+body.archiv-home .archiv-immersive-hero .archiv-btn--ghost:hover {
+    color: var(--archiv-text-on-dark);
+}
+
+/* Sections papier — contraste */
+.archiv-home-section--paper {
+    background: #E6D8BF;
+    color: var(--archiv-text-on-paper);
+}
+
+.archiv-home-section__title {
+    color: var(--archiv-text-on-paper);
+}
+
+.archiv-home-pillar h3 {
+    color: var(--archiv-text-on-paper);
+    font-size: 1.15rem;
+}
+
+.archiv-home-pillar p {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--archiv-text-on-paper-muted);
+}
+
+.archiv-home-work__title {
+    color: var(--archiv-text-on-paper);
+    font-size: 1.05rem;
+}
+
+.archiv-home-work__meta {
+    font-size: 14px;
+    color: var(--archiv-text-on-paper-muted);
+}
+
+.archiv-home-explore__item h3 {
+    color: var(--archiv-text-on-paper);
+}
+
+.archiv-home-explore__item p {
+    font-size: 16px;
+    color: var(--archiv-text-on-paper-muted);
+}
+
+body.archiv-site .archiv-text-link {
+    color: var(--dark-gold);
+}
+
+/* Footer lisible */
+.archiv-archive-footer {
+    color: var(--archiv-text-on-dark-muted);
+}
+
+.archiv-archive-footer a,
+.archiv-archive-footer__tagline {
+    color: var(--archiv-text-on-dark);
+}
+
+.archiv-archive-footer h4 {
+    font-size: 12px;
+}
+
+.archiv-archive-footer__intro,
+.archiv-archive-footer__bottom {
+    font-size: 14px;
+    opacity: 1;
+}
+
+/* Pas de hero musée fantôme */
+body.archiv-home .archiv-museum-hero,
+.archiv-museum-hero {
+    display: none !important;
+}
+
+/* —— Page Vie : colonne plus large, grille date + texte —— */
+body.archiv-site[data-archiv-page="vie"] .archiv-prose-block {
+    max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body.archiv-site[data-archiv-page="vie"] .archiv-lead,
+body.archiv-site[data-archiv-page="vie"] .archiv-prose-block p {
+    max-width: none;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+body.archiv-site[data-archiv-page="vie"] .archiv-lead {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+}
+
+body.archiv-site .archiv-period {
+    display: grid;
+    grid-template-columns: minmax(6.5rem, 8.5rem) minmax(0, 1fr);
+    column-gap: clamp(1.5rem, 4vw, 3rem);
+    row-gap: 0.65rem;
+    padding: 2.25rem 0;
+    border-bottom: 1px solid rgba(58, 36, 24, 0.12);
+    align-items: start;
+}
+
+body.archiv-site .archiv-period .archiv-period-years {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    margin: 0;
+    padding-top: 0.15rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    color: var(--aged-gold);
+}
+
+body.archiv-site .archiv-period h2 {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    color: var(--archiv-text-on-paper);
+}
+
+body.archiv-site .archiv-period > p:not(.archiv-period-years) {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--archiv-text-on-paper-muted);
+    max-width: none;
+}
+
+@media (max-width: 575px) {
+    body.archiv-site .archiv-period {
+        grid-template-columns: 1fr;
+        row-gap: 0.35rem;
+        padding: 1.75rem 0;
+    }
+
+    body.archiv-site .archiv-period .archiv-period-years {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    body.archiv-site .archiv-period h2 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    body.archiv-site .archiv-period > p:not(.archiv-period-years) {
+        grid-column: 1;
+        grid-row: 3;
+    }
+}

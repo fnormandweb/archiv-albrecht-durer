@@ -1,0 +1,82 @@
+/**
+ * ARCHIV — Accueil (structure minimale — voir archiv-stable.css pour lisibilité)
+ */
+
+.archiv-home-section {
+    padding: clamp(3.5rem, 8vw, 5.5rem) 0;
+}
+
+.archiv-home-pillars {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+}
+
+@media (max-width: 991px) {
+    .archiv-home-pillars {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 479px) {
+    .archiv-home-pillars {
+        grid-template-columns: 1fr;
+    }
+}
+
+.archiv-home-pillar a {
+    display: block;
+    text-decoration: none;
+}
+
+.archiv-home-works__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+}
+
+@media (max-width: 991px) {
+    .archiv-home-works__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.archiv-home-work__frame {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #11100D;
+    margin-bottom: 0.75rem;
+}
+
+.archiv-home-work__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.archiv-home-explore {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 767px) {
+    .archiv-home-explore {
+        grid-template-columns: 1fr;
+    }
+}
+
+.archiv-home-explore__item {
+    display: block;
+    padding: 1.75rem 1.5rem;
+    background: #ebe3d0;
+    border: 1px solid rgba(74, 56, 40, 0.12);
+    text-decoration: none;
+}
+
+.archiv-home-explore__item h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
+}

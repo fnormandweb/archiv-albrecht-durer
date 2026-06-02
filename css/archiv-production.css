@@ -1,0 +1,232 @@
+/**
+ * ARCHIV — Passe production (responsive, a11y, polish — sans nouvelle direction)
+ */
+
+/* —— Base & overflow —— */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+body.archiv-site {
+    overflow-x: clip;
+    min-width: 0;
+}
+
+.archiv-page-shell {
+    width: min(100%, var(--content-max, 76rem));
+    max-width: 100%;
+}
+
+/* —— Accessibilité : focus visible —— */
+.archiv-skip-link:focus {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2000;
+    padding: 0.65rem 1rem;
+    background: var(--aged-gold, #b68a3a);
+    color: var(--ink, #11100d);
+    font-family: var(--font-ui);
+    font-size: 14px;
+    text-decoration: none;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(242, 235, 221, 0.5);
+}
+
+body.archiv-site a:focus-visible,
+body.archiv-site button:focus-visible,
+body.archiv-site .archiv-btn:focus-visible {
+    outline: 2px solid var(--aged-gold, #b68a3a);
+    outline-offset: 3px;
+}
+
+body.archiv-site .archiv-museum-header__toggle:focus-visible {
+    outline-color: var(--text-light, #f2ebdd);
+}
+
+/* —— Navigation : lisibilité tablette —— */
+@media (max-width: 1400px) and (min-width: 1200px) {
+    body.archiv-site .archiv-museum-nav__list a {
+        font-size: 14px;
+        padding: 0 12px;
+        letter-spacing: 0.02em;
+    }
+}
+
+body.archiv-site.archiv-nav-open {
+    overflow: hidden;
+}
+
+/* —— Boutons & filtres (touch mobile) —— */
+@media (max-width: 767px) {
+    body.archiv-site .archiv-btn,
+    body.archiv-site .archiv-filter-btn,
+    body.archiv-site .archiv-museum-header__toggle {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    body.archiv-site .archiv-filter-btn {
+        font-size: 13px;
+        padding: 0.5rem 0.85rem;
+    }
+
+    body.archiv-site .archiv-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    body.archiv-site .archiv-filters,
+    body.archiv-site .archiv-sort-group {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+}
+
+/* —— Grilles & cartes —— */
+body.archiv-site .archiv-collection-grid {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+body.archiv-site .archiv-collection-grid > [class*="col-"] {
+    min-width: 0;
+}
+
+body.archiv-site .archiv-artwork-card,
+body.archiv-site .archiv-work-card {
+    min-width: 0;
+    height: 100%;
+}
+
+body.archiv-site .archiv-collection-spotlight .archiv-artwork-card--feature {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 992px) {
+    body.archiv-site .archiv-collection-spotlight .archiv-artwork-card--feature {
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    }
+}
+
+/* —— Compare / prose —— */
+.archiv-compare {
+    display: grid;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .archiv-compare {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.archiv-prose-block,
+.archiv-lead {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* —— Table sources —— */
+.archiv-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 1rem 0 2rem;
+}
+
+.archiv-credits-table {
+    width: 100%;
+    min-width: 36rem;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+.archiv-credits-table th,
+.archiv-credits-table td {
+    padding: 0.65rem 0.85rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(74, 56, 40, 0.15);
+    vertical-align: top;
+}
+
+.archiv-credits-table th {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-brown, #4a3828);
+}
+
+.archiv-credits-table a {
+    color: var(--dark-gold, #8c6728);
+}
+
+/* —— Fiche œuvre —— */
+body.archiv-site .archiv-oeuvre-layout {
+    align-items: start;
+}
+
+@media (max-width: 991px) {
+    body.archiv-site .archiv-oeuvre-hero {
+        min-height: auto;
+        max-height: none;
+    }
+}
+
+/* —— Lightbox mobile —— */
+@media (max-width: 767px) {
+    .mfp-archiv .mfp-close {
+        padding: 12px;
+        right: 4px;
+        top: 4px;
+    }
+
+    .mfp-archiv .mfp-title {
+        font-size: 14px;
+        line-height: 1.45;
+        padding: 12px 16px;
+    }
+}
+
+/* —— Hero accueil : stabilité layout —— */
+.archiv-immersive-hero {
+    contain: layout style;
+}
+
+/* —— Liens externes : lisibilité —— */
+body.archiv-site a[target="_blank"]:not(.archiv-btn)::after {
+    content: none;
+}
+
+body.archiv-site .archiv-text-link {
+    text-underline-offset: 3px;
+}
+
+/* —— Footer cohérent —— */
+.archiv-archive-footer a:hover {
+    color: var(--text-light, #f2ebdd);
+}
+
+/* —— Masquer résidus template (sécurité production) —— */
+body.archiv-site .progress-wrap,
+body.archiv-site .progress-wrap * {
+    display: none !important;
+}

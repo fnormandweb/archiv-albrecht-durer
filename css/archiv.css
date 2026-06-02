@@ -1,0 +1,1494 @@
+/* ARCHIV — Albrecht Dürer | archive numérique premium */
+:root {
+    --ink: #11100D;
+    --black-brown: #15100C;
+    --deep-brown: #24150F;
+    --deep-walnut: #24150F;
+    --walnut: #3A2418;
+    --paper: #E6D8BF;
+    --aged-paper: #D8C7A5;
+    --text-light: #F2EBDD;
+    --text-muted: #CDBD9D;
+    --text-dark: #1A120D;
+    --text-brown: #4A3828;
+    --aged-gold: #B68A3A;
+    --dark-gold: #8C6728;
+    --verdigris: #58695D;
+    --oxide-red: #7A2F21;
+    --soft-white: #F2EBDD;
+    --paper-dark: #d4c4a8;
+    --font-display: "Cormorant Garamond", Georgia, serif;
+    --font-body: "Source Serif 4", Georgia, serif;
+    --font-ui: "Outfit", sans-serif;
+    --section-space: clamp(4.5rem, 9vw, 8rem);
+    --content-max: 72rem;
+    --prose-width: 38rem;
+    --radius-none: 0;
+    --border-hairline: 1px solid rgba(182, 138, 58, 0.28);
+    --border-muted: 1px solid rgba(17, 16, 13, 0.1);
+    --shadow-museum: 0 12px 40px rgba(11, 9, 7, 0.12);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --text-xs: 0.65rem;
+    --text-sm: 0.8125rem;
+    --text-base: 1.0625rem;
+    --text-lg: 1.25rem;
+    --text-xl: clamp(2rem, 4vw, 2.85rem);
+    --text-hero: clamp(3.25rem, 8vw, 5.75rem);
+}
+
+body.archiv-site {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.78;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body.archiv-site ::selection {
+    background: rgba(182, 138, 58, 0.35);
+    color: var(--ink);
+}
+
+body.archiv-site h1,
+body.archiv-site h2,
+body.archiv-site h3,
+body.archiv-site h4,
+body.archiv-site .section-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+}
+
+/* Titres sur fond sombre (hero accueil) */
+body.archiv-site .archiv-immersive-hero h1,
+body.archiv-site .archiv-immersive-hero h2 {
+    color: #F2EBDD;
+}
+
+body.archiv-site .archiv-lead {
+    font-size: 1.25rem;
+    line-height: 1.65;
+    color: var(--walnut);
+}
+
+body.archiv-site .archiv-kicker {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--aged-gold);
+    font-weight: 400;
+}
+
+/* Nav ARCHIV */
+body.archiv-site .archiv-nav .navbar-nav .nav-link {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+body.archiv-site .archiv-nav .navbar-nav .nav-link.active,
+body.archiv-site .archiv-nav .navbar-nav .nav-link:hover {
+    color: var(--aged-gold) !important;
+}
+
+body.archiv-site.nav-scroll-active .nav-scroll {
+    background: var(--ink) !important;
+    border-bottom: 1px solid rgba(182, 138, 58, 0.2);
+}
+
+/* Hero accueil */
+body.archiv-site .kenburns-section .archiv-hero-tagline {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+body.archiv-site .kenburns-section .archiv-hero-sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    color: var(--paper);
+    margin-bottom: 1.25rem;
+    opacity: 0.95;
+}
+
+body.archiv-site .kenburns-section .archiv-hero-intro {
+    max-width: 36rem;
+    color: rgba(230, 216, 191, 0.9);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+}
+
+body.archiv-site .archiv-btn {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--paper);
+    border: 1px solid var(--aged-gold);
+    padding: 0.85rem 1.75rem;
+    transition: background 0.35s, color 0.35s;
+    text-decoration: none;
+}
+
+body.archiv-site .archiv-btn:hover {
+    background: var(--aged-gold);
+    color: var(--ink);
+}
+
+/* Sections */
+.archiv-section {
+    padding: var(--section-space) 0;
+}
+
+.archiv-section--ink {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.archiv-section--ink h2,
+.archiv-section--ink h3 {
+    color: var(--paper);
+}
+
+.archiv-section--walnut {
+    background: var(--walnut);
+    color: var(--paper);
+}
+
+.archiv-section--walnut h2,
+.archiv-section--walnut h3 {
+    color: var(--paper);
+}
+
+.archiv-section-head {
+    margin-bottom: 3rem;
+    max-width: 40rem;
+}
+
+.archiv-section-head h2 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-bottom: 0.75rem;
+}
+
+/* Piliers */
+.archiv-pillar {
+    padding: 2rem 1.5rem;
+    border: 1px solid rgba(58, 36, 24, 0.15);
+    background: rgba(255, 255, 255, 0.35);
+    height: 100%;
+    transition: border-color 0.3s;
+}
+
+.archiv-pillar:hover {
+    border-color: var(--aged-gold);
+}
+
+.archiv-pillar h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--walnut);
+}
+
+.archiv-pillar .archiv-pillar-num {
+    font-family: var(--font-ui);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--aged-gold);
+    margin-bottom: 0.5rem;
+}
+
+/* Cartels œuvres — objet de collection */
+.archiv-work-card {
+    background: var(--soft-white);
+    border: var(--border-hairline);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: border-color 0.45s var(--ease-out), transform 0.45s var(--ease-out);
+}
+
+.archiv-work-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--aged-gold), transparent);
+    opacity: 0;
+    transition: opacity 0.45s var(--ease-out);
+}
+
+.archiv-work-card:hover {
+    border-color: rgba(182, 138, 58, 0.55);
+    transform: translateY(-2px);
+}
+
+.archiv-work-card:hover::before {
+    opacity: 1;
+}
+
+.archiv-work-card__badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2;
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.65rem;
+    background: rgba(11, 9, 7, 0.72);
+    color: var(--aged-paper);
+    border: 1px solid rgba(182, 138, 58, 0.35);
+}
+
+.archiv-work-card__img {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--black-brown);
+}
+
+.archiv-work-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transition: transform 0.7s var(--ease-out), opacity 0.4s;
+}
+
+.archiv-work-card:hover .archiv-work-card__img img {
+    transform: scale(1.02);
+}
+
+.archiv-work-card__body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.archiv-work-card__meta {
+    font-family: var(--font-ui);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--verdigris);
+    margin-bottom: 0.5rem;
+}
+
+.archiv-work-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+}
+
+.archiv-work-card p {
+    font-size: 0.95rem;
+    color: var(--walnut);
+    flex: 1;
+}
+
+.archiv-cartel {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    color: var(--aged-gold);
+    margin-top: 1rem;
+    letter-spacing: 0.05em;
+}
+
+/* Timeline condensée */
+.archiv-timeline-mini {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-left: 2px solid var(--aged-gold);
+}
+
+.archiv-timeline-mini li {
+    padding: 0 0 2rem 2rem;
+    position: relative;
+}
+
+.archiv-timeline-mini li::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    background: var(--aged-gold);
+    border-radius: 50%;
+}
+
+.archiv-timeline-mini .year {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--aged-gold);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+/* Timeline page */
+.archiv-timeline-full {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 48rem;
+}
+
+.archiv-timeline-full li {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(58, 36, 24, 0.12);
+}
+
+.archiv-timeline-full .archiv-tl-year {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--aged-gold);
+    line-height: 1;
+}
+
+/* Carte voyages */
+.archiv-map {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.archiv-map__place {
+    padding: 1.25rem;
+    text-align: center;
+    border: 1px solid rgba(182, 138, 58, 0.35);
+    background: rgba(17, 16, 13, 0.4);
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper);
+}
+
+.archiv-map__place.is-hub {
+    border-color: var(--aged-gold);
+    background: rgba(182, 138, 58, 0.15);
+}
+
+/* Filtres œuvres */
+.archiv-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.archiv-filter-btn {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.65rem 1.35rem;
+    border: var(--border-hairline);
+    background: transparent;
+    color: var(--walnut);
+    cursor: pointer;
+    transition: background 0.35s var(--ease-out), color 0.35s, border-color 0.35s;
+}
+
+.archiv-filter-btn:hover,
+.archiv-filter-btn.is-active {
+    background: var(--ink);
+    color: var(--aged-paper);
+    border-color: var(--dark-gold);
+}
+
+.archiv-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem 2rem;
+    margin-bottom: 2.75rem;
+    padding-bottom: 1.5rem;
+    border-bottom: var(--border-muted);
+}
+
+.archiv-toolbar__label {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--verdigris);
+    margin-bottom: 0.65rem;
+    display: block;
+}
+
+.archiv-sort-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+/* Page banner intérieur */
+.archiv-page-hero {
+    padding: 10rem 0 5rem;
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+}
+
+.archiv-page-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--paper);
+    margin-bottom: 0.5rem;
+}
+
+.archiv-page-hero .archiv-page-hero__sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--aged-gold);
+    max-width: 36rem;
+    margin: 0 auto;
+}
+
+/* Biographie périodes */
+.archiv-period {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(58, 36, 24, 0.12);
+}
+
+.archiv-period h2 {
+    font-size: 1.75rem;
+    color: var(--walnut);
+    margin-bottom: 0.5rem;
+}
+
+.archiv-period .archiv-period-years {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--aged-gold);
+    margin-bottom: 1rem;
+}
+
+/* Gravures focus */
+.archiv-engraving-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(230, 216, 191, 0.15);
+}
+
+@media (max-width: 991px) {
+    .archiv-engraving-block {
+        grid-template-columns: 1fr;
+    }
+}
+
+.archiv-engraving-block img {
+    width: 100%;
+    border: 1px solid rgba(182, 138, 58, 0.25);
+}
+
+/* Sources */
+.archiv-sources-list {
+    list-style: none;
+    padding: 0;
+}
+
+.archiv-sources-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(58, 36, 24, 0.1);
+}
+
+.archiv-sources-list a {
+    color: var(--walnut);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.archiv-sources-list a:hover {
+    color: var(--aged-gold);
+}
+
+/* Footer */
+.archiv-footer {
+    background: var(--ink);
+    color: rgba(230, 216, 191, 0.75);
+    padding: 4rem 0 2rem;
+    font-size: 0.9rem;
+}
+
+.archiv-footer a {
+    color: var(--aged-gold);
+}
+
+.archiv-footer h4 {
+    font-family: var(--font-ui);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--aged-gold);
+    margin-bottom: 1rem;
+}
+
+/* Lightbox zoom hint */
+.archiv-zoom-link {
+    cursor: zoom-in;
+}
+
+/* Modale œuvre */
+.archiv-modal-cartel {
+    font-size: 0.9rem;
+    color: var(--walnut);
+}
+
+.archiv-modal-cartel dt {
+    font-family: var(--font-ui);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--verdigris);
+    margin-top: 0.75rem;
+}
+
+/* Utilitaires */
+.archiv-container-narrow {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.archiv-text-link {
+    color: var(--aged-gold);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+}
+
+.archiv-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+@media (max-width: 991px) {
+    .archiv-grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .archiv-work-card__img img,
+    .archiv-reveal {
+        transition: none;
+    }
+}
+
+/* ——— Passe finition ARCHIV ——— */
+
+body.archiv-site .cursor.js-cursor {
+    display: none !important;
+}
+
+body.archiv-site #preloader {
+    transition: opacity 0.4s ease;
+}
+
+body.archiv-site .kenburns-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, rgba(17, 16, 13, 0.88) 0%, rgba(17, 16, 13, 0.55) 55%, rgba(17, 16, 13, 0.75) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+body.archiv-site .kenburns-section .kenburns-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.archiv-hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.archiv-btn--ghost {
+    background: transparent;
+    color: var(--paper);
+    border-color: rgba(230, 216, 191, 0.45);
+}
+
+.archiv-btn--ghost:hover {
+    background: rgba(230, 216, 191, 0.12);
+    color: var(--paper);
+    border-color: var(--aged-gold);
+}
+
+.archiv-btn--dark {
+    color: #F2EBDD;
+    background: var(--walnut);
+    border-color: var(--dark-gold);
+}
+
+.archiv-btn--dark:hover {
+    background: var(--dark-gold);
+    color: #F2EBDD;
+}
+
+.archiv-work-card h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.archiv-work-card h3 a:hover {
+    color: var(--aged-gold);
+}
+
+.archiv-card-actions {
+    font-size: 0.85rem;
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
+.archiv-breadcrumb {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: var(--verdigris);
+}
+
+.archiv-breadcrumb a {
+    color: var(--walnut);
+    text-decoration: none;
+}
+
+.archiv-breadcrumb a:hover {
+    color: var(--aged-gold);
+}
+
+.archiv-oeuvre-hero {
+    background: var(--ink);
+    padding: 0.5rem;
+    border: 1px solid rgba(182, 138, 58, 0.25);
+}
+
+.archiv-oeuvre-hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.archiv-oeuvre-caption {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: rgba(230, 216, 191, 0.7);
+    padding: 0.75rem 0.5rem 0.25rem;
+    margin: 0;
+}
+
+.archiv-oeuvre-cartel {
+    padding: 1rem 0;
+}
+
+.archiv-oeuvre-cartel h1 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-bottom: 0.35rem;
+}
+
+.archiv-title-de {
+    font-style: italic;
+    color: var(--verdigris);
+    margin-bottom: 1.5rem;
+}
+
+.archiv-dl {
+    margin: 0 0 2rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid rgba(58, 36, 24, 0.15);
+    border-bottom: 1px solid rgba(58, 36, 24, 0.15);
+}
+
+.archiv-dl dt {
+    font-family: var(--font-ui);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--verdigris);
+    margin-top: 0.75rem;
+}
+
+.archiv-dl dt:first-child {
+    margin-top: 0;
+}
+
+.archiv-dl dd {
+    margin: 0.15rem 0 0;
+    color: var(--walnut);
+}
+
+.archiv-prose-block {
+    max-width: 42rem;
+}
+
+.archiv-prose-block h2 {
+    font-size: 1.65rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--walnut);
+}
+
+.archiv-prose-block h2:first-child {
+    margin-top: 0;
+}
+
+.archiv-treatise-card {
+    padding: 2rem;
+    border: 1px solid rgba(58, 36, 24, 0.12);
+    background: rgba(255, 255, 255, 0.4);
+    height: 100%;
+}
+
+.archiv-treatise-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.25rem;
+}
+
+.archiv-treatise-card .archiv-title-de {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.archiv-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+@media (max-width: 767px) {
+    .archiv-compare {
+        grid-template-columns: 1fr;
+    }
+}
+
+.archiv-compare__col {
+    padding: 1.5rem;
+    border: 1px solid rgba(58, 36, 24, 0.12);
+}
+
+.archiv-compare__col h3 {
+    font-size: 1.15rem;
+    color: var(--aged-gold);
+    margin-bottom: 0.75rem;
+}
+
+.mfp-archiv.mfp-bg {
+    background: rgba(17, 16, 13, 0.92);
+}
+
+.mfp-archiv .mfp-title {
+    font-family: var(--font-body);
+    color: var(--paper);
+}
+
+body.archiv-site .archiv-nav .navbar-collapse {
+    background: var(--ink);
+}
+
+@media (max-width: 991px) {
+    body.archiv-site .archiv-nav .navbar-nav {
+        padding: 1rem 0 1.5rem;
+    }
+
+    body.archiv-site .archiv-nav .navbar-nav .nav-link {
+        padding: 0.65rem 0;
+        font-size: 0.75rem;
+    }
+
+    body.archiv-site .kenburns-section .archiv-hero-tagline {
+        font-size: 2.25rem;
+    }
+
+    body.archiv-site .logo-img {
+        width: 180px;
+    }
+}
+
+@media (max-width: 575px) {
+    .archiv-hero-ctas {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .archiv-section {
+        padding: clamp(3rem, 10vw, 4rem) 0;
+    }
+}
+
+body.archiv-site a:focus-visible,
+body.archiv-site button:focus-visible {
+    outline: 2px solid var(--aged-gold);
+    outline-offset: 3px;
+}
+
+/* Skip link */
+.archiv-skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 10000;
+    padding: 0.75rem 1.25rem;
+    background: var(--aged-gold);
+    color: var(--ink);
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.archiv-skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+}
+
+/* Sceau hero (remplace widget template) */
+.archiv-hero-seal {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    height: 10rem;
+    border: 1px solid rgba(182, 138, 58, 0.55);
+    border-radius: 50%;
+    text-decoration: none;
+    color: var(--paper);
+    transition: border-color 0.35s, background 0.35s;
+}
+
+.archiv-hero-seal:hover {
+    border-color: var(--aged-gold);
+    background: rgba(182, 138, 58, 0.12);
+    color: var(--paper);
+}
+
+.archiv-hero-seal__mono {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    letter-spacing: 0.08em;
+    line-height: 1;
+}
+
+.archiv-hero-seal__ring {
+    font-family: var(--font-ui);
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    opacity: 0.85;
+    max-width: 7rem;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.archiv-text-link--on-dark {
+    color: var(--aged-gold);
+}
+
+.archiv-btn--on-dark {
+    color: var(--paper);
+    border-color: var(--aged-gold);
+}
+
+.archiv-btn--on-dark:hover {
+    background: var(--aged-gold);
+    color: var(--ink);
+}
+
+body.archiv-site .archiv-page-hero h1 {
+    color: var(--paper);
+}
+
+/* Template chrome désactivé */
+body.archiv-site .cursor,
+body.archiv-site .preloader-bg,
+body.archiv-site #preloader {
+    display: none !important;
+}
+
+/* Nav : pas d'animation rolling-text cassée */
+body.archiv-site .archiv-nav .nav-link {
+    letter-spacing: 0.14em;
+}
+
+@media (max-width: 991px) {
+    body.archiv-site .archiv-nav .navbar-collapse {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+}
+
+.archiv-oeuvre-caption a {
+    color: var(--aged-gold);
+}
+
+.archiv-work-card h3 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+}
+
+.archiv-table-wrap {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+}
+
+.archiv-credits-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+.archiv-credits-table th,
+.archiv-credits-table td {
+    text-align: left;
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid rgba(26, 22, 18, 0.12);
+    vertical-align: top;
+}
+
+.archiv-credits-table th {
+    font-family: var(--font-ui, "Outfit", sans-serif);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: var(--walnut);
+}
+
+.archiv-credits-table a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--aged-gold);
+}
+
+/* ═══ ARCHIV PREMIUM UI ═══ */
+
+body.archiv-site .archiv-nav {
+    padding: 1.1rem 0;
+    transition: background 0.4s var(--ease-out), border-color 0.4s;
+}
+
+body.archiv-site .archiv-nav .logo-img {
+    filter: brightness(1.05);
+    transition: opacity 0.35s;
+}
+
+body.archiv-site .archiv-nav .navbar-nav .nav-link {
+    position: relative;
+    padding: 0.35rem 0.15rem;
+    margin: 0 0.65rem;
+    color: rgba(242, 235, 221, 0.82) !important;
+}
+
+body.archiv-site .archiv-nav .navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--aged-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease-out);
+}
+
+body.archiv-site .archiv-nav .navbar-nav .nav-link:hover::after,
+body.archiv-site .archiv-nav .navbar-nav .nav-link.active::after {
+    transform: scaleX(1);
+}
+
+body.archiv-site .archiv-nav .navbar-toggler {
+    border-color: rgba(182, 138, 58, 0.4);
+    color: var(--paper);
+}
+
+/* Hero premium */
+body.archiv-site .kenburns-section {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+body.archiv-site .kenburns-section::before {
+    background: linear-gradient(
+        118deg,
+        rgba(11, 9, 7, 0.94) 0%,
+        rgba(17, 16, 13, 0.78) 42%,
+        rgba(17, 16, 13, 0.55) 68%,
+        rgba(11, 9, 7, 0.88) 100%
+    );
+}
+
+.archiv-hero-premium .archiv-hero-tagline {
+    font-size: var(--text-hero);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+}
+
+.archiv-hero-premium .archiv-hero-sub {
+    font-size: clamp(1.35rem, 2.8vw, 2rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--aged-gold);
+    margin-bottom: 1.75rem;
+    max-width: 28rem;
+}
+
+.archiv-hero-premium .archiv-hero-intro {
+    max-width: 32rem;
+    font-size: 1.08rem;
+    line-height: 1.72;
+    color: rgba(242, 235, 221, 0.88);
+}
+
+.archiv-hero-premium .archiv-kicker {
+    color: var(--aged-paper);
+    opacity: 0.75;
+}
+
+/* Piliers premium */
+.archiv-section--walnut .archiv-pillar {
+    background: rgba(11, 9, 7, 0.25);
+    border-color: rgba(182, 138, 58, 0.22);
+    color: var(--soft-white);
+}
+
+.archiv-section--walnut .archiv-pillar h3 {
+    color: var(--soft-white);
+}
+
+.archiv-section--walnut .archiv-pillar p {
+    color: rgba(242, 235, 221, 0.82);
+}
+
+/* Editorial split */
+.archiv-editorial {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+}
+
+@media (max-width: 991px) {
+    .archiv-editorial {
+        grid-template-columns: 1fr;
+    }
+}
+
+.archiv-editorial__visual {
+    position: relative;
+    background: var(--black-brown);
+    border: var(--border-hairline);
+    padding: 0.65rem;
+}
+
+.archiv-editorial__visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: contrast(1.02);
+}
+
+.archiv-editorial__visual figcaption {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--aged-paper);
+    padding: 0.75rem 0.35rem 0.25rem;
+    opacity: 0.8;
+}
+
+.archiv-editorial--ink {
+    background: var(--ink);
+    color: var(--soft-white);
+    padding: var(--section-space) 0;
+}
+
+.archiv-editorial--ink > .container {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+}
+
+@media (max-width: 991px) {
+    .archiv-editorial--ink > .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.archiv-editorial--ink .archiv-lead,
+.archiv-editorial--ink p {
+    color: rgba(242, 235, 221, 0.88);
+}
+
+.archiv-editorial--ink h2 {
+    color: var(--soft-white);
+}
+
+/* CTA final */
+.archiv-cta-band {
+    text-align: center;
+    padding: clamp(4rem, 10vw, 6rem) 1.5rem;
+    background: var(--black-brown);
+    color: var(--soft-white);
+    border-top: var(--border-hairline);
+    border-bottom: var(--border-hairline);
+}
+
+.archiv-cta-band h2 {
+    font-size: var(--text-xl);
+    color: var(--soft-white);
+    margin-bottom: 1rem;
+}
+
+.archiv-cta-band p {
+    max-width: 28rem;
+    margin: 0 auto 2rem;
+    color: rgba(242, 235, 221, 0.78);
+}
+
+/* Page gravures immersive */
+body.archiv-site[data-archiv-page="gravures"] .archiv-page-hero {
+    padding-bottom: 6rem;
+    border-bottom: var(--border-hairline);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-section--engraving {
+    background: var(--black-brown);
+    color: var(--aged-paper);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-section--engraving .archiv-lead,
+body.archiv-site[data-archiv-page="gravures"] .archiv-section--engraving p {
+    color: rgba(230, 216, 191, 0.9);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-section--engraving h2 {
+    color: var(--soft-white);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-compare__col {
+    background: rgba(17, 16, 13, 0.5);
+    border-color: rgba(182, 138, 58, 0.25);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-work-card {
+    background: var(--ink);
+    border-color: rgba(182, 138, 58, 0.3);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-work-card h3 a,
+body.archiv-site[data-archiv-page="gravures"] .archiv-work-card p {
+    color: var(--aged-paper);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-work-card__meta {
+    color: var(--aged-gold);
+}
+
+.archiv-engraving-hero-detail {
+    max-width: 22rem;
+    margin: 3rem auto 0;
+    border: var(--border-hairline);
+    padding: 0.5rem;
+    background: var(--ink);
+}
+
+/* Science — grille géométrique */
+body.archiv-site[data-archiv-page="science"] {
+    background-image:
+        linear-gradient(rgba(88, 105, 93, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(88, 105, 93, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+.archiv-science-grid .archiv-treatise-card {
+    background: var(--soft-white);
+    border: var(--border-hairline);
+}
+
+/* Autoportraits — solennel */
+body.archiv-site[data-archiv-page="autoportraits"] .archiv-page-hero {
+    background: linear-gradient(180deg, var(--black-brown) 0%, var(--ink) 100%);
+}
+
+body.archiv-site[data-archiv-page="autoportraits"] #archiv-featured-grid .archiv-work-card__img {
+    aspect-ratio: 3/4;
+}
+
+body.archiv-site[data-archiv-page="autoportraits"] .archiv-work-card__img img {
+    object-position: center top;
+}
+
+/* Vie — périodes (grille détaillée dans archiv-stable.css) */
+
+/* Timeline premium */
+.archiv-timeline-full li {
+    border-bottom-color: rgba(182, 138, 58, 0.18);
+}
+
+.archiv-timeline-full li:hover .archiv-tl-year {
+    color: var(--dark-gold);
+}
+
+/* Footer premium */
+.archiv-footer {
+    background: var(--black-brown);
+    border-top: var(--border-hairline);
+    padding: clamp(3.5rem, 8vw, 5rem) 0 2.5rem;
+}
+
+.archiv-footer__mono {
+    font-family: var(--font-display);
+    font-size: 2.75rem;
+    letter-spacing: 0.12em;
+    color: var(--aged-gold);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+}
+
+.archiv-footer__tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--aged-paper);
+    margin-bottom: 1.25rem;
+}
+
+.archiv-footer__bottom {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(182, 138, 58, 0.15);
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-align: center;
+    color: rgba(205, 189, 157, 0.55);
+}
+
+.archiv-footer__bottom a {
+    color: var(--aged-gold);
+}
+
+/* Lightbox musée */
+.mfp-archiv.mfp-bg {
+    backdrop-filter: blur(6px);
+}
+
+.mfp-archiv .mfp-figure::after {
+    box-shadow: var(--shadow-museum);
+}
+
+.mfp-archiv .mfp-close {
+    font-family: var(--font-ui);
+    font-size: 2.5rem;
+    color: var(--aged-paper);
+    opacity: 0.85;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+.mfp-archiv .mfp-arrow {
+    opacity: 0.7;
+}
+
+.mfp-archiv .mfp-title {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    letter-spacing: 0.06em;
+    line-height: 1.55;
+    padding: 1.25rem 1rem;
+    background: var(--ink);
+    border-top: var(--border-hairline);
+}
+
+.mfp-archiv .mfp-title strong {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--soft-white);
+}
+
+.mfp-archiv .mfp-counter {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: 0.15em;
+    color: var(--aged-gold);
+}
+
+.mfp-archiv .mfp-title a {
+    color: var(--aged-gold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.mfp-archiv .mfp-cartel-meta,
+.mfp-archiv .mfp-cartel-inst {
+    opacity: 0.88;
+}
+
+body.archiv-lightbox-open {
+    overflow: hidden;
+}
+
+/* Cartel musée (fiche) */
+.archiv-museum-cartel {
+    margin-top: 1.5rem;
+    padding: 1.25rem 1rem;
+    border: var(--border-hairline);
+    background: rgba(11, 9, 7, 0.04);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+}
+
+.archiv-museum-cartel dt {
+    font-size: var(--text-xs);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--verdigris);
+    margin-top: 0.65rem;
+}
+
+.archiv-museum-cartel dt:first-child {
+    margin-top: 0;
+}
+
+.archiv-museum-cartel dd {
+    margin: 0.1rem 0 0;
+    color: var(--walnut);
+}
+
+/* Page hero intérieur */
+.archiv-page-hero {
+    padding: clamp(7rem, 14vw, 11rem) 0 clamp(3.5rem, 8vw, 5rem);
+    background: linear-gradient(180deg, var(--black-brown) 0%, var(--ink) 100%);
+    text-align: left;
+}
+
+.archiv-page-hero .container {
+    max-width: var(--content-max);
+}
+
+.archiv-page-hero h1 {
+    font-size: var(--text-xl);
+    letter-spacing: 0.03em;
+    max-width: 18ch;
+}
+
+.archiv-page-hero .archiv-page-hero__sub {
+    margin: 0;
+    text-align: left;
+    max-width: 32rem;
+}
+
+/* Reveal sections */
+.archiv-section.archiv-reveal-section {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+}
+
+.archiv-section.archiv-reveal-section.is-visible,
+.archiv-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.archiv-reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .archiv-section.archiv-reveal-section,
+    .archiv-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* Sources page */
+body.archiv-site[data-archiv-page="sources"] .archiv-prose-block h2 {
+    padding-top: 0.5rem;
+    border-top: var(--border-hairline);
+    margin-top: 2.5rem;
+}
+
+body.archiv-site[data-archiv-page="sources"] .archiv-prose-block h2:first-of-type {
+    border-top: none;
+    margin-top: 0;
+}
+
+/* Prose */
+.archiv-prose-block {
+    max-width: var(--prose-width);
+}
+
+.archiv-prose-block p {
+    max-width: var(--prose-width);
+}
+
+/* Oeuvre layout */
+.archiv-oeuvre-layout {
+    align-items: flex-start;
+}
+
+.archiv-oeuvre-cartel {
+    position: sticky;
+    top: 6rem;
+}
+
+@media (max-width: 991px) {
+    .archiv-oeuvre-cartel {
+        position: static;
+    }
+}
+
+/* Legacy page hero — remplacé par .archiv-archive-hero (archiv-system.css) */
+body.archiv-site .archiv-page-hero {
+    display: none;
+}
