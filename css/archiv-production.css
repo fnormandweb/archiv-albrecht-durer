@@ -58,10 +58,10 @@ body.archiv-site .archiv-museum-header__toggle:focus-visible {
     outline-color: var(--text-light, #f2ebdd);
 }
 
-/* —— Navigation : lisibilité tablette —— */
+/* —— Navigation : lisibilité tablette (jamais < 15px) —— */
 @media (max-width: 1400px) and (min-width: 1200px) {
     body.archiv-site .archiv-museum-nav__list a {
-        font-size: 14px;
+        font-size: 15px;
         padding: 0 12px;
         letter-spacing: 0.02em;
     }
@@ -470,4 +470,127 @@ body.archiv-site .archiv-museum-nav-mobile__list > li:first-child {
 body.archiv-site .progress-wrap,
 body.archiv-site .progress-wrap * {
     display: none !important;
+}
+
+/* ============================================================
+   RAFFINEMENT UI/UX PREMIUM 2026
+   Passe de finition (lisibilité, hiérarchie, rythme, contraste)
+   sans refonte — surcharge finale.
+   ============================================================ */
+
+/* 1. HERO — titre : plus de coupure en plein mot, cadrage maîtrisé */
+body.archiv-site .archiv-immersive-hero__inner {
+    max-width: 47rem;
+    padding: clamp(2.5rem, 6vh, 4rem) clamp(1.4rem, 5vw, 3.5rem);
+}
+
+body.archiv-site .archiv-immersive-hero h1.archiv-immersive-hero__title {
+    font-size: clamp(2.6rem, 6vw, 5.5rem);
+    letter-spacing: 0.035em;
+    line-height: 1.06;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: manual;
+    text-wrap: balance;
+}
+
+body.archiv-site .archiv-immersive-hero .archiv-immersive-hero__subtitle {
+    font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+    line-height: 1.4;
+    margin-bottom: 1.4rem;
+}
+
+body.archiv-site .archiv-immersive-hero .archiv-immersive-hero__text {
+    font-size: clamp(16px, 1.05vw, 18px);
+    line-height: 1.7;
+    max-width: 36rem;
+    color: #EADCC2;
+}
+
+/* 2. SURTITRES / KICKERS — jamais sous 13px, tracking maîtrisé */
+body.archiv-site .archiv-kicker,
+body.archiv-site .archiv-home-section__kicker,
+body.archiv-site .archiv-eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.16em;
+}
+
+/* 3. CARTES ŒUVRES (accueil) — légende institution lisible */
+body.archiv-site .archiv-home-work__institution {
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: #6A523A;
+}
+
+body.archiv-site .archiv-home-work__meta {
+    color: var(--text-brown, #4A3828);
+}
+
+/* 4. CARTES ÉDITIONS — supprimer le micro-texte (≥ 12px) */
+body.archiv-site .archiv-edition-card__category {
+    font-size: 0.72rem;
+    letter-spacing: 0.13em;
+    color: #5C6B5E;
+}
+
+body.archiv-site .archiv-edition-card__source {
+    font-size: 0.82rem;
+    opacity: 1;
+    color: #4A3828;
+}
+
+body.archiv-site .archiv-edition-card__format,
+body.archiv-site .archiv-edition-card__cta .archiv-edition-cta,
+body.archiv-site .archiv-edition-status {
+    font-size: 0.72rem;
+}
+
+body.archiv-site .archiv-editions-disclaimer {
+    font-size: 0.8rem;
+    line-height: 1.65;
+}
+
+/* 5. RYTHME DES SECTIONS — respiration desktop accrue */
+@media (min-width: 1024px) {
+    body.archiv-site .archiv-home-section,
+    body.archiv-site .archiv-museum-section {
+        padding-top: clamp(5rem, 8vw, 8.5rem);
+        padding-bottom: clamp(5rem, 8vw, 8.5rem);
+    }
+}
+
+/* 6. LARGEUR DE LECTURE — éviter les lignes trop longues */
+body.archiv-site .archiv-prose,
+body.archiv-site .archiv-rich-text p,
+body.archiv-site .archiv-section__intro {
+    max-width: 44rem;
+}
+
+/* 7. MICRO-INTERACTIONS — liens éditoriaux : soulignement fin animé */
+body.archiv-site .archiv-edition-cta,
+body.archiv-site .archiv-home-works__more {
+    transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+/* 8. IMAGES — garde-fou : vignettes accueil en cover (pas de déformation) */
+body.archiv-site .archiv-home-work__frame img {
+    object-fit: cover;
+}
+
+/* 9. MOBILE — confort de lecture et de touche */
+@media (max-width: 767px) {
+    body.archiv-site .archiv-home-section,
+    body.archiv-site .archiv-museum-section {
+        padding-top: clamp(3.5rem, 12vw, 5rem);
+        padding-bottom: clamp(3.5rem, 12vw, 5rem);
+    }
+
+    body.archiv-site .archiv-immersive-hero h1.archiv-immersive-hero__title {
+        font-size: clamp(2.4rem, 13vw, 3.4rem);
+    }
+
+    body.archiv-site .archiv-edition-card__category,
+    body.archiv-site .archiv-edition-card__source {
+        font-size: 0.8rem;
+    }
 }
