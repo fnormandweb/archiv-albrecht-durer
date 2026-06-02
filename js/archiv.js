@@ -398,7 +398,7 @@
             if (twImg && imgUrl) twImg.setAttribute("content", imgUrl);
         }
 
-        var html = '<nav class="archiv-breadcrumb" aria-label="Fil d\'Ariane"><a href="index4.html">Vue d\'ensemble</a> · <a href="oeuvres.html">Œuvres</a> · <span>' + esc(work.title) + "</span></nav>";
+        var html = '<nav class="archiv-breadcrumb" aria-label="Fil d\'Ariane"><a href="/">Vue d\'ensemble</a> · <a href="oeuvres.html">Œuvres</a> · <span>' + esc(work.title) + "</span></nav>";
         html += '<div class="row archiv-oeuvre-layout">';
         html += '<div class="col-lg-7 mb-4 mb-lg-0">';
         html += '<figure class="archiv-oeuvre-hero">';

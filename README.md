@@ -8,7 +8,7 @@ Archive numérique premium consacrée à **Albrecht Dürer** (1471–1528).
 
 | Page | Fichier |
 |------|---------|
-| Accueil | `index4.html` (racine canonique `/`) |
+| Accueil | `index.html` (URL `/`) |
 | Vie | `vie.html` |
 | Œuvres | `oeuvres.html` |
 | Gravures | `gravures.html` |
@@ -23,12 +23,12 @@ Archive numérique premium consacrée à **Albrecht Dürer** (1471–1528).
 
 ```bash
 python3 -m http.server 8080
-# Ouvrir http://localhost:8080/index4.html
+# Ouvrir http://localhost:8080/
 ```
 
 ## Régénérer les pages intérieures
 
-Les pages ARCHIV (sauf `index4.html`) sont générées depuis les partials :
+Les pages ARCHIV intérieures sont générées depuis les partials :
 
 ```bash
 python3 scripts/build-archiv-pages.py
