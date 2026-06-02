@@ -45,6 +45,17 @@
     max-width: var(--prose-width);
 }
 
+/* Voir aussi — aligné sur PageShell quand placé hors du shell */
+main > .archiv-see-also {
+    width: 100%;
+    max-width: var(--content-max);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1.15rem, 4vw, 2.5rem);
+    padding-right: clamp(1.15rem, 4vw, 2.5rem);
+    padding-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
 /* —— EditorialGrid (12 colonnes) —— */
 .archiv-editorial-grid {
     display: grid;
