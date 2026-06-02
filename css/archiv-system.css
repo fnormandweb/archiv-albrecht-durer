@@ -778,56 +778,98 @@ body.archiv-site[data-archiv-page="accueil"] .archiv-museum-hero__inner {
     min-height: 50vh;
 }
 
-/* Language switcher */
-.archiv-lang-switch {
+/* Header utilities — language toggle */
+.archiv-header-util {
     display: flex;
     align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    flex-shrink: 0;
+    margin-left: 0.35rem;
 }
 
-.archiv-lang-switch__nav {
+.archiv-lang-toggle {
+    display: inline-flex;
+    align-items: stretch;
+    border: 1px solid rgba(182, 138, 58, 0.38);
+    background: rgba(11, 9, 7, 0.55);
+    box-shadow: inset 0 1px 0 rgba(242, 235, 221, 0.04);
+}
+
+.archiv-lang-toggle__seg {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
+    justify-content: center;
+    min-width: 2.35rem;
+    padding: 0.38rem 0.65rem;
     font-family: var(--font-ui);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.archiv-lang-switch__link {
-    color: rgba(205, 189, 157, 0.55);
+    font-size: 0.6rem;
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.14em;
     text-decoration: none;
-    padding: 0.2rem 0.15rem;
-    border-bottom: 1px solid transparent;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    color: rgba(242, 235, 221, 0.5);
+    border: none;
+    background: transparent;
+    transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
 }
 
-.archiv-lang-switch__link:hover,
-.archiv-lang-switch__link:focus-visible {
+.archiv-lang-toggle__seg + .archiv-lang-toggle__seg {
+    border-left: 1px solid rgba(182, 138, 58, 0.28);
+}
+
+.archiv-lang-toggle__seg:hover,
+.archiv-lang-toggle__seg:focus-visible {
     color: var(--aged-gold);
+    outline: none;
+    z-index: 1;
 }
 
-.archiv-lang-switch__link.is-active {
+.archiv-lang-toggle__seg.is-active {
     color: var(--soft-white);
-    border-bottom-color: var(--aged-gold);
+    background: rgba(182, 138, 58, 0.16);
+    box-shadow: inset 0 0 0 1px rgba(182, 138, 58, 0.22);
 }
 
-.archiv-lang-switch__sep {
-    color: rgba(205, 189, 157, 0.35);
-    user-select: none;
+.archiv-lang-toggle__code {
+    line-height: 1;
 }
 
-.archiv-lang-switch--mobile {
-    margin-top: 1.25rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(182, 138, 58, 0.15);
+/* Mobile menu — language block */
+.archiv-nav-mobile-lang {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(182, 138, 58, 0.18);
+    list-style: none;
+}
+
+.archiv-nav-mobile-lang .archiv-nav-mobile-group__label {
+    display: block;
+    margin-bottom: 0.65rem;
+}
+
+.archiv-lang-toggle--block {
+    width: 100%;
+}
+
+.archiv-lang-toggle--block .archiv-lang-toggle__seg {
+    flex: 1;
+    min-height: 2.75rem;
+    font-size: 0.65rem;
 }
 
 @media (max-width: 991px) {
-    .archiv-museum-nav--desktop .archiv-lang-switch {
+    .archiv-header-util {
         display: none;
+    }
+}
+
+@media (min-width: 992px) {
+    .archiv-nav-mobile-lang {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) {
+    .archiv-museum-header__inner {
+        gap: 0.75rem;
     }
 }
