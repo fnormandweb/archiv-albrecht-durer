@@ -374,10 +374,10 @@ PAGES = {
     "Dürer théoricien — Science, proportion, mesure et perspective | ARCHIV",
     "Dürer théoricien : mesure, perspective, géométrie, proportion humaine, fortification et observation scientifique du visible.",
     "science", "science.html", "Science et proportion", "L'image comme méthode",
-    """<main class="archiv-museum-section archiv-museum-section--paper archiv-science-grid"><div class="archiv-page-shell">
-<div class="row g-5">
-<div class="col-lg-6 archiv-prose-block">
+    """<main id="archiv-main" class="archiv-museum-section archiv-museum-section--paper archiv-science-page"><div class="archiv-page-shell">
 <p class="archiv-lead">Dürer ne sépare pas l'atelier du laboratoire géométrique : dessin, estampe et traité obéissent à une même exigence de mesure.</p>
+<div class="row g-5 archiv-science-layout align-items-start">
+<div class="col-lg-7 archiv-prose-block">
 <h2>Géométrie et perspective</h2>
 <p>Les <em>Instructions de la mesure</em> enseignent perspective, polyèdres et tracés au compas — outils visibles dans <a href="oeuvre.html?id=melencolia" class="archiv-text-link">Melencolia I</a>.</p>
 <h2>Proportion humaine</h2>
@@ -385,15 +385,23 @@ PAGES = {
 <h2>Nature et fortification</h2>
 <p><a href="oeuvre.html?id=hare" class="archiv-text-link">Le lièvre</a> et la <a href="oeuvre.html?id=great-piece-of-turf" class="archiv-text-link">Grande touffe d'herbes</a> : science du visible. Le traité de fortification (1527) applique la mathématique à la défense des villes.</p>
 </div>
-<div class="col-lg-6">
-<a href="oeuvre.html?id=hare" class="archiv-zoom-link d-block mb-4"><img src="img/durer/drawings/durer-young-hare-1502.webp" alt="Aquarelle Jeune lièvre d'Albrecht Dürer, animal représenté avec précision naturaliste, 1502" class="img-fluid" loading="lazy" decoding="async" data-archiv-work-id="hare"></a>
+<div class="col-lg-5">
+<figure class="archiv-science-specimen archiv-museum-frame archiv-museum-frame--mat-light">
+<a href="oeuvre.html?id=hare" class="archiv-zoom-link" data-work-id="hare"><img src="img/durer/drawings/durer-young-hare-1502.webp" alt="Aquarelle Jeune lièvre d'Albrecht Dürer, animal représenté avec précision naturaliste, 1502" width="480" height="380" loading="lazy" decoding="async" data-archiv-work-id="hare"></a>
+<figcaption class="archiv-museum-caption">Jeune lièvre · 1502 · Albertina, Vienne</figcaption>
+</figure>
+</div>
+</div>
+<section class="archiv-science-treatises" aria-labelledby="archiv-science-treatises-title">
+<p class="archiv-kicker" id="archiv-science-treatises-title">Traités théoriques</p>
 <div class="row g-3">
-<div class="col-12"><article class="archiv-treatise-card"><p class="archiv-kicker">1525</p><h3>Instructions de la mesure</h3><p class="archiv-title-de">Underweysung der Messung</p><p>Manuel de perspective et de proportion pour artistes et artisans.</p><a href="https://www.metmuseum.org/toah/hd/durr/hd_durr.htm" class="archiv-text-link" target="_blank" rel="noopener">The Met</a></article></div>
-<div class="col-md-6"><article class="archiv-treatise-card"><p class="archiv-kicker">1527</p><h3>Fortification</h3><p class="archiv-title-de">Befestigungslehre</p><p>Architecture militaire et mathématiques.</p></article></div>
-<div class="col-md-6"><article class="archiv-treatise-card"><p class="archiv-kicker">1528</p><h3>Proportion humaine</h3><p class="archiv-title-de">Vier Bücher von menschlicher Proportion</p><p>Somme posthume sur le corps.</p></article></div>
-</div></div></div></div></main>""",
+<div class="col-md-4"><article class="archiv-treatise-card"><p class="archiv-kicker">1525</p><h3>Instructions de la mesure</h3><p class="archiv-title-de">Underweysung der Messung</p><p>Manuel de perspective et de proportion pour artistes et artisans.</p><a href="https://www.metmuseum.org/toah/hd/durr/hd_durr.htm" class="archiv-text-link" target="_blank" rel="noopener">The Met</a></article></div>
+<div class="col-md-4"><article class="archiv-treatise-card"><p class="archiv-kicker">1527</p><h3>Fortification</h3><p class="archiv-title-de">Befestigungslehre</p><p>Architecture militaire et mathématiques.</p></article></div>
+<div class="col-md-4"><article class="archiv-treatise-card"><p class="archiv-kicker">1528</p><h3>Proportion humaine</h3><p class="archiv-title-de">Vier Bücher von menschlicher Proportion</p><p>Somme posthume sur le corps.</p></article></div>
+</div>
+</section>
+</div></main>""",
     "Dürer théoricien — proportion | ARCHIV",
-    hero_specimen=SPEC_HARE,
 ),
 
 "voyages.html": page(
