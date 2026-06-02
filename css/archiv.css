@@ -294,10 +294,11 @@ body.archiv-site .archiv-btn:hover {
     margin-bottom: 0.5rem;
 }
 
-.archiv-work-card p {
+.archiv-work-card__body .archiv-artwork-card__institution,
+.archiv-work-card__body .archiv-artwork-card__summary {
     font-size: 0.95rem;
     color: var(--walnut);
-    flex: 1;
+    flex: 0 0 auto;
 }
 
 .archiv-cartel {
@@ -366,25 +367,79 @@ body.archiv-site .archiv-btn:hover {
 /* Carte voyages */
 .archiv-map {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 2.5rem 0;
+}
+
+@media (min-width: 640px) {
+    .archiv-map {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 900px) {
+    .archiv-map {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+    }
 }
 
 .archiv-map__place {
-    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-height: 5.5rem;
+    padding: 1rem 0.85rem;
     text-align: center;
-    border: 1px solid rgba(182, 138, 58, 0.35);
-    background: rgba(17, 16, 13, 0.4);
+    border: 1px solid rgba(74, 56, 40, 0.22);
+    background: var(--ink);
     font-family: var(--font-ui);
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
+}
+
+.archiv-map__name {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--paper);
+    color: var(--aged-paper);
+    line-height: 1.3;
+}
+
+.archiv-map__role {
+    font-size: 0.68rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: rgba(230, 216, 191, 0.82);
+    line-height: 1.45;
+    max-width: 14rem;
 }
 
 .archiv-map__place.is-hub {
-    border-color: var(--aged-gold);
-    background: rgba(182, 138, 58, 0.15);
+    grid-column: 1 / -1;
+    min-height: auto;
+    padding: 1.35rem 1rem;
+    border: 2px solid var(--aged-gold);
+    background: var(--walnut);
+}
+
+.archiv-map__place.is-hub .archiv-map__name {
+    font-size: 0.8rem;
+    color: var(--soft-white);
+}
+
+.archiv-map__place.is-hub .archiv-map__role {
+    color: rgba(242, 235, 221, 0.88);
+    font-size: 0.75rem;
+}
+
+@media (hover: hover) {
+    .archiv-map__place:not(.is-hub):hover {
+        border-color: rgba(182, 138, 58, 0.55);
+        background: #1f1a16;
+    }
 }
 
 /* Filtres œuvres */
@@ -1192,17 +1247,20 @@ body.archiv-site[data-archiv-page="gravures"] .archiv-page-hero {
     border-bottom: var(--border-hairline);
 }
 
-body.archiv-site[data-archiv-page="gravures"] .archiv-section--engraving {
+/* Bloc prose sombre (première section) */
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--ink.archiv-section--engraving {
     background: var(--black-brown);
     color: var(--aged-paper);
 }
 
-body.archiv-site[data-archiv-page="gravures"] .archiv-section--engraving .archiv-lead,
-body.archiv-site[data-archiv-page="gravures"] .archiv-section--engraving p {
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--ink.archiv-section--engraving .archiv-prose-block .archiv-lead,
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--ink.archiv-section--engraving .archiv-prose-block p,
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--ink.archiv-section--engraving .archiv-engraving-detail__text p {
     color: rgba(230, 216, 191, 0.9);
 }
 
-body.archiv-site[data-archiv-page="gravures"] .archiv-section--engraving h2 {
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--ink.archiv-section--engraving .archiv-prose-block h2,
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--ink.archiv-section--engraving .archiv-engraving-detail__text h2 {
     color: var(--soft-white);
 }
 
@@ -1211,18 +1269,58 @@ body.archiv-site[data-archiv-page="gravures"] .archiv-compare__col {
     border-color: rgba(182, 138, 58, 0.25);
 }
 
-body.archiv-site[data-archiv-page="gravures"] .archiv-work-card {
-    background: var(--ink);
-    border-color: rgba(182, 138, 58, 0.3);
+/* Grille « Œuvres majeures » — fond papier, texte foncé lisible */
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper.archiv-section--engraving {
+    background: linear-gradient(180deg, #ebe3d0 0%, var(--paper) 10%);
+    color: var(--ink);
 }
 
-body.archiv-site[data-archiv-page="gravures"] .archiv-work-card h3 a,
-body.archiv-site[data-archiv-page="gravures"] .archiv-work-card p {
-    color: var(--aged-paper);
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-museum-section__head h2 {
+    color: var(--ink);
 }
 
-body.archiv-site[data-archiv-page="gravures"] .archiv-work-card__meta {
-    color: var(--aged-gold);
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-museum-section__head p {
+    color: var(--walnut);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-work-card,
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-artwork-card {
+    background: var(--paper);
+    border-color: rgba(74, 56, 40, 0.14);
+    color: var(--ink);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-work-card__body,
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-artwork-card__cartel {
+    background: var(--paper);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-artwork-card__title a,
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-work-card h3 a {
+    color: var(--ink);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-artwork-card__title a:hover,
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-work-card h3 a:hover {
+    color: var(--dark-gold);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-artwork-card__summary,
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-artwork-card__institution {
+    color: var(--walnut);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-work-card__meta {
+    color: var(--dark-gold);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-source-block .archiv-label {
+    color: var(--verdigris);
+}
+
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-source-block a,
+body.archiv-site[data-archiv-page="gravures"] .archiv-museum-section--paper .archiv-card-actions a {
+    color: var(--walnut);
 }
 
 .archiv-engraving-hero-detail {

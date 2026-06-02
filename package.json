@@ -1,0 +1,8 @@
+{
+  "name": "archiv-albrecht-durer",
+  "private": true,
+  "description": "ARCHIV — archive numérique Albrecht Dürer",
+  "scripts": {
+    "audit:images": "node scripts/audit-artwork-images.js"
+  }
+}

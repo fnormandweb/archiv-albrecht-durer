@@ -114,6 +114,28 @@ body.archiv-site .archiv-work-card {
     height: 100%;
 }
 
+/* Cartes catalogue : résumé entier, pied de carte (documentation) toujours visible */
+body.archiv-site .archiv-artwork-card__cartel,
+body.archiv-site .archiv-work-card__body {
+    min-height: 0;
+    overflow: visible;
+}
+
+body.archiv-site .archiv-artwork-card__summary {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+}
+
+body.archiv-site .archiv-artwork-card__institution {
+    flex-shrink: 0;
+}
+
+body.archiv-site .archiv-source-block,
+body.archiv-site .archiv-card-actions {
+    flex-shrink: 0;
+}
+
 body.archiv-site .archiv-collection-spotlight .archiv-artwork-card--feature {
     display: grid;
     grid-template-columns: 1fr;
@@ -223,6 +245,189 @@ body.archiv-site .archiv-text-link {
 /* —— Footer cohérent —— */
 .archiv-archive-footer a:hover {
     color: var(--text-light, #f2ebdd);
+}
+
+/* —— Navigation regroupée (dropdowns musée) —— */
+body.archiv-site .archiv-museum-header,
+body.archiv-site .archiv-museum-header__inner,
+body.archiv-site .archiv-museum-nav,
+body.archiv-site .archiv-museum-nav__list {
+    overflow: visible;
+}
+
+body.archiv-site .archiv-museum-nav__list > li {
+    position: relative;
+}
+
+body.archiv-site .archiv-nav-dropdown {
+    position: relative;
+}
+
+body.archiv-site .archiv-nav-dropdown__trigger {
+    font-family: var(--font-ui, "Outfit", sans-serif);
+    font-size: 15px;
+    font-variant-caps: normal;
+    text-transform: none;
+    letter-spacing: 0.03em;
+    font-weight: 400;
+    color: var(--archiv-nav-inactive, rgba(230, 216, 191, 0.88));
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0 clamp(14px, 1.6vw, 22px);
+    line-height: 1.35;
+    white-space: nowrap;
+    transition: color 0.25s ease;
+}
+
+body.archiv-site .archiv-nav-dropdown__trigger--oeuvres {
+    letter-spacing: 0.02em;
+    font-feature-settings: "liga" 0;
+}
+
+@media (min-width: 1200px) {
+    body.archiv-site .archiv-nav-dropdown__trigger,
+    body.archiv-site .archiv-museum-nav__list > li > a {
+        font-size: 16px;
+    }
+}
+
+body.archiv-site .archiv-nav-dropdown__trigger:hover,
+body.archiv-site .archiv-nav-dropdown__trigger.active,
+body.archiv-site .archiv-nav-dropdown:focus-within .archiv-nav-dropdown__trigger {
+    color: var(--archiv-nav-hover, #b68a3a);
+}
+
+body.archiv-site .archiv-nav-dropdown__trigger.active {
+    color: var(--archiv-nav-active, #e6d8bf);
+}
+
+body.archiv-site .archiv-nav-dropdown__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+    min-width: max(13.5rem, 100%);
+    margin: 0;
+    padding: 0.45rem 0;
+    list-style: none;
+    background: #11100d;
+    border: 1px solid rgba(182, 138, 58, 0.25);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.18s ease, visibility 0.18s ease;
+    z-index: 1060;
+}
+
+/* Pont invisible : évite la fermeture entre le bouton et le panneau */
+body.archiv-site .archiv-nav-dropdown__menu::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -0.75rem;
+    height: 0.75rem;
+}
+
+/* Menus de droite : alignés au trigger, pas de débordement */
+body.archiv-site .archiv-museum-nav__list > li.archiv-nav-dropdown--align-end .archiv-nav-dropdown__menu {
+    left: auto;
+    right: 0;
+}
+
+body.archiv-site .archiv-nav-dropdown:hover .archiv-nav-dropdown__menu,
+body.archiv-site .archiv-nav-dropdown:focus-within .archiv-nav-dropdown__menu,
+body.archiv-site .archiv-nav-dropdown.is-open .archiv-nav-dropdown__menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+body.archiv-site .archiv-nav-dropdown__menu a {
+    display: block;
+    font-family: var(--font-ui, "Outfit", sans-serif);
+    font-size: 15px;
+    font-variant-caps: normal;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    color: #e6d8bf;
+    text-decoration: none;
+    padding: 0.65rem 1.15rem;
+    white-space: nowrap;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+@media (min-width: 1200px) {
+    body.archiv-site .archiv-nav-dropdown__menu a {
+        font-size: 16px;
+    }
+}
+
+body.archiv-site .archiv-nav-dropdown__menu a:hover,
+body.archiv-site .archiv-nav-dropdown__menu a.active {
+    color: #b68a3a;
+    background: rgba(182, 138, 58, 0.08);
+}
+
+body.archiv-site .archiv-nav-dropdown__menu a.active::after {
+    display: none;
+}
+
+/* Mobile — groupes */
+body.archiv-site .archiv-nav-mobile-link {
+    font-size: 1.25rem;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+}
+
+body.archiv-site .archiv-nav-mobile-group {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(182, 138, 58, 0.15);
+}
+
+body.archiv-site .archiv-nav-mobile-group__label {
+    display: block;
+    font-family: var(--font-ui, "Outfit", sans-serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: #e6d8bf;
+    margin-bottom: 0.35rem;
+    padding: 0.25rem 0;
+}
+
+body.archiv-site .archiv-nav-mobile-group__sub {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 0.75rem;
+}
+
+body.archiv-site .archiv-nav-mobile-sublink {
+    font-size: 1.0625rem;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 0.35rem 0;
+    color: rgba(230, 216, 191, 0.9);
+}
+
+body.archiv-site .archiv-nav-mobile-sublink:hover,
+body.archiv-site .archiv-nav-mobile-sublink.active,
+body.archiv-site .archiv-nav-mobile-link:hover,
+body.archiv-site .archiv-nav-mobile-link.active {
+    color: #b68a3a;
+}
+
+body.archiv-site .archiv-museum-nav-mobile__list > li:first-child {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
 }
 
 /* —— Masquer résidus template (sécurité production) —— */

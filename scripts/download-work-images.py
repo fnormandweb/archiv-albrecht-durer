@@ -15,9 +15,9 @@ PATHS = {
     "knight-death-devil": ("prints", "durer-knight-death-devil-1513.webp"),
     "rhinoceros": ("prints", "durer-rhinoceros-1515.webp"),
     "apocalypse-four-riders": ("prints", "durer-four-horsemen-apocalypse-1498.webp"),
-    "large-passion-last-supper": ("prints", "durer-last-supper-1523.webp"),
+    "large-passion-last-supper": ("prints", "durer-last-supper-large-passion-1510.webp"),
     "life-of-virgin-nativity": ("prints", "durer-nativity-life-of-virgin-1511.webp"),
-    "large-passion-cycle": ("prints", "durer-large-passion-cycle.webp"),
+    "large-passion-cycle": ("prints", "durer-large-passion-flagellation-1512.webp"),
     "large-passion-christ-mount": ("prints", "durer-christ-mount-olives-large-passion.webp"),
     "self-portrait-1500": ("portraits", "durer-self-portrait-1500.webp"),
     "self-portrait-1498": ("portraits", "durer-self-portrait-1498.webp"),
@@ -30,8 +30,8 @@ PATHS = {
     "four-apostles": ("works", "durer-four-apostles-1526.webp"),
     "underweysung": ("books", "durer-underweysung-proportion-1525.webp"),
     "winged-roller": ("drawings", "durer-winged-roller-1512.webp"),
-    "life-of-virgin-cycle": ("prints", "durer-life-of-virgin-cycle.webp"),
-    "small-passion-cycle": ("prints", "durer-small-passion-cycle.webp"),
+    "life-of-virgin-cycle": ("prints", "durer-life-of-virgin-presentation-1511.webp"),
+    "small-passion-cycle": ("prints", "durer-small-passion-christ-thorns.webp"),
     "travel-drawing-antwerp": ("drawings", "durer-view-antwerp-1520.webp"),
 }
 READY_JS = ROOT / "js/archiv-local-ready.js"

@@ -487,6 +487,79 @@
         if (!page) return;
         $("[data-archiv-nav]").removeClass("active");
         $('[data-archiv-nav="' + page + '"]').addClass("active");
+        $(".archiv-nav-dropdown__menu a.active").each(function () {
+            $(this).closest(".archiv-nav-dropdown").find(".archiv-nav-dropdown__trigger").addClass("active");
+        });
+    }
+
+    function initNavDropdowns() {
+        var $dropdowns = $(".archiv-nav-dropdown");
+        if (!$dropdowns.length) return;
+
+        var closeTimer = null;
+        var desktopMq = window.matchMedia("(min-width: 992px)");
+
+        function closeAll() {
+            $dropdowns.removeClass("is-open").find(".archiv-nav-dropdown__trigger").attr("aria-expanded", "false");
+        }
+
+        function openDropdown($dd) {
+            if (closeTimer) {
+                clearTimeout(closeTimer);
+                closeTimer = null;
+            }
+            $dropdowns.not($dd).removeClass("is-open").find(".archiv-nav-dropdown__trigger").attr("aria-expanded", "false");
+            $dd.addClass("is-open");
+            $dd.find(".archiv-nav-dropdown__trigger").attr("aria-expanded", "true");
+        }
+
+        function scheduleClose($dd) {
+            if (closeTimer) clearTimeout(closeTimer);
+            closeTimer = setTimeout(function () {
+                $dd.removeClass("is-open").find(".archiv-nav-dropdown__trigger").attr("aria-expanded", "false");
+                closeTimer = null;
+            }, 220);
+        }
+
+        $dropdowns.each(function () {
+            var $dd = $(this);
+            var $btn = $dd.find(".archiv-nav-dropdown__trigger");
+
+            $dd.on("mouseenter", function () {
+                if (!desktopMq.matches) return;
+                openDropdown($dd);
+            });
+
+            $dd.on("mouseleave", function () {
+                if (!desktopMq.matches) return;
+                scheduleClose($dd);
+            });
+
+            $btn.on("click", function (e) {
+                if (desktopMq.matches) return;
+                e.preventDefault();
+                e.stopPropagation();
+                var isOpen = $dd.hasClass("is-open");
+                closeAll();
+                if (!isOpen) openDropdown($dd);
+            });
+
+            $btn.on("keydown", function (e) {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    var isOpen = $dd.hasClass("is-open");
+                    closeAll();
+                    if (!isOpen) openDropdown($dd);
+                }
+                if (e.key === "Escape") closeAll();
+            });
+        });
+
+        $(document).on("click", function (e) {
+            if (!$(e.target).closest(".archiv-nav-dropdown").length) closeAll();
+        });
+
+        desktopMq.addEventListener("change", closeAll);
     }
 
     function initMuseumNav() {
@@ -504,6 +577,7 @@
             $mobile.removeClass("is-open").attr("aria-hidden", "true");
             $open.attr("aria-expanded", "false");
             $("body").removeClass("archiv-nav-open");
+            $(".archiv-nav-dropdown").removeClass("is-open").find(".archiv-nav-dropdown__trigger").attr("aria-expanded", "false");
         }
 
         $open.on("click", function () {
@@ -515,21 +589,148 @@
         $mobile.find(".archiv-museum-nav-mobile__list a").on("click", closeNav);
 
         $(document).on("keydown", function (e) {
-            if (e.key === "Escape" && $mobile.hasClass("is-open")) closeNav();
+            if (e.key === "Escape") {
+                if ($mobile.hasClass("is-open")) closeNav();
+                $(".archiv-nav-dropdown").removeClass("is-open").find(".archiv-nav-dropdown__trigger").attr("aria-expanded", "false");
+            }
         });
     }
 
     function initSourcesPage() {
         var $inv = $("#archiv-sources-inventory");
-        if (!$inv.length || !window.ARCHIV_IMAGE_INVENTORY) return;
-        var html = "<table class=\"archiv-credits-table\"><thead><tr><th>Œuvre</th><th>Date</th><th>Collection</th><th>Crédit</th></tr></thead><tbody>";
-        window.ARCHIV_IMAGE_INVENTORY.forEach(function (row) {
-            html += "<tr><td><a href=\"oeuvre.html?id=" + esc(row.id) + "\">" + esc(row.title) + "</a></td>";
-            html += "<td>" + esc(row.date) + "</td><td>" + esc(row.museum) + "</td>";
-            html += "<td>" + esc(row.imageCredit) + "</td></tr>";
+        if ($inv.length && window.ARCHIV_IMAGE_INVENTORY) {
+            var html = "<table class=\"archiv-credits-table\"><thead><tr><th>Œuvre</th><th>Date</th><th>Collection</th><th>Crédit</th></tr></thead><tbody>";
+            window.ARCHIV_IMAGE_INVENTORY.forEach(function (row) {
+                html += "<tr><td><a href=\"oeuvre.html?id=" + esc(row.id) + "\">" + esc(row.title) + "</a></td>";
+                html += "<td>" + esc(row.date) + "</td><td>" + esc(row.museum) + "</td>";
+                html += "<td>" + esc(row.imageCredit) + "</td></tr>";
+            });
+            html += "</tbody></table>";
+            $inv.html(html);
+        }
+        var $edInv = $("#archiv-editions-sources-inventory");
+        if ($edInv.length && window.ARCHIV_EDITIONS) {
+            var edHtml = "<table class=\"archiv-credits-table\"><thead><tr><th>Édition</th><th>Œuvre source</th><th>Institution</th><th>Droits</th><th>Usage prévu</th></tr></thead><tbody>";
+            window.ARCHIV_EDITIONS.forEach(function (ed) {
+                edHtml += "<tr><td><a href=\"" + esc(ed.internalLink) + "\">" + esc(ed.title) + "</a></td>";
+                edHtml += "<td>" + esc(ed.relatedWork) + (ed.originalWorkDate ? " (" + esc(ed.originalWorkDate) + ")" : "") + "</td>";
+                edHtml += "<td><a href=\"" + esc(ed.sourceUrl) + "\" target=\"_blank\" rel=\"noopener\">" + esc(ed.sourceLabel) + "</a></td>";
+                edHtml += "<td>" + esc(ed.rightsStatus || ed.imageRights) + "</td>";
+                edHtml += "<td>" + esc(ed.plannedUse) + (ed.validationRequired ? " · validation requise" : "") + "</td></tr>";
+            });
+            edHtml += "</tbody></table>";
+            $edInv.html(edHtml);
+        }
+    }
+
+    function renderEditionCard(ed) {
+        var html = '<article class="archiv-edition-card" data-category="' + esc(ed.categoryId) + '">';
+        html += '<a href="' + esc(ed.internalLink) + '" class="archiv-edition-card__frame">';
+        html += '<img src="' + esc(ed.image) + '" alt="' + esc(ed.imageAlt) + '" loading="lazy" decoding="async" width="640" height="800">';
+        html += "</a>";
+        html += '<div class="archiv-edition-card__body">';
+        html += '<p class="archiv-edition-card__category">' + esc(ed.category) + "</p>";
+        html += '<h3 class="archiv-edition-card__title"><a href="' + esc(ed.internalLink) + '">' + esc(ed.title) + "</a></h3>";
+        html += '<p class="archiv-edition-card__source">Œuvre source : ' + esc(ed.relatedWork) + "</p>";
+        html += '<div class="archiv-edition-card__meta">';
+        html += '<span class="archiv-edition-status">' + esc(ed.status) + "</span>";
+        if (ed.format) html += '<span class="archiv-edition-card__format">' + esc(ed.format) + "</span>";
+        html += "</div>";
+        html += '<p class="archiv-edition-card__cta"><a class="archiv-edition-cta" href="' + esc(ed.internalLink) + '">Découvrir l\'édition</a></p>';
+        html += "</div></article>";
+        return html;
+    }
+
+    function initEditionsPage() {
+        var $grid = $("#archiv-editions-grid");
+        if (!$grid.length || !window.ARCHIV_EDITIONS) return;
+        var filter = "all";
+
+        function render() {
+            var html = "";
+            window.ARCHIV_EDITIONS.forEach(function (ed) {
+                if (filter !== "all" && ed.categoryId !== filter) return;
+                html += renderEditionCard(ed);
+            });
+            if (!html) {
+                html = '<p class="archiv-lead">Aucune édition dans cette catégorie pour le moment.</p>';
+            }
+            $grid.html(html);
+        }
+
+        render();
+
+        $("#archiv-editions-filters .archiv-filter-btn").on("click", function () {
+            filter = $(this).data("filter") || "all";
+            $("#archiv-editions-filters .archiv-filter-btn").removeClass("is-active");
+            $(this).addClass("is-active");
+            render();
         });
-        html += "</tbody></table>";
-        $inv.html(html);
+    }
+
+    function initEditionDetail() {
+        var $root = $("#archiv-edition-detail");
+        if (!$root.length || !window.archivGetEdition) return;
+        var params = new URLSearchParams(window.location.search);
+        var id = params.get("id");
+        var ed = id ? window.archivGetEdition(id) : null;
+        if (!ed) {
+            $root.html('<p class="archiv-lead">Édition introuvable. <a href="editions.html">Retour aux éditions</a>.</p>');
+            document.title = "Édition — ARCHIV";
+            return;
+        }
+        document.title = ed.title + " — Éditions ARCHIV";
+        var meta = document.querySelector('meta[name="description"]');
+        if (meta) meta.setAttribute("content", ed.description);
+        if (window.archivAbsoluteUrl) {
+            var canon = document.querySelector('link[rel="canonical"]');
+            if (canon) canon.setAttribute("href", window.archivAbsoluteUrl("edition.html?id=" + ed.slug));
+            var ogUrl = document.querySelector('meta[property="og:url"]');
+            if (ogUrl) ogUrl.setAttribute("content", window.archivAbsoluteUrl("edition.html?id=" + ed.slug));
+            var ogImg = document.querySelector('meta[property="og:image"]');
+            if (ogImg && ed.image) ogImg.setAttribute("content", window.archivAbsoluteUrl(ed.image.replace(/^\//, "")));
+        }
+
+        var html = '<nav class="archiv-breadcrumb" aria-label="Fil d\'Ariane"><a href="/">Vue d\'ensemble</a> · <a href="editions.html">Éditions</a> · <span>' + esc(ed.title) + "</span></nav>";
+        html += '<div class="row archiv-oeuvre-layout archiv-edition-layout">';
+        html += '<div class="col-lg-7 mb-4 mb-lg-0">';
+        html += '<figure class="archiv-oeuvre-hero archiv-edition-hero">';
+        html += '<img src="' + esc(ed.image) + '" alt="' + esc(ed.imageAlt) + '" width="1200" loading="eager" decoding="async">';
+        html += '<figcaption class="archiv-museum-caption">Reproduction source documentée — ' + esc(ed.credit) + "</figcaption>";
+        html += "</figure></div>";
+        html += '<div class="col-lg-5"><div class="archiv-oeuvre-cartel">';
+        html += '<p class="archiv-edition-card__category">' + esc(ed.category) + "</p>";
+        html += '<span class="archiv-edition-detail__status">' + esc(ed.status) + "</span>";
+        html += "<h1>" + esc(ed.title) + "</h1>";
+        html += '<p class="archiv-lead">' + esc(ed.description) + "</p>";
+        html += '<p class="archiv-edition-detail__rights">' + esc(ed.rightsStatus) + "</p>";
+        html += '<div class="archiv-metadata-panel" role="group" aria-label="Métadonnées édition">';
+        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Format</span><p class="archiv-metadata-panel__val">' + esc(ed.format) + "</p></div>";
+        if (ed.paper) html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Support</span><p class="archiv-metadata-panel__val">' + esc(ed.paper) + "</p></div>";
+        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Statut</span><p class="archiv-metadata-panel__val">' + esc(ed.status) + "</p></div>";
+        if (ed.price != null && ed.currency) {
+            html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Tarif</span><p class="archiv-metadata-panel__val">' + esc(ed.price) + " " + esc(ed.currency) + "</p></div>";
+        }
+        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Droits image</span><p class="archiv-metadata-panel__val">' + esc(ed.imageRights) + "</p></div>";
+        html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Source</span><p class="archiv-metadata-panel__val"><a href="' + esc(ed.sourceUrl) + '" target="_blank" rel="noopener">' + esc(ed.sourceLabel) + "</a></p></div>";
+        html += "</div>";
+        html += '<p class="mt-4"><a href="editions.html#archiv-edition-inquiry" class="archiv-btn archiv-btn--ghost">' + esc(ed.ctaLabel) + "</a></p>";
+        html += "</div></div></div>";
+
+        html += '<section class="archiv-edition-source-panel" aria-labelledby="edition-source-title">';
+        html += '<h2 id="edition-source-title">Œuvre source</h2>';
+        html += "<p><strong>" + esc(ed.relatedWork) + "</strong>";
+        if (ed.originalWorkDate) html += ", " + esc(ed.originalWorkDate);
+        if (ed.originalTechnique) html += " — " + esc(ed.originalTechnique);
+        html += ".</p>";
+        html += "<p>Institution de référence : " + esc(ed.museum) + ".</p>";
+        if (ed.relatedWorkId) {
+            html += '<p><a href="oeuvre.html?id=' + esc(ed.relatedWorkId) + '" class="archiv-text-link">Voir la fiche œuvre</a></p>';
+        }
+        html += "</section>";
+
+        html += '<p class="archiv-editions-disclaimer mt-4">' + esc(window.ARCHIV_EDITIONS_DISCLAIMER || "") + "</p>";
+        $root.html(html);
     }
 
     function initArchivShell() {
@@ -548,6 +749,7 @@
         initArchivShell();
         if (window.archivHydrateStaticImages) window.archivHydrateStaticImages(document);
         initActiveNav();
+        initNavDropdowns();
         initMuseumNav();
         initFilters();
         initHomeFeatured();
@@ -556,6 +758,8 @@
         initGravuresCards();
         initEngravingSpotlight();
         initOeuvreDetail();
+        initEditionsPage();
+        initEditionDetail();
         initTimelinePage();
         initReveal();
         initSourcesPage();

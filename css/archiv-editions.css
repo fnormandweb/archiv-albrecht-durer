@@ -1,0 +1,241 @@
+/**
+ * ARCHIV — Éditions (collection éditoriale muséale)
+ */
+
+body.archiv-site[data-archiv-page="editions"],
+body.archiv-site[data-archiv-page="edition"] {
+    --edition-ink: var(--ink, #11100d);
+    --edition-paper: var(--paper, #e8dfc8);
+}
+
+/* —— Index —— */
+.archiv-editions-intro {
+    max-width: 42rem;
+    margin-bottom: 2.5rem;
+}
+
+.archiv-editions-disclaimer {
+    margin-top: 2.5rem;
+    padding: 1.25rem 1.35rem;
+    border: 1px solid rgba(74, 56, 40, 0.14);
+    background: rgba(17, 16, 13, 0.04);
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    color: var(--walnut);
+}
+
+.archiv-editions-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.25rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(17, 16, 13, 0.1);
+}
+
+.archiv-editions-filters .archiv-filter-btn {
+    font-size: 0.68rem;
+}
+
+.archiv-editions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .archiv-editions-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.75rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .archiv-editions-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.archiv-edition-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--paper);
+    border: 1px solid rgba(74, 56, 40, 0.14);
+    transition: border-color 0.35s var(--ease-out, ease);
+}
+
+.archiv-edition-card:hover {
+    border-color: rgba(140, 103, 40, 0.45);
+}
+
+.archiv-edition-card__frame {
+    aspect-ratio: 4 / 5;
+    background: var(--edition-ink);
+    overflow: hidden;
+    border-bottom: 1px solid rgba(17, 16, 13, 0.12);
+}
+
+.archiv-edition-card__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.85rem;
+    display: block;
+}
+
+.archiv-edition-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.2rem 1.15rem 1.35rem;
+}
+
+.archiv-edition-card__category {
+    font-family: var(--font-ui);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--verdigris);
+    margin-bottom: 0.4rem;
+}
+
+.archiv-edition-card__title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 0 0 0.35rem;
+}
+
+.archiv-edition-card__title a {
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.archiv-edition-card__title a:hover {
+    color: var(--dark-gold);
+}
+
+.archiv-edition-card__source {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    color: var(--walnut);
+    opacity: 0.88;
+    margin-bottom: 0.65rem;
+}
+
+.archiv-edition-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    margin-top: auto;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(17, 16, 13, 0.08);
+}
+
+.archiv-edition-status {
+    font-family: var(--font-ui);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dark-gold);
+    padding: 0.2rem 0.45rem;
+    border: 1px solid rgba(140, 103, 40, 0.35);
+}
+
+.archiv-edition-card__format {
+    font-size: 0.68rem;
+    color: rgba(58, 36, 24, 0.75);
+}
+
+.archiv-edition-card__cta {
+    margin-top: 0.75rem;
+}
+
+.archiv-edition-cta {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--walnut);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(140, 103, 40, 0.45);
+    padding-bottom: 0.15rem;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.archiv-edition-cta:hover {
+    color: var(--dark-gold);
+    border-color: var(--aged-gold);
+}
+
+.archiv-editions-future {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(17, 16, 13, 0.1);
+}
+
+.archiv-editions-future h2 {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+}
+
+.archiv-editions-future ul {
+    margin: 0;
+    padding-left: 1.15rem;
+    color: var(--walnut);
+    line-height: 1.7;
+}
+
+#archiv-edition-inquiry {
+    scroll-margin-top: 6rem;
+}
+
+.archiv-edition-inquiry {
+    margin-top: 3rem;
+    padding: 1.75rem;
+    background: rgba(17, 16, 13, 0.05);
+    border: 1px solid rgba(74, 56, 40, 0.12);
+}
+
+.archiv-edition-inquiry h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+/* —— Détail —— */
+.archiv-edition-detail__status {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dark-gold);
+    border: 1px solid rgba(140, 103, 40, 0.4);
+    padding: 0.35rem 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.archiv-edition-detail__rights {
+    font-size: 0.9rem;
+    color: var(--walnut);
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+.archiv-edition-source-panel {
+    margin-top: 2rem;
+    padding: 1.35rem;
+    border: 1px solid rgba(74, 56, 40, 0.14);
+    background: rgba(232, 223, 200, 0.35);
+}
+
+.archiv-edition-source-panel h2 {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+}

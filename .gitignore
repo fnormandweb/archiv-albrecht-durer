@@ -19,6 +19,13 @@ img/durer/**/*.jpeg
 # Fichier de référence non utilisé sur le site
 img/durer/hero-accueil.png
 
+# Bibliothèque locale (recherche, non déployée)
+Livres/
+.venv-pdf/
+
+# Ancien thème démo (supprimé du dépôt)
+/template-ornava/
+
 # Logs
 *.log
 npm-debug.log*

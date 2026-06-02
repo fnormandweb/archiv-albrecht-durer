@@ -4,22 +4,21 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Œuvre — Albrecht Dürer | ARCHIV</title>
-    <meta name="description" content="Fiche d'œuvre documentée : technique, conservation, lecture visuelle et source muséale.">
+    <title>Éditions ARCHIV — Albrecht Dürer</title>
+    <meta name="description" content="Tirages d'archive, planches pédagogiques et dossiers numériques inspirés de l'œuvre d'Albrecht Dürer, dans l'esprit d'une archive muséale sobre et documentée.">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#15100C">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Œuvre — Albrecht Dürer | ARCHIV">
-    <meta property="og:description" content="Fiche d'œuvre documentée : technique, conservation, lecture visuelle et source muséale.">
-    <meta property="og:url" content="https://albrechtdurer.uk/oeuvre.html">
-    <meta property="og:image" content="https://albrechtdurer.uk/img/durer/portraits/durer-self-portrait-1500.webp">
+    <meta property="og:title" content="Éditions ARCHIV — Albrecht Dürer">
+    <meta property="og:description" content="Tirages d'archive, planches pédagogiques et dossiers numériques inspirés de l'œuvre d'Albrecht Dürer.">
+    <meta property="og:url" content="https://albrechtdurer.uk/editions.html">
+    <meta property="og:image" content="https://albrechtdurer.uk/img/durer/prints/durer-melencolia-i-1514.webp">
     <meta property="og:locale" content="fr_FR">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Œuvre — Albrecht Dürer | ARCHIV">
-    <meta name="twitter:description" content="Fiche d'œuvre documentée : technique, conservation, lecture visuelle et source muséale.">
-    <meta name="twitter:image" content="https://albrechtdurer.uk/img/durer/portraits/durer-self-portrait-1500.webp">
-    <link rel="canonical" href="https://albrechtdurer.uk/oeuvre.html">
-    <link rel="dns-prefetch" href="https://upload.wikimedia.org">
+    <meta name="twitter:title" content="Éditions ARCHIV — Albrecht Dürer">
+    <meta name="twitter:description" content="Tirages d'archive, planches pédagogiques et dossiers numériques — collection éditoriale ARCHIV.">
+    <meta name="twitter:image" content="https://albrechtdurer.uk/img/durer/prints/durer-melencolia-i-1514.webp">
+    <link rel="canonical" href="https://albrechtdurer.uk/editions.html">
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,9 +31,10 @@
     <link rel="stylesheet" href="css/archiv-stable.css">
     <link rel="stylesheet" href="css/archiv-premium-2026.css">
     <link rel="stylesheet" href="css/archiv-images.css">
+    <link rel="stylesheet" href="css/archiv-editions.css">
     <link rel="stylesheet" href="css/archiv-production.css">
 </head>
-<body class="archiv-site" data-site-logo="img/logo_Albrecht_Durer.svg" data-archiv-page="oeuvre">
+<body class="archiv-site" data-site-logo="img/logo_Albrecht_Durer.svg" data-archiv-page="editions">
 <a class="archiv-skip-link" href="#archiv-main">Aller au contenu</a>
 <header class="archiv-museum-header" role="banner">
     <div class="archiv-page-shell archiv-museum-header__inner">
@@ -115,17 +115,86 @@
         </nav>
     </div>
 </div>
+<header class="archiv-archive-hero archiv-archive-hero--text-only" aria-labelledby="archiv-hero-title">
+    <div class="archiv-archive-hero__texture" aria-hidden="true"></div>
+    <div class="archiv-page-shell archiv-archive-hero__grid">
+        <div class="archiv-archive-hero__copy">
+            <p class="archiv-kicker">ARCHIV · Albrecht Dürer</p>
+            <h1 id="archiv-hero-title">Éditions ARCHIV</h1>
+            <p class="archiv-archive-hero__sub">Tirages, planches et dossiers numériques inspirés de l'œuvre d'Albrecht Dürer</p>
+        </div>
+    </div>
+</header>
+<main id="archiv-main" class="archiv-museum-section archiv-museum-section--paper">
+    <div class="archiv-page-shell">
+        <div class="archiv-editions-intro archiv-prose-block">
+            <p class="archiv-lead">Une sélection d'éditions conçues dans l'esprit de l'archive : sobres, documentées, durables et respectueuses des sources. Tirages, planches et dossiers numériques prolongent l'œuvre de Dürer sous une forme contemporaine, sans rompre avec la rigueur documentaire du site.</p>
+        </div>
+        <nav id="archiv-editions-filters" class="archiv-editions-filters archiv-work-filter" aria-label="Filtrer par catégorie">
+            <button type="button" class="archiv-filter-btn is-active" data-filter="all">Toutes</button>
+            <button type="button" class="archiv-filter-btn" data-filter="tirage-archive">Tirages d'archive</button>
+            <button type="button" class="archiv-filter-btn" data-filter="planche-pedagogique">Planches pédagogiques</button>
+            <button type="button" class="archiv-filter-btn" data-filter="dossier-numerique">Dossiers numériques</button>
+        </nav>
+        <div id="archiv-editions-grid" class="archiv-editions-grid" aria-live="polite"></div>
+        <section class="archiv-editions-future archiv-prose-block" aria-labelledby="editions-future-title">
+            <h2 id="editions-future-title">Collections à venir</h2>
+            <p>ARCHIV prévoit d'autres formats éditoriaux, toujours dans une logique de collection muséale :</p>
+            <ul>
+                <li>Coffrets de planches</li>
+                <li>Carnet ARCHIV</li>
+                <li>Cartes d'étude</li>
+                <li>Mini-catalogue imprimé</li>
+                <li>Édition bilingue</li>
+            </ul>
+        </section>
+        <section id="archiv-edition-inquiry" class="archiv-edition-inquiry archiv-prose-block" aria-labelledby="edition-inquiry-title">
+            <h2 id="edition-inquiry-title">Demander disponibilité</h2>
+            <p>Pour être informé d'une édition ou demander sa disponibilité, indiquez le titre de l'édition souhaitée. Aucune commande en ligne n'est active pour le moment — les éditions listées sont en préparation ou en attente de validation des droits.</p>
+            <p><a href="sources.html#archiv-editions-sources" class="archiv-text-link">Sources et droits des éditions</a></p>
+        </section>
+        <p class="archiv-editions-disclaimer">ARCHIV n'est pas affilié aux institutions muséales mentionnées. Les sources et crédits sont indiqués à des fins documentaires. Aucune édition n'est proposée à la vente tant que les droits de reproduction commerciale ne sont pas confirmés.</p>
+    </div>
+</main>
+<footer class="archiv-archive-footer archiv-footer" role="contentinfo">
+    <div class="archiv-page-shell">
+        <div class="archiv-archive-footer__grid">
+            <div>
+                <p class="archiv-archive-footer__mono" aria-hidden="true">AD</p>
+                <p class="archiv-archive-footer__tagline">ARCHIV · Albrecht Dürer</p>
+                <p class="archiv-archive-footer__intro">Archive numérique consacrée à la vie, aux œuvres, aux gravures et aux écrits théoriques d'Albrecht Dürer (1471–1528). Collection éditoriale en devenir.</p>
+            </div>
+            <div>
+                <h4>Parcours</h4>
+                <ul>
+                    <li><a href="/">Vue d'ensemble</a></li>
+                    <li><a href="oeuvres.html">Œuvres</a></li>
+                    <li><a href="gravures.html">Gravures</a></li>
+                    <li><a href="chronologie.html">Chronologie</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Documentation</h4>
+                <ul>
+                    <li><a href="science.html">Science et proportion</a></li>
+                    <li><a href="voyages.html">Voyages</a></li>
+                    <li><a href="editions.html">Éditions</a></li>
+                    <li><a href="sources.html">Sources et crédits</a></li>
+                    <li><a href="sources.html#archiv-editions-sources">Sources des éditions</a></li>
+                </ul>
+            </div>
+        </div>
         <div class="archiv-archive-footer__rule" aria-hidden="true"></div>
-        <p class="archiv-archive-footer__bottom">© ARCHIV — Albrecht Dürer. Textes éditoriaux ; images en domaine public lorsque indiqué. <a href="sources.html">Méthode ARCHIV et droits</a>.</p>
+        <p class="archiv-archive-footer__bottom">© ARCHIV — Albrecht Dürer. <a href="sources.html">Méthode ARCHIV et droits</a>.</p>
     </div>
 </footer>
-    <script src="js/jquery-3.7.1.min.js" defer></script>
-    <script src="js/jquery.magnific-popup.js" defer></script>
-    <script src="js/archiv-data.js" defer></script>
-    <script src="js/archiv-catalog.js" defer></script>
-    <script src="js/archiv-local-ready.js" defer></script>
-    <script src="js/archiv-images.js" defer></script>
-    <script src="js/archiv.js" defer></script>
-
+<script src="js/jquery-3.7.1.min.js" defer></script>
+<script src="js/jquery.magnific-popup.js" defer></script>
+<script src="js/archiv-data.js" defer></script>
+<script src="js/archiv-catalog.js" defer></script>
+<script src="js/archiv-local-ready.js" defer></script>
+<script src="js/archiv-editions.js" defer></script>
+<script src="js/archiv-images.js" defer></script>
+<script src="js/archiv.js" defer></script>
 </body>
 </html>

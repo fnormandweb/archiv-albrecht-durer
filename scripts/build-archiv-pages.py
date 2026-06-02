@@ -346,15 +346,39 @@ PAGES = {
     "voyages", "voyages.html", "Voyages", "Cartographie des déplacements",
     """<main class="archiv-museum-section archiv-museum-section--paper"><div class="archiv-page-shell archiv-page-shell--narrow archiv-prose-block">
 <p class="archiv-lead">Les voyages ne sont pas des digressions : ils alimentent réseau commercial, regard italien et journal intime d'un artiste devenu figure européenne.</p>
-<div class="archiv-map my-5">
-<div class="archiv-map__place is-hub">Nuremberg</div>
-<div class="archiv-map__place">Colmar</div>
-<div class="archiv-map__place">Bâle</div>
-<div class="archiv-map__place">Strasbourg</div>
-<div class="archiv-map__place">Venise</div>
-<div class="archiv-map__place">Cologne</div>
-<div class="archiv-map__place">Anvers</div>
-<div class="archiv-map__place">Flandre</div>
+<div class="archiv-map" role="list" aria-label="Lieux des voyages de Dürer">
+<article class="archiv-map__place is-hub" role="listitem">
+<span class="archiv-map__name">Nuremberg</span>
+<span class="archiv-map__role">Centre de l'atelier et de l'imprimerie</span>
+</article>
+<article class="archiv-map__place" role="listitem">
+<span class="archiv-map__name">Colmar</span>
+<span class="archiv-map__role">Voyages de compagnon, tradition rhénane</span>
+</article>
+<article class="archiv-map__place" role="listitem">
+<span class="archiv-map__name">Bâle</span>
+<span class="archiv-map__role">Humanistes et imprimeurs</span>
+</article>
+<article class="archiv-map__place" role="listitem">
+<span class="archiv-map__name">Strasbourg</span>
+<span class="archiv-map__role">Premiers contacts nordiques</span>
+</article>
+<article class="archiv-map__place" role="listitem">
+<span class="archiv-map__name">Venise</span>
+<span class="archiv-map__role">1505–1507 : couleur, Bellini, marché de l'art</span>
+</article>
+<article class="archiv-map__place" role="listitem">
+<span class="archiv-map__name">Cologne</span>
+<span class="archiv-map__role">Étape rhénane</span>
+</article>
+<article class="archiv-map__place" role="listitem">
+<span class="archiv-map__name">Anvers</span>
+<span class="archiv-map__role">1520–1521 : marchands et collections</span>
+</article>
+<article class="archiv-map__place" role="listitem">
+<span class="archiv-map__name">Pays-Bas</span>
+<span class="archiv-map__role">Journal de voyage, Érasme</span>
+</article>
 </div>
 <h2>Nuremberg</h2><p>Centre permanent de l'atelier et de l'imprimerie.</p>
 <h2>Italie (1494–1495 ; 1505–1507)</h2><p>Venise : Bellini, couleur, marché de l'art — concurrence et dialogue avec l'antique.</p>
