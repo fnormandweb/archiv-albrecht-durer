@@ -551,6 +551,11 @@
     oeuvres.forEach(function (o) {
         o.imageThumb = thumb(o.image, 640);
         o.internalLink = "oeuvre.html?id=" + o.id;
+        var lec = global.ARCHIV_OEUVRE_LECTURES && global.ARCHIV_OEUVRE_LECTURES[o.id];
+        if (lec) {
+            if (lec.sections) o.sections = lec.sections;
+            if (lec.wikipediaFr) o.wikipediaFr = lec.wikipediaFr;
+        }
     });
 
     global.ARCHIV_OEUVRES = oeuvres;

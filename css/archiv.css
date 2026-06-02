@@ -764,6 +764,29 @@ body.archiv-site .kenburns-section .kenburns-inner {
     margin: 0;
 }
 
+.archiv-oeuvre-lecture {
+    margin-top: 0.25rem;
+}
+
+.archiv-oeuvre-lecture h2 {
+    margin-top: 1.75rem;
+}
+
+.archiv-oeuvre-lecture h2:first-child {
+    margin-top: 0;
+}
+
+.archiv-oeuvre-lecture p {
+    line-height: 1.75;
+    margin-bottom: 1rem;
+}
+
+.archiv-oeuvre-lecture__wiki {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: var(--border-hairline);
+}
+
 .archiv-oeuvre-cartel {
     padding: 1rem 0;
 }

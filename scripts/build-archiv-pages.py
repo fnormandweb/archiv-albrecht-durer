@@ -173,6 +173,7 @@ PAGES = {
     "Œuvre", "Fiche documentée",
     """<main id="archiv-main" class="archiv-museum-section archiv-museum-section--paper archiv-page-main"><div class="archiv-page-shell" id="archiv-oeuvre-detail"></div></main>""",
     use_hero=False,
+    extra_scripts='    <script src="js/archiv-oeuvre-lectures.js" defer></script>',
 ),
 
 "vie.html": page(

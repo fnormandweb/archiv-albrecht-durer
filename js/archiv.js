@@ -368,6 +368,34 @@
         initEngravingSpotlight();
     }
 
+    function renderWorkLecture(work) {
+        var html = "";
+        if (work.sections && work.sections.length) {
+            html += '<div class="archiv-oeuvre-lecture">';
+            work.sections.forEach(function (sec, idx) {
+                var title = sec.title || (idx === 0 ? "Lecture" : "");
+                if (title) html += "<h2>" + esc(title) + "</h2>";
+                (sec.paragraphs || []).forEach(function (p) {
+                    html += "<p>" + esc(p) + "</p>";
+                });
+            });
+            if (work.visual) {
+                html += "<h2>Regard</h2><p>" + esc(work.visual) + "</p>";
+            }
+            if (work.wikipediaFr) {
+                html += '<p class="archiv-oeuvre-lecture__wiki"><a href="' + esc(work.wikipediaFr) + '" class="archiv-text-link" target="_blank" rel="noopener noreferrer">Approfondir — article Wikipédia</a></p>';
+            }
+            html += "</div>";
+            return html;
+        }
+        html += '<h2>Lecture</h2><p class="archiv-lead">' + esc(work.summary) + "</p>";
+        html += "<p>" + esc(work.importance) + "</p>";
+        if (work.visual) {
+            html += "<h2>Regard</h2><p>" + esc(work.visual) + "</p>";
+        }
+        return html;
+    }
+
     function initOeuvreDetail() {
         var $root = $("#archiv-oeuvre-detail");
         if (!$root.length) return;
@@ -381,7 +409,14 @@
         }
         document.title = work.title + " — Albrecht Dürer | ARCHIV";
         var meta = document.querySelector('meta[name="description"]');
-        if (meta) meta.setAttribute("content", work.summary);
+        if (meta) {
+            var metaDesc = work.summary;
+            if (work.sections && work.sections[0] && work.sections[0].paragraphs && work.sections[0].paragraphs[0]) {
+                metaDesc = work.sections[0].paragraphs[0];
+            }
+            if (metaDesc.length > 165) metaDesc = metaDesc.slice(0, 162) + "…";
+            meta.setAttribute("content", metaDesc);
+        }
         var ogTitle = document.querySelector('meta[property="og:title"]');
         if (ogTitle) ogTitle.setAttribute("content", work.title + " — ARCHIV");
         var ogDesc = document.querySelector('meta[property="og:description"]');
@@ -429,11 +464,7 @@
         html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Source</span><p class="archiv-metadata-panel__val"><a href="' + esc(work.source) + '" target="_blank" rel="noopener">' + esc(work.sourceLabel) + "</a></p></div>";
         if (work.rights) html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Droits</span><p class="archiv-metadata-panel__val">' + esc(work.rights) + "</p></div>";
         html += "</div>";
-        html += '<h2>Lecture</h2><p class="archiv-lead">' + esc(work.summary) + "</p>";
-        html += "<p>" + esc(work.importance) + "</p>";
-        if (work.visual) {
-            html += "<h2>Regard</h2><p>" + esc(work.visual) + "</p>";
-        }
+        html += renderWorkLecture(work);
         html += '<p class="mt-4"><a href="' + esc(work.source) + '" class="archiv-btn archiv-btn--dark" target="_blank" rel="noopener noreferrer">Source : ' + esc(work.sourceLabel) + "</a></p>";
         if (work.commons && work.commons !== work.source) {
             html += '<p class="archiv-source-commons mt-2"><a href="' + esc(work.commons) + '" class="archiv-text-link" target="_blank" rel="noopener noreferrer">Reproduction documentée (Wikimedia Commons)</a></p>';
