@@ -705,7 +705,14 @@
         html += '<div class="row archiv-oeuvre-layout archiv-edition-layout">';
         html += '<div class="col-lg-7 mb-4 mb-lg-0">';
         html += '<figure class="archiv-oeuvre-hero archiv-edition-hero">';
-        html += '<img src="' + esc(ed.image) + '" alt="' + esc(ed.imageAlt) + '" width="1200" loading="eager" decoding="async">';
+        var edImg = ed.image || ed.sourceImage || "";
+        if (!edImg && ed.relatedWorkId && window.archivGetOeuvre) {
+            var edWork = window.archivGetOeuvre(ed.relatedWorkId);
+            if (edWork) {
+                edImg = (window.archivMedia ? window.archivMedia(edWork).full : null) || edWork.imageFull || edWork.image || "";
+            }
+        }
+        html += '<img src="' + esc(edImg) + '" alt="' + esc(ed.imageAlt) + '" width="1200" loading="eager" decoding="async" data-archiv-edition-id="' + esc(ed.id) + '">';
         html += '<figcaption class="archiv-museum-caption">Reproduction source documentée — ' + esc(ed.credit) + "</figcaption>";
         html += "</figure></div>";
         html += '<div class="col-lg-5"><div class="archiv-oeuvre-cartel">';
@@ -741,6 +748,11 @@
 
         html += '<p class="archiv-editions-disclaimer mt-4">' + esc(window.ARCHIV_EDITIONS_DISCLAIMER || "") + "</p>";
         $root.html(html);
+        var $edImg = $root.find(".archiv-edition-hero img");
+        if ($edImg.length && ed.relatedWorkId && window.archivGetOeuvre) {
+            var edWorkFb = window.archivGetOeuvre(ed.relatedWorkId);
+            if (edWorkFb) bindImageFallback($edImg, edWorkFb);
+        }
 
         var edLd = {
             "@context": "https://schema.org",

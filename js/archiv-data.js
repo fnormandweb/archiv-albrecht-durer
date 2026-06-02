@@ -535,7 +535,7 @@
             category: "theorie",
             technique: "Traité illustré imprimé",
             museum: "Éditions et bibliothèques patrimoniales",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/D%C3%BCrer_Vitruvius.jpg/800px-D%C3%BCrer_Vitruvius.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Duerer_Underweysung_der_Messung_005.jpg/1280px-Duerer_Underweysung_der_Messung_005.jpg",
             imageAlt: "Schéma de proportion humaine, traité de Dürer, 1525",
             summary: "Manuel de perspective, polyèdres et proportions pour artistes et artisans.",
             importance: "Fonde la figure de Dürer théoricien ; art indissociable de la mesure.",

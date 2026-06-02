@@ -32,7 +32,7 @@ ASSETS = [
     ("adam-eve", "prints", "durer-adam-and-eve-1504.webp", "Albrecht Dürer - Adam and Eve - Google Art Project.jpg"),
     ("adoration-magi", "works", "durer-adoration-of-the-magi-1504.webp", "Albrecht Dürer - The Adoration of the Magi - Google Art Project.jpg"),
     ("four-apostles", "works", "durer-four-apostles-1526.webp", "Vier Apostel (Albrecht Duerer).jpg"),
-    ("underweysung", "books", "durer-underweysung-proportion-1525.webp", "Dürer Vitruvius.jpg"),
+    ("underweysung", "books", "durer-underweysung-proportion-1525.webp", "Duerer Underweysung der Messung 005.jpg"),
     ("travel-drawing-antwerp", "drawings", "durer-view-antwerp-1520.webp", "Dürer reisebüchlein 1520 1521 001.jpg"),
     ("winged-roller", "drawings", "durer-winged-roller-1512.webp", "Albrecht Dürer - The Blue Roller - Google Art Project.jpg"),
     ("large-passion-cycle", "prints", "durer-large-passion-flagellation-1512.webp", "The Flagellation, from The Large Passion MET DP816589.jpg"),
