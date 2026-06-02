@@ -419,7 +419,11 @@ video {
 
 @media (max-width: 1199px) {
     .archiv-museum-nav--desktop {
-        display: none;
+        display: none !important;
+    }
+
+    .archiv-museum-nav--desktop .archiv-nav-dropdown__menu {
+        display: none !important;
     }
 
     .archiv-museum-header__toggle {

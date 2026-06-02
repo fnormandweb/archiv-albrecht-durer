@@ -497,7 +497,7 @@
         if (!$dropdowns.length) return;
 
         var closeTimer = null;
-        var desktopMq = window.matchMedia("(min-width: 992px)");
+        var desktopMq = window.matchMedia("(min-width: 1200px)");
 
         function closeAll() {
             $dropdowns.removeClass("is-open").find(".archiv-nav-dropdown__trigger").attr("aria-expanded", "false");
@@ -518,7 +518,7 @@
             closeTimer = setTimeout(function () {
                 $dd.removeClass("is-open").find(".archiv-nav-dropdown__trigger").attr("aria-expanded", "false");
                 closeTimer = null;
-            }, 220);
+            }, 280);
         }
 
         $dropdowns.each(function () {

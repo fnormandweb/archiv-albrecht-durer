@@ -73,6 +73,19 @@ body.archiv-site .kenburns-section {
     gap: 0;
 }
 
+@media (min-width: 1200px) {
+    .archiv-museum-nav--desktop .archiv-nav-dropdown__menu {
+        display: none;
+        position: absolute;
+    }
+
+    .archiv-nav-dropdown:hover .archiv-nav-dropdown__menu,
+    .archiv-nav-dropdown.is-open .archiv-nav-dropdown__menu,
+    .archiv-nav-dropdown:focus-within .archiv-nav-dropdown__menu {
+        display: block;
+    }
+}
+
 .archiv-museum-nav__list a {
     font-family: var(--font-ui);
     font-size: 15px;
