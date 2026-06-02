@@ -464,12 +464,15 @@
         html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Source</span><p class="archiv-metadata-panel__val"><a href="' + esc(work.source) + '" target="_blank" rel="noopener">' + esc(work.sourceLabel) + "</a></p></div>";
         if (work.rights) html += '<div class="archiv-metadata-panel__row"><span class="archiv-metadata-panel__key">Droits</span><p class="archiv-metadata-panel__val">' + esc(work.rights) + "</p></div>";
         html += "</div>";
-        html += renderWorkLecture(work);
+        html += '<p class="archiv-lead archiv-oeuvre-cartel__lead">' + esc(work.summary) + "</p>";
         html += '<p class="mt-4"><a href="' + esc(work.source) + '" class="archiv-btn archiv-btn--dark" target="_blank" rel="noopener noreferrer">Source : ' + esc(work.sourceLabel) + "</a></p>";
         if (work.commons && work.commons !== work.source) {
             html += '<p class="archiv-source-commons mt-2"><a href="' + esc(work.commons) + '" class="archiv-text-link" target="_blank" rel="noopener noreferrer">Reproduction documentée (Wikimedia Commons)</a></p>';
         }
         html += "</div></div></div>";
+        html += '<section class="archiv-oeuvre-lecture-block" aria-label="Lecture de l\'œuvre">';
+        html += renderWorkLecture(work);
+        html += "</section>";
         $root.html(html);
         if (window.archivInitMuseumImages) window.archivInitMuseumImages($root[0]);
         initLightbox($root.find(".archiv-zoom-link"));

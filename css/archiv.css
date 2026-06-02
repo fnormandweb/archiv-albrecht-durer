@@ -787,6 +787,25 @@ body.archiv-site .kenburns-section .kenburns-inner {
     border-top: var(--border-hairline);
 }
 
+.archiv-oeuvre-lecture-block {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    padding-top: clamp(2rem, 4vw, 3rem);
+    border-top: var(--border-hairline);
+    width: 100%;
+}
+
+.archiv-oeuvre-lecture-block .archiv-oeuvre-lecture {
+    max-width: none;
+}
+
+.archiv-oeuvre-lecture-block .archiv-oeuvre-lecture p {
+    max-width: none;
+}
+
+.archiv-oeuvre-cartel__lead {
+    margin-top: 1.25rem;
+}
+
 .archiv-oeuvre-cartel {
     padding: 1rem 0;
 }
@@ -1633,8 +1652,8 @@ body.archiv-site[data-archiv-page="sources"] .archiv-prose-block h2:first-of-typ
 }
 
 .archiv-oeuvre-cartel {
-    position: sticky;
-    top: 6rem;
+    position: static;
+    top: auto;
 }
 
 @media (max-width: 991px) {
