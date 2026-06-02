@@ -385,7 +385,7 @@
             if (work.visual) {
                 html += "<h2>" + esc(window.archivT ? window.archivT("regard") : "Regard") + "</h2><p>" + esc(work.visual) + "</p>";
             }
-            var wiki = work.wikipediaEn || work.wikipediaFr;
+            var wiki = window.archivWikipediaUrl ? window.archivWikipediaUrl(work) : (work.wikipediaEn || work.wikipediaFr);
             if (wiki) {
                 html += '<p class="archiv-oeuvre-lecture__wiki"><a href="' + esc(wiki) + '" class="archiv-text-link" target="_blank" rel="noopener noreferrer">' + esc(window.archivT ? window.archivT("deepenWiki") : "Approfondir — article Wikipédia") + "</a></p>";
             }
@@ -566,7 +566,7 @@
             closeTimer = setTimeout(function () {
                 $dd.removeClass("is-open").find(".archiv-nav-dropdown__trigger").attr("aria-expanded", "false");
                 closeTimer = null;
-            }, 280);
+            }, 420);
         }
 
         $dropdowns.each(function () {

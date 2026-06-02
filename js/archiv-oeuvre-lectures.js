@@ -63,7 +63,7 @@
         },
 
         "saint-jerome": {
-            wikipediaFr: "https://fr.wikipedia.org/wiki/Saint_J%C3%A9r%C3%B4me_dans_son_%C3%A9tude",
+            wikipediaFr: "https://fr.wikipedia.org/wiki/Saint_J%C3%A9r%C3%B4me_dans_sa_cellule",
             sections: [
                 {
                     title: "Description",

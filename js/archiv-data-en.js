@@ -47,6 +47,7 @@
 
         "melencolia": {
             wikipediaEn: "https://en.wikipedia.org/wiki/Melencolia_I",
+            wikipediaFr: "https://fr.wikipedia.org/wiki/Melencolia_I",
             sections: [
                 {
                     title: "Description",
@@ -67,6 +68,7 @@
 
         "saint-jerome": {
             wikipediaEn: "https://en.wikipedia.org/wiki/St._Jerome_in_His_Study_(D%C3%BCrer)",
+            wikipediaFr: "https://fr.wikipedia.org/wiki/Saint_J%C3%A9r%C3%B4me_dans_sa_cellule",
             sections: [
                 {
                     title: "Description",
@@ -659,6 +661,13 @@
         global.ARCHIV_VOYAGES = VOYAGES_EN;
         global.ARCHIV_TREATISES = TREATISES_EN;
 
+        var frWikiByWork = {};
+        if (global.ARCHIV_OEUVRE_LECTURES) {
+            Object.keys(global.ARCHIV_OEUVRE_LECTURES).forEach(function (id) {
+                var frLec = global.ARCHIV_OEUVRE_LECTURES[id];
+                if (frLec && frLec.wikipediaFr) frWikiByWork[id] = frLec.wikipediaFr;
+            });
+        }
         if (global.ARCHIV_OEUVRE_LECTURES_EN) {
             global.ARCHIV_OEUVRE_LECTURES = global.ARCHIV_OEUVRE_LECTURES || {};
             Object.keys(global.ARCHIV_OEUVRE_LECTURES_EN).forEach(function (id) {
@@ -682,12 +691,9 @@
             var lec = global.ARCHIV_OEUVRE_LECTURES && global.ARCHIV_OEUVRE_LECTURES[o.id];
             if (lec) {
                 if (lec.sections) o.sections = lec.sections;
-                if (lec.wikipediaEn) {
-                    o.wikipediaEn = lec.wikipediaEn;
-                    o.wikipediaFr = lec.wikipediaEn;
-                } else if (lec.wikipediaFr) {
-                    o.wikipediaFr = lec.wikipediaFr;
-                }
+                if (lec.wikipediaEn) o.wikipediaEn = lec.wikipediaEn;
+                if (frWikiByWork[o.id]) o.wikipediaFr = frWikiByWork[o.id];
+                else if (lec.wikipediaFr) o.wikipediaFr = lec.wikipediaFr;
             }
         });
     };

@@ -167,6 +167,14 @@
         return global.archivPageUrl("oeuvre.html?id=" + id);
     };
 
+    global.archivWikipediaUrl = function (work) {
+        if (!work) return "";
+        if (global.archivLang() === "fr") {
+            return work.wikipediaFr || work.wikipediaEn || "";
+        }
+        return work.wikipediaEn || work.wikipediaFr || "";
+    };
+
     global.ARCHIV_CATEGORY_LABELS = function () {
         return {
             peinture: global.archivT("painting"),
