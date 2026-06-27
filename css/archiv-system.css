@@ -786,51 +786,64 @@ body.archiv-site[data-archiv-page="accueil"] .archiv-museum-hero__inner {
     margin-left: 0.35rem;
 }
 
-.archiv-lang-toggle {
-    display: inline-flex;
-    align-items: stretch;
-    border: 1px solid rgba(182, 138, 58, 0.38);
-    background: rgba(11, 9, 7, 0.55);
-    box-shadow: inset 0 1px 0 rgba(242, 235, 221, 0.04);
-}
-
-.archiv-lang-toggle__seg {
+/* Sélecteur de langue — classique, encadré uniquement sur la langue active */
+.archiv-lang {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    min-width: 2.35rem;
-    padding: 0.38rem 0.65rem;
+    gap: 0.45rem;
     font-family: var(--font-ui);
-    font-size: 0.6rem;
-    font-variant-caps: all-small-caps;
-    letter-spacing: 0.14em;
-    text-decoration: none;
-    color: rgba(242, 235, 221, 0.5);
-    border: none;
-    background: transparent;
-    transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
-    position: relative;
-}
-
-.archiv-lang-toggle__seg + .archiv-lang-toggle__seg {
-    border-left: 1px solid rgba(182, 138, 58, 0.28);
-}
-
-.archiv-lang-toggle__seg:hover,
-.archiv-lang-toggle__seg:focus-visible {
-    color: var(--aged-gold);
-    outline: none;
-    z-index: 1;
-}
-
-.archiv-lang-toggle__seg.is-active {
-    color: var(--soft-white);
-    background: rgba(182, 138, 58, 0.16);
-    box-shadow: inset 0 0 0 1px rgba(182, 138, 58, 0.22);
-}
-
-.archiv-lang-toggle__code {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
     line-height: 1;
+}
+
+.archiv-lang__link {
+    display: inline-block;
+    padding: 0.2rem 0.42rem;
+    color: rgba(230, 216, 191, 0.48);
+    text-decoration: none;
+    border: 1px solid transparent;
+    background: transparent;
+}
+
+.archiv-lang__link.is-active {
+    color: rgba(230, 216, 191, 0.95);
+    border-color: rgba(182, 138, 58, 0.48);
+}
+
+.archiv-lang__link:hover {
+    color: rgba(230, 216, 191, 0.48);
+    background: transparent;
+}
+
+.archiv-lang__link.is-active:hover {
+    color: rgba(230, 216, 191, 0.95);
+}
+
+.archiv-lang__link:focus-visible {
+    outline: 1px solid rgba(182, 138, 58, 0.55);
+    outline-offset: 2px;
+}
+
+.archiv-lang__sep {
+    color: rgba(182, 138, 58, 0.32);
+    font-size: 12px;
+    user-select: none;
+    pointer-events: none;
+}
+
+.archiv-lang--wide {
+    width: 100%;
+    justify-content: center;
+    gap: 0.65rem;
+}
+
+.archiv-lang--wide .archiv-lang__link {
+    flex: 0 1 auto;
+    min-width: 2.75rem;
+    text-align: center;
+    padding: 0.45rem 0.65rem;
 }
 
 /* Mobile menu — language block */
@@ -844,16 +857,6 @@ body.archiv-site[data-archiv-page="accueil"] .archiv-museum-hero__inner {
 .archiv-nav-mobile-lang .archiv-nav-mobile-group__label {
     display: block;
     margin-bottom: 0.65rem;
-}
-
-.archiv-lang-toggle--block {
-    width: 100%;
-}
-
-.archiv-lang-toggle--block .archiv-lang-toggle__seg {
-    flex: 1;
-    min-height: 2.75rem;
-    font-size: 0.65rem;
 }
 
 @media (max-width: 991px) {

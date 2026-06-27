@@ -1,0 +1,394 @@
+/**
+ * ARCHIV × Koch — Renaissance Premium skin for Albrecht Dürer.
+ * Loaded AFTER the Koch Webflow CSS. Two jobs:
+ *  1. Convert the whole colour direction from Koch (blush/navy finance) to the
+ *     ARCHIV palette (ink, ivory paper, stone, sepia, discreet copper/brass).
+ *  2. A few structural/legibility tweaks (nav bar, hero framing, gallery).
+ */
+
+/* =========================================================================
+   1. DESIGN TOKENS — palette ARCHIV Renaissance Premium
+   ========================================================================= */
+:root {
+    --color-ink:         #0B0A08;   /* noir encre profond            */
+    --color-ink-soft:    #15110D;   /* noir brun profond             */
+    --color-paper:       #F3EBDD;   /* ivoire papier ancien          */
+    --color-paper-light: #FAF6ED;   /* ivoire clair / blanc cassé    */
+    --color-paper-dim:   #EADFCB;   /* ivoire ombré (alt / bordures) */
+    --color-stone:       #B8B0A3;   /* gris pierre                   */
+    --color-sepia:       #7A573A;   /* sépia                         */
+    --color-brown:       #4A3426;   /* brun encre                    */
+    --color-copper:      #B57945;   /* cuivre discret                */
+    --color-brass:       #C6A15B;   /* laiton doux                   */
+    --color-border:      rgba(74, 52, 38, 0.18);
+    --color-border-dark: rgba(198, 161, 91, 0.20);
+    --color-shadow:      rgba(11, 10, 8, 0.18);
+
+    --text-on-paper:        #1A130D; /* corps de texte sur ivoire    */
+    --text-on-paper-soft:   #4A3426; /* secondaire sur ivoire        */
+    --text-on-ink:          #F3EBDD; /* corps de texte sur encre     */
+    --text-on-ink-soft:     #CFC2A9; /* secondaire sur encre         */
+
+    /* ---- Remap des variables Koch → palette ARCHIV (conversion globale) ---- */
+    --midnight-blue:   #1A130D;   /* texte principal : marine → encre brune  */
+    --main-black:      #15110D;
+    --footer-black:    #0B0A08;   /* fonds sombres → encre profonde          */
+    --black:           #0B0A08;
+    --seashell:        #F3EBDD;   /* fonds clairs : rose poudré → ivoire      */
+    --seashell-2:      #FAF6ED;
+    --floral-white:    #FAF6ED;
+    --white:           #F3EBDD;   /* blanc → blanc cassé (cadres, texte nav)  */
+    --misty-rose:      #C6A15B;   /* accent sur sombre : rose → laiton        */
+    --rosy-brown:      #C2A06A;   /* accent discret                          */
+    --sienna:          #B57945;   /* eyebrow : sienna terne → cuivre          */
+    --sienna-2:        rgba(181, 121, 69, 0.30);
+    --dim-grey:        #4A3426;   /* secondaire → brun encre                 */
+    --cadet-blue:      #8A7C66;   /* bleu-vert finance → pierre chaude        */
+    --dark-slate-blue: #4A3426;   /* slate → brun                            */
+}
+
+body { background-color: var(--color-ink); }
+
+/* =========================================================================
+   2. TEXTE — encre sur ivoire / ivoire sur encre (contraste AAA)
+   ========================================================================= */
+.heading, .is-basic-title, .is-grid-title-1, .is-grid-title-2,
+.basic-paragraph, .paragraph-width, .paragraph-width-2 { color: var(--text-on-paper); }
+.with-bg-light-brown .basic-paragraph,
+.with-bg-light-brown .paragraph-width { color: var(--text-on-paper-soft); }
+
+/* Sections sombres (hero / noir) : texte ivoire, secondaire ivoire atténué */
+.with-bg-black, .with-hero-styles { color: var(--text-on-ink); }
+.with-bg-black .heading, .with-hero-styles .heading { color: var(--color-paper); }
+.with-bg-black .basic-paragraph, .with-bg-black .paragraph-width,
+.with-hero-styles .basic-paragraph { color: var(--text-on-ink-soft); }
+
+/* Eyebrows : cuivre sur ivoire, laiton sur encre */
+.uppercase-text { color: var(--color-copper); }
+.with-bg-black .uppercase-text, .with-hero-styles .uppercase-text { color: var(--color-brass); }
+
+/* Alignement : Koch centre is-grid-title-2 ; à gauche dans nos blocs/frises */
+.basic-grid-flex .heading,
+.grid-content-1 .heading,
+.vertical-content-wrapper .heading { text-align: left; }
+
+/* =========================================================================
+   3. NAVIGATION — barre encre nette, bord droit, lisibilité AAA
+   ========================================================================= */
+.navbar {
+    position: absolute;
+    background: rgba(11, 10, 8, 0.97);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--color-border-dark);
+    padding-top: clamp(0.85rem, 1.4vw, 1.15rem);
+    padding-bottom: clamp(0.85rem, 1.4vw, 1.15rem);
+    box-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+}
+.navbar .nav-inner { padding-top: 0; padding-bottom: 0; }
+.navbar .nav-text { color: var(--color-paper); }
+.navbar .nav-link-block:hover .nav-text { color: var(--color-brass); }
+
+/* Logo : « ALBRECHT DÜRER » mis en avant (sujet principal) + sigle rond AD
+   à la même échelle ; « ARCHIV » reste un petit label cuivré. */
+.brand { padding-top: 0.35em; padding-bottom: 0.35em; }
+.brand-name {
+    letter-spacing: 0.11em; text-indent: 0; font-size: 1.72em;
+    white-space: nowrap; color: var(--color-paper); line-height: 1;
+}
+.logo-hexagon { width: 2em; margin-left: 0.85em; margin-right: 0.1em; opacity: 0.95; }
+.brand-slogan {
+    margin-left: 1em; letter-spacing: 0.28em; font-size: 0.62em;
+    align-self: center; color: var(--color-brass);
+}
+@media (max-width: 991px) {
+    .brand-name { font-size: 1.3em; letter-spacing: 0.07em; }
+    .logo-hexagon { display: inline-block; width: 1.5em; margin-left: 0.6em; }
+    .brand-slogan { display: none; }
+}
+@media (max-width: 479px) {
+    .brand-name { font-size: 1.05em; }
+    .logo-hexagon { display: none; }
+}
+
+/* --- Menu plein écran : ouverture INSTANTANÉE et fiable -------------------
+   On reprend la main sur l'IX2 Koch (lent + bogue d'une page à l'autre) :
+   la visibilité est pilotée par une classe `rp-open` sur <html>, en !important
+   pour battre les styles inline de Webflow. Fondu rapide (0.2 s).            */
+.fullscreen-menu {
+    display: flex !important;
+    opacity: 0 !important; visibility: hidden !important; pointer-events: none !important;
+    transition: opacity 0.2s ease, visibility 0s linear 0.2s !important;
+}
+html.rp-open .fullscreen-menu {
+    opacity: 1 !important; visibility: visible !important; pointer-events: auto !important;
+    transition: opacity 0.2s ease !important;
+}
+html.rp-open { overflow: hidden; }
+/* L'IX2 Koch place les panneaux (fond encre, image, bordures) hors-champ pour
+   son slide-in. On l'a court-circuité → on force tout en position finale. */
+html.rp-open .fullscreen-menu .menu-bg-1,
+html.rp-open .fullscreen-menu .menu-bg-animation-for-image,
+html.rp-open .fullscreen-menu .menu-delay-for-animations,
+html.rp-open .fullscreen-menu .menu-border,
+html.rp-open .fullscreen-menu .menu-image { transform: none !important; }
+html.rp-open .fullscreen-menu .menu-bg-1,
+html.rp-open .fullscreen-menu .menu-column-1-bg,
+html.rp-open .fullscreen-menu .menu-image,
+html.rp-open .fullscreen-menu .menu-bg-animation-for-image,
+html.rp-open .fullscreen-menu .menu-border { opacity: 1 !important; }
+/* Empilement : fond encre derrière, contenu (liens, image, contact) devant. */
+html.rp-open .fullscreen-menu .menu-bg-1,
+html.rp-open .fullscreen-menu .menu-bg-animation-for-image,
+html.rp-open .fullscreen-menu .menu-delay-for-animations { z-index: 0 !important; }
+html.rp-open .fullscreen-menu .menu-image { z-index: 1 !important; }
+html.rp-open .fullscreen-menu .menu-column-1 { z-index: 3 !important; }
+html.rp-open .fullscreen-menu .menu-column-2 { position: relative !important; z-index: 3 !important; }
+html.rp-open .fullscreen-menu .close-button { z-index: 6 !important; }
+/* Petite respiration : les liens montent légèrement à l'ouverture */
+.fullscreen-menu .menu-main-links { transition: transform 0.4s cubic-bezier(0.22,1,0.36,1) 0.04s; }
+html.rp-open .fullscreen-menu .menu-main-links { transform: translateY(0) !important; }
+
+/* =========================================================================
+   4. BOUTONS & LIENS — raffinés, cuivre, clairement visibles
+   ========================================================================= */
+.main-button {
+    opacity: 1;
+    color: var(--color-paper);
+    border: 1px solid rgba(181, 121, 69, 0.55);
+    border-radius: 0;                       /* coins droits, plus muséal */
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+.main-button:hover { border-color: var(--color-copper); background-color: rgba(181, 121, 69, 0.14); }
+.main-button.is-dark { background-color: var(--color-ink-soft); color: var(--color-paper); border-color: rgba(181, 121, 69, 0.50); }
+.main-button.is-dark:hover { background-color: var(--color-copper); color: var(--color-ink); border-color: var(--color-copper); }
+.main-button.is-explore { border-color: rgba(198, 161, 91, 0.6); }
+.button-text { color: inherit; }
+/* Bouton « fantôme » sur fond clair : texte encre + bordure brune (lisible) */
+.with-bg-light-brown .main-button:not(.is-dark),
+.with-bg-brown-and-borders .main-button:not(.is-dark) {
+    color: var(--text-on-paper); border-color: rgba(74, 52, 38, 0.42);
+}
+.with-bg-light-brown .main-button:not(.is-dark):hover,
+.with-bg-brown-and-borders .main-button:not(.is-dark):hover {
+    color: var(--color-brown); border-color: var(--color-brown);
+    background-color: rgba(74, 52, 38, 0.07);
+}
+
+/* Liens footer / divers */
+.footer a:hover .footer-link-2 > div,
+.footer-link-2:hover > div { color: var(--color-brass); }
+.menu-link { color: rgba(243, 235, 221, 0.72); }
+.menu-link:hover, .menu-link.w--current { color: var(--color-copper); }
+.menu-contact-link-text { color: var(--color-paper); }
+.menu-contact-link:hover .menu-contact-link-text { color: var(--color-brass); }
+
+/* =========================================================================
+   5. HERO INTÉRIEUR — une image, composition éditoriale à gauche
+   ========================================================================= */
+/* Hauteur FLEXIBLE (min-height) : un titre long fait grandir le hero au lieu
+   d'être rogné ; padding-top dégage la navbar absolue. */
+.with-hero-styles.is-inner { position: relative; overflow: hidden; min-height: 80vh; }
+.with-hero-styles.is-inner .ad-hero-bg { position: absolute; inset: 0; z-index: 0; }
+.with-hero-styles.is-inner .ad-hero-bg img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: center 22%; transform: scale(1.02);
+}
+.with-hero-styles.is-inner .is-hero-4-title {
+    font-size: clamp(2.7rem, 6vw, 5rem); line-height: 1.06;
+}
+.with-hero-styles.is-inner .ad-hero-veil {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+        linear-gradient(90deg, rgba(11,10,8,0.93) 0%, rgba(11,10,8,0.76) 36%, rgba(11,10,8,0.32) 66%, rgba(11,10,8,0.46) 100%),
+        linear-gradient(180deg, rgba(11,10,8,0.32) 0%, rgba(11,10,8,0.10) 30%, rgba(11,10,8,0.58) 100%);
+}
+.with-hero-styles.is-inner .fullscreen-hero-2 {
+    position: relative; z-index: 2; min-height: 80vh;
+    display: flex; align-items: center; box-sizing: border-box;
+    /* dégage la navbar réelle (mesurée en JS), + respiration */
+    padding: calc(var(--nav-h, 110px) + clamp(1.4rem, 3vh, 3rem)) 0 clamp(40px, 6vh, 64px);
+}
+.with-hero-styles.is-inner .container { width: 100%; }
+.with-hero-styles.is-inner .hero-2-title-block { max-width: 42rem; margin: 0; text-align: left; align-items: flex-start; }
+.with-hero-styles.is-inner .heading,
+.with-hero-styles.is-inner .hero-eyebrow,
+.with-hero-styles.is-inner .hero-lead,
+.with-hero-styles.is-inner .buttons-flex-1 { text-align: left; margin-left: 0; }
+.with-hero-styles.is-inner .buttons-flex-1 { justify-content: flex-start; }
+.with-hero-styles.is-inner .hero-lead { margin-right: auto; }
+.hero-eyebrow {
+    font-family: 'Big Shoulders Text', sans-serif;
+    letter-spacing: 0.32em; text-transform: uppercase;
+    font-size: 0.8rem; color: var(--color-brass); margin: 0 0 1.1rem;
+}
+.hero-lead {
+    font-family: 'Caudex', serif; color: var(--color-paper);
+    font-size: clamp(1rem, 1.3vw, 1.2rem); line-height: 1.6;
+    max-width: 34rem; margin: 1.4rem 0 2rem; opacity: 0.94;
+}
+
+/* Hero — liste de liens numérotés (remplace les boutons, plus éditorial) */
+.rp-hero-links { margin-top: 2.3rem; max-width: 30rem; }
+.rp-hero-links__label {
+    font-family: 'Big Shoulders Text', sans-serif; text-transform: uppercase;
+    letter-spacing: 0.22em; font-size: 0.72rem; color: var(--color-brass); margin: 0 0 0.4rem;
+}
+.rp-hero-link {
+    display: flex; align-items: baseline; gap: 1.1rem;
+    padding: 0.95rem 0; border-top: 1px solid rgba(198, 161, 91, 0.22);
+    text-decoration: none; transition: padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.rp-hero-link:last-child { border-bottom: 1px solid rgba(198, 161, 91, 0.22); }
+.rp-hero-link__num {
+    font-family: 'Big Shoulders Text', sans-serif; font-size: 0.85rem;
+    color: var(--color-brass); letter-spacing: 0.06em; min-width: 1.3em;
+}
+.rp-hero-link__dash { color: var(--color-brass); opacity: 0.55; }
+.rp-hero-link__label {
+    font-family: 'Caudex', serif; text-transform: uppercase; letter-spacing: 0.14em;
+    font-size: 1.05rem; color: var(--color-paper); transition: color 0.3s ease;
+}
+.rp-hero-link:hover { padding-left: 0.5rem; }
+.rp-hero-link:hover .rp-hero-link__label { color: var(--color-brass); }
+
+/* Hero ACCUEIL (slider Koch) : cadrage ancré vers le visage / sujet */
+.slider-image, .slider-image-last,
+.slider-image-block-1 img, .slider-image-block-2 img { object-position: center 20%; }
+
+/* =========================================================================
+   6. GALERIE MUSÉALE — œuvre entière sur passe-partout encre, cartouche ivoire
+   ========================================================================= */
+.gal-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.2rem, 2.4vw, 2.2rem); margin-top: clamp(2rem, 4vw, 3.4rem);
+}
+.gal-card { text-decoration: none; display: flex; flex-direction: column; }
+.gal-frame {
+    position: relative; aspect-ratio: 4 / 5; overflow: hidden;
+    background: var(--color-ink-soft);
+    border: 1px solid var(--color-border-dark);
+    display: flex; align-items: center; justify-content: center;
+    padding: clamp(0.7rem, 1.6vw, 1.3rem);
+    box-shadow: inset 0 0 0 1px rgba(243, 235, 221, 0.05),
+                inset 0 0 44px rgba(0, 0, 0, 0.38);
+    transition: border-color 0.5s ease;
+}
+.gal-card:hover .gal-frame { border-color: rgba(181, 121, 69, 0.55); }
+.gal-frame img {
+    max-width: 100%; max-height: 100%; width: auto; height: auto;
+    object-fit: contain;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    filter: saturate(0.97);
+}
+.gal-card:hover .gal-frame img { transform: scale(1.025); }
+.gal-tag {
+    position: absolute; top: 0.8rem; left: 0.8rem;
+    font-family: 'Big Shoulders Text', sans-serif; font-size: 0.62rem;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-paper);
+    background: rgba(11, 10, 8, 0.62); padding: 0.32rem 0.6rem;
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+}
+.gal-cap-title {
+    font-family: 'Big Shoulders Text', sans-serif; font-weight: 600;
+    font-size: 1.18rem; letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--text-on-paper); margin: 0.85em 0 0.2em; line-height: 1.1;
+    transition: color 0.3s ease;
+}
+.gal-cap-meta { font-family: 'Caudex', serif; font-size: 0.86rem; color: var(--color-sepia); margin: 0; }
+.gal-card:hover .gal-cap-title { color: var(--color-copper); }
+.with-bg-black .gal-cap-title { color: var(--color-paper); }
+.with-bg-black .gal-cap-meta { color: var(--color-brass); }
+@media (max-width: 860px) { .gal-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .gal-grid { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   6b. FICHE ŒUVRE — hero sobre + œuvre présentée + lecture éditoriale
+   ========================================================================= */
+/* Hero de fiche : plus court, l'œuvre floutée en ambiance (pas de crop gênant) */
+.with-hero-styles.is-inner.is-oeuvre,
+.with-hero-styles.is-inner.is-oeuvre .fullscreen-hero-2 { min-height: 58vh; }
+.with-hero-styles.is-inner.is-oeuvre .is-hero-4-title { font-size: clamp(2.4rem, 5.2vw, 4.2rem); }
+.with-hero-styles.is-inner.is-oeuvre .ad-hero-bg img {
+    filter: blur(28px) brightness(0.42) saturate(0.85);
+    object-position: center; transform: scale(1.15);
+}
+
+.oe-grid {
+    display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 4.5vw, 4.5rem); align-items: start;
+}
+.oe-figure { margin: 0; position: sticky; top: 118px; }
+.oe-frame {
+    background: var(--color-ink-soft);
+    border: 1px solid var(--color-border-dark);
+    padding: clamp(1rem, 2.6vw, 2.1rem);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 36px 70px -44px var(--color-shadow),
+                inset 0 0 0 1px rgba(243,235,221,0.05);
+}
+.oe-frame img { max-width: 100%; max-height: 76vh; width: auto; height: auto; object-fit: contain; display: block; }
+.oe-credit { font-family: 'Caudex', serif; font-size: 0.8rem; color: var(--color-sepia); margin: 1rem 0 0; line-height: 1.5; }
+.oe-read .uppercase-text { display: block; margin: 1.9em 0 0.7em; }
+.oe-read .uppercase-text:first-child { margin-top: 0; }
+.oe-read .basic-paragraph { margin: 0; line-height: 1.78; font-size: 1.02rem; }
+.oe-details {
+    display: grid; grid-template-columns: auto 1fr; gap: 0.55rem 1.6rem;
+    margin: 2.4em 0 0; padding-top: 1.7em; border-top: 1px solid var(--color-border);
+}
+.oe-details dt {
+    font-family: 'Big Shoulders Text', sans-serif; text-transform: uppercase;
+    letter-spacing: 0.13em; font-size: 0.72rem; color: var(--color-copper); padding-top: 0.15em;
+}
+.oe-details dd { margin: 0; font-family: 'Caudex', serif; color: var(--text-on-paper-soft); font-size: 0.96rem; }
+@media (max-width: 860px) {
+    .oe-grid { grid-template-columns: 1fr; gap: 2.2rem; }
+    .oe-figure { position: static; }
+}
+
+/* =========================================================================
+   7. DÉTAILS — survol d'image, séparateurs, cadres
+   ========================================================================= */
+.bg-for-animation.is-light-brown { background-color: var(--color-paper-dim); }
+.with-bg-light-brown { border-top-color: var(--color-border); border-bottom-color: var(--color-border); }
+.project-line, .blog-main-line { background-color: var(--color-border); }
+
+/* « See also » : bloc entièrement centré (titre + boutons), quel que soit le nombre */
+.with-bg-brown-and-borders .vertical-content-wrapper { text-align: center; }
+.with-bg-brown-and-borders .flex-title-1 { justify-content: center; }
+.with-bg-brown-and-borders .vertical-content-wrapper .heading { text-align: center; }
+
+/* Footer : image de fond cadrée vers le haut (ne pas couper la tête) */
+.footer .cover-image { object-position: center top; }
+
+/* Footer nav : une seule rangée propre, centrée, sans empilement bancal */
+.rp-footer-nav {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 0.9rem 2.1rem; width: 100%;
+}
+.rp-footer-nav .footer-link-2 { margin: 0; }
+.rp-footer-nav .footer-link-2 div {
+    font-size: 0.74rem; letter-spacing: 0.16em; white-space: nowrap;
+}
+
+/* Footer — bloc identité (monogramme + marque + description + url) */
+.rp-footer-id { max-width: 34rem; }
+.rp-footer-sigle { width: 46px; height: auto; display: block; margin-bottom: 1.25rem; opacity: 0.9; }
+.rp-footer-id .footer-text-1 {
+    font-family: 'Big Shoulders Text', sans-serif;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    font-size: 0.92rem; color: var(--color-paper); margin: 0 0 1rem;
+}
+.rp-footer-id .footer-contact-link-block { display: block; margin: 0; }
+.rp-footer-id .footer-contact-link-text {
+    font-family: 'Caudex', serif; text-transform: none; letter-spacing: 0;
+    font-size: 1rem; line-height: 1.6; color: var(--text-on-ink-soft);
+    margin-bottom: 0.4rem; transition: color 0.3s ease;
+}
+/* la dernière ligne (l'URL) en accent cuivre */
+.rp-footer-id .footer-contact-link-block:last-child .footer-contact-link-text {
+    color: var(--color-brass); font-size: 0.82rem; letter-spacing: 0.08em;
+    text-transform: uppercase; font-family: 'Big Shoulders Text', sans-serif;
+    margin-top: 0.7rem;
+}
+.rp-footer-id .footer-contact-link-block:hover .footer-contact-link-text { color: var(--color-copper); }

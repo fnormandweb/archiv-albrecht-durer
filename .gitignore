@@ -32,3 +32,14 @@ npm-debug.log*
 
 # Dépendances (si ajoutées plus tard)
 node_modules/
+
+# Archive locale du template Koch (24 Mo, redondant avec koch/)
+template.zip
+
+# Config locale de l'outillage (préviews, permissions)
+.claude/
+
+# Sauvegardes de pages (préservées en local + historique git ; non déployées)
+/index-classic.html
+/index-rp.html
+/fr/index-classic.html
