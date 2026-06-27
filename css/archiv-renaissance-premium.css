@@ -1,0 +1,992 @@
+/**
+ * ARCHIV — Renaissance Premium (skin "RP")
+ * -----------------------------------------------------------------------------
+ * Transposition de la structure premium du template Koch Finance dans l'univers
+ * muséal / Renaissance d'Albrecht Dürer. Tout est scopé sous `body.archiv-rp`
+ * pour ne jamais entrer en conflit avec le reste du système ARCHIV.
+ *
+ * Référence de rythme  : /koch (hero plein écran, blocs numérotés, énoncé
+ *                        éditorial géant, case studies, repères chiffrés,
+ *                        manifeste, cahiers, footer institutionnel).
+ * Identité             : encre noire, papier ivoire, pierre claire, brun encre,
+ *                        cuivre / laiton discret, bordures fines, ombres douces.
+ * -----------------------------------------------------------------------------
+ */
+
+body.archiv-rp {
+    /* Palette locale (alias des tokens ARCHIV existants) */
+    --rp-ink: #14110D;            /* encre noire profonde */
+    --rp-ink-2: #1B1611;          /* encre, panneau */
+    --rp-ivory: #ECE3CF;          /* papier ivoire ancien */
+    --rp-ivory-2: #E4D8BE;        /* papier, panneau alterné */
+    --rp-ivory-soft: #F4EEE0;     /* blanc cassé */
+    --rp-stone: #6E6456;          /* gris pierre */
+    --rp-brown-ink: #3A2418;      /* brun encre */
+    --rp-copper: #B68A3A;         /* cuivre / laiton discret */
+    --rp-copper-dim: #8C6728;     /* laiton patiné */
+    --rp-line-paper: rgba(58, 36, 24, 0.16);   /* filet fin sur ivoire */
+    --rp-line-paper-strong: rgba(58, 36, 24, 0.30);
+    --rp-line-dark: rgba(236, 227, 207, 0.16); /* filet fin sur encre */
+    --rp-line-dark-strong: rgba(236, 227, 207, 0.32);
+    --rp-shadow-soft: 0 24px 60px -32px rgba(20, 17, 13, 0.55);
+    --rp-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    background: var(--rp-ink);
+    color: var(--rp-ivory);
+}
+
+/* La page d'accueil RP ne montre pas le hero musée fantôme ni l'ancien fond. */
+body.archiv-rp .archiv-museum-hero { display: none !important; }
+
+/* =========================================================================
+   1. PRIMITIVES — eyebrow, numéro, filets, boutons
+   ========================================================================= */
+
+.rp-eyebrow {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--rp-copper);
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.rp-eyebrow::before {
+    content: "";
+    width: 1.85rem;
+    height: 1px;
+    background: var(--rp-copper);
+    opacity: 0.7;
+}
+.rp-eyebrow--plain::before { display: none; }
+
+.rp-num {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--rp-copper);
+    opacity: 0.85;
+    font-variant-numeric: lining-nums;
+}
+
+/* Boutons RP — sobres, filet fin, flèche cuivre */
+body.archiv-rp .rp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.95rem 1.6rem;
+    border: 1px solid var(--rp-copper);
+    color: var(--rp-ivory-soft);
+    background: transparent;
+    border-radius: 0;
+    transition: background-color 0.45s var(--rp-ease), color 0.45s var(--rp-ease),
+                border-color 0.45s var(--rp-ease);
+}
+body.archiv-rp .rp-btn .rp-btn__arrow {
+    display: inline-block;
+    transition: transform 0.45s var(--rp-ease);
+}
+body.archiv-rp .rp-btn:hover {
+    background: var(--rp-copper);
+    color: var(--rp-ink);
+    border-color: var(--rp-copper);
+}
+body.archiv-rp .rp-btn:hover .rp-btn__arrow { transform: translateX(4px); }
+
+body.archiv-rp .rp-btn--solid {
+    background: var(--rp-copper);
+    color: var(--rp-ink);
+}
+body.archiv-rp .rp-btn--solid:hover {
+    background: transparent;
+    color: var(--rp-ivory-soft);
+}
+/* Variante sur fond ivoire */
+body.archiv-rp .rp-section--ivory .rp-btn {
+    color: var(--rp-brown-ink);
+    border-color: var(--rp-copper-dim);
+}
+body.archiv-rp .rp-section--ivory .rp-btn:hover {
+    background: var(--rp-copper-dim);
+    color: var(--rp-ivory-soft);
+}
+
+/* Lien texte discret, soulignement animé */
+body.archiv-rp .rp-link {
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--rp-copper);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: border-color 0.4s var(--rp-ease), gap 0.4s var(--rp-ease);
+}
+body.archiv-rp .rp-link:hover {
+    border-color: var(--rp-copper);
+    gap: 0.85rem;
+}
+body.archiv-rp .rp-section--ivory .rp-link { color: var(--rp-copper-dim); }
+
+/* =========================================================================
+   2. SECTIONS — fonds, rythme vertical, en-têtes numérotés
+   ========================================================================= */
+
+.rp-section {
+    position: relative;
+    padding: clamp(4.5rem, 9vw, 8rem) 0;
+}
+.rp-section--ink    { background: var(--rp-ink);    color: var(--rp-ivory); }
+.rp-section--ink-2  { background: var(--rp-ink-2);  color: var(--rp-ivory); }
+.rp-section--ivory  { background: var(--rp-ivory);  color: var(--rp-brown-ink); }
+.rp-section--ivory-2{ background: var(--rp-ivory-2);color: var(--rp-brown-ink); }
+.rp-section--tight  { padding-top: clamp(3rem, 6vw, 5rem); padding-bottom: clamp(3rem, 6vw, 5rem); }
+
+/* Filet fin de séparation entre deux sections de même famille */
+.rp-section--bordered-top::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 1px;
+    background: var(--rp-line-paper);
+}
+.rp-section--ink.rp-section--bordered-top::before,
+.rp-section--ink-2.rp-section--bordered-top::before { background: var(--rp-line-dark); }
+
+/* En-tête de section : numéro + eyebrow + titre + chapeau */
+.rp-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.rp-head__num { padding-top: 0.35rem; }
+.rp-head__body { max-width: 46rem; }
+.rp-head__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2rem, 4.4vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: 0.005em;
+    margin: 0.9rem 0 0;
+    color: inherit;
+}
+.rp-section--ink .rp-head__title,
+.rp-section--ink-2 .rp-head__title { color: var(--rp-ivory-soft); }
+.rp-head__lead {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 1.2rem 0 0;
+    color: inherit;
+    opacity: 0.92;
+    max-width: 40rem;
+}
+/* En-tête « éclaté » : titre à gauche, action à droite (cf. Koch grid header) */
+.rp-head--split { grid-template-columns: auto 1fr auto; align-items: end; }
+.rp-head--split .rp-head__action { padding-bottom: 0.35rem; white-space: nowrap; }
+
+@media (max-width: 700px) {
+    .rp-head { grid-template-columns: 1fr; gap: 1rem; }
+    .rp-head--split { grid-template-columns: 1fr; }
+    .rp-head--split .rp-head__action { margin-top: 1.5rem; }
+    .rp-head__num { font-size: 2.2rem; }
+}
+
+/* =========================================================================
+   3. HERO — plein écran, titre noble, monogramme AD, carte flottante
+   ========================================================================= */
+
+.rp-hero {
+    position: relative;
+    min-height: calc(100vh - var(--archiv-header-h, 88px));
+    min-height: calc(100dvh - var(--archiv-header-h, 88px));
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--rp-ink);
+    isolation: isolate;
+}
+.rp-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-size: cover;
+    background-position: center 18%;
+    background-repeat: no-repeat;
+    filter: brightness(0.72) saturate(0.92);
+    transform: scale(1.04);
+}
+.rp-hero__veil {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(180deg, rgba(20,17,13,0.55) 0%, rgba(20,17,13,0.20) 30%, rgba(20,17,13,0.78) 100%),
+        linear-gradient(90deg, rgba(20,17,13,0.85) 0%, rgba(20,17,13,0.45) 48%, rgba(20,17,13,0.15) 100%);
+}
+.rp-hero__inner {
+    position: relative;
+    width: 100%;
+    max-width: var(--content-max, 76rem);
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.15rem, 4vw, 2.5rem) clamp(2.5rem, 5vw, 4rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "content card";
+    align-items: end;
+    gap: 2rem;
+}
+.rp-hero__content { grid-area: content; max-width: 46rem; }
+
+.rp-hero__eyebrow {
+    color: var(--rp-copper);
+    margin-bottom: 1.6rem;
+}
+body.archiv-rp .rp-hero__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(3.2rem, 8.5vw, 7rem);
+    line-height: 0.98;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: var(--rp-ivory-soft);
+    text-shadow: 0 2px 40px rgba(0,0,0,0.45);
+    max-width: none;
+}
+.rp-hero__title-sub {
+    display: block;
+    font-style: italic;
+    font-size: 0.5em;
+    letter-spacing: 0.01em;
+    color: var(--rp-copper);
+    margin-top: 0.4rem;
+}
+.rp-hero__lead {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    line-height: 1.7;
+    color: var(--rp-ivory);
+    opacity: 0.94;
+    max-width: 38rem;
+    margin: 1.8rem 0 2.2rem;
+}
+.rp-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Monogramme AD discret, filigrane haut-droit du hero */
+.rp-hero__monogram {
+    position: absolute;
+    top: clamp(1.5rem, 4vw, 3rem);
+    right: clamp(1.15rem, 4vw, 3rem);
+    width: clamp(64px, 9vw, 116px);
+    height: auto;
+    opacity: 0.5;
+    z-index: 0;
+    filter: drop-shadow(0 2px 14px rgba(0,0,0,0.5));
+    pointer-events: none;
+}
+
+/* Carte flottante « œuvre du jour » (cf. hero-case Koch) */
+.rp-hero__card {
+    grid-area: card;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: min(340px, 80vw);
+    padding: 0.9rem;
+    background: rgba(20, 17, 13, 0.62);
+    border: 1px solid var(--rp-line-dark-strong);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    text-decoration: none;
+    color: var(--rp-ivory);
+    transition: border-color 0.45s var(--rp-ease), transform 0.45s var(--rp-ease),
+                background-color 0.45s var(--rp-ease);
+}
+.rp-hero__card:hover {
+    border-color: var(--rp-copper);
+    transform: translateY(-3px);
+    background: rgba(20, 17, 13, 0.78);
+}
+.rp-hero__card-img {
+    width: 64px;
+    height: 78px;
+    object-fit: cover;
+    flex: none;
+    border: 1px solid var(--rp-line-dark);
+}
+.rp-hero__card-label {
+    font-family: var(--font-ui);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rp-copper);
+    margin: 0 0 0.35rem;
+}
+.rp-hero__card-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    line-height: 1.15;
+    margin: 0 0 0.25rem;
+    color: var(--rp-ivory-soft);
+}
+.rp-hero__card-meta {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    color: var(--rp-stone);
+    margin: 0;
+}
+
+@media (max-width: 860px) {
+    .rp-hero__inner {
+        grid-template-columns: 1fr;
+        grid-template-areas: "content" "card";
+        align-items: start;
+    }
+    .rp-hero__card { width: min(340px, 100%); }
+}
+@media (max-width: 600px) {
+    .rp-hero { align-items: center; }
+    .rp-hero__monogram { display: none; }
+}
+
+/* =========================================================================
+   4. ÉNONCÉ ÉDITORIAL GÉANT (Koch « large-link »)
+   ========================================================================= */
+
+.rp-statement { position: relative; }
+.rp-statement__lead { max-width: 42rem; margin: 0 0 clamp(1.5rem, 4vw, 2.5rem); }
+.rp-statement__text {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.6rem, 8vw, 6rem);
+    line-height: 1.02;
+    letter-spacing: 0.005em;
+    margin: 0;
+    color: var(--rp-ivory-soft);
+}
+.rp-section--ivory .rp-statement__text { color: var(--rp-brown-ink); }
+.rp-statement__text .rp-accent {
+    color: var(--rp-copper);
+    font-style: italic;
+}
+.rp-statement__text a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 2px solid var(--rp-copper);
+    transition: color 0.4s var(--rp-ease);
+}
+.rp-statement__text a:hover { color: var(--rp-copper); }
+.rp-statement__foot { margin-top: clamp(1.8rem, 4vw, 2.6rem); }
+
+/* =========================================================================
+   5. AXES DE LECTURE (Koch « services » → lignes numérotées)
+   ========================================================================= */
+
+.rp-axes {
+    border-top: 1px solid var(--rp-line-paper);
+}
+.rp-section--ink .rp-axes,
+.rp-section--ink-2 .rp-axes { border-top-color: var(--rp-line-dark); }
+
+.rp-axis {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(8rem, 16rem) 1fr auto;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    padding: clamp(1.6rem, 3vw, 2.4rem) 0;
+    border-bottom: 1px solid var(--rp-line-paper);
+    text-decoration: none;
+    color: inherit;
+    transition: padding-left 0.5s var(--rp-ease);
+}
+.rp-section--ink .rp-axis,
+.rp-section--ink-2 .rp-axis { border-bottom-color: var(--rp-line-dark); }
+.rp-axis:hover { padding-left: 0.75rem; }
+
+.rp-axis__num {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--rp-copper);
+}
+.rp-axis__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0;
+    color: inherit;
+}
+.rp-section--ink .rp-axis__title,
+.rp-section--ink-2 .rp-axis__title { color: var(--rp-ivory-soft); }
+.rp-axis__text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.88;
+}
+.rp-axis__icon {
+    font-family: var(--font-ui);
+    font-size: 1.4rem;
+    color: var(--rp-copper);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.5s var(--rp-ease), transform 0.5s var(--rp-ease);
+    justify-self: end;
+}
+.rp-axis:hover .rp-axis__icon { opacity: 1; transform: translateX(0); }
+
+@media (max-width: 860px) {
+    .rp-axis {
+        grid-template-columns: 3rem 1fr;
+        grid-template-areas: "num title" "text text";
+        gap: 0.5rem 1.2rem;
+        align-items: baseline;
+    }
+    .rp-axis__num { grid-area: num; }
+    .rp-axis__title { grid-area: title; }
+    .rp-axis__text { grid-area: text; margin-top: 0.4rem; }
+    .rp-axis__icon { display: none; }
+    .rp-axis:hover { padding-left: 0; }
+}
+
+/* =========================================================================
+   6. ŒUVRES MAJEURES (Koch « case studies » → fiches éditoriales)
+   ========================================================================= */
+
+.rp-works {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+.rp-work {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    background: var(--rp-ink-2);
+    border: 1px solid var(--rp-line-dark);
+    transition: border-color 0.5s var(--rp-ease), transform 0.5s var(--rp-ease),
+                box-shadow 0.5s var(--rp-ease);
+}
+.rp-section--ivory .rp-work {
+    background: var(--rp-ivory-soft);
+    border-color: var(--rp-line-paper);
+}
+.rp-work:hover {
+    border-color: var(--rp-copper);
+    transform: translateY(-4px);
+    box-shadow: var(--rp-shadow-soft);
+}
+.rp-work__frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #0F0D0A;
+}
+.rp-work__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.9s var(--rp-ease);
+}
+.rp-work:hover .rp-work__img { transform: scale(1.05); }
+.rp-work__index {
+    position: absolute;
+    top: 0.85rem;
+    left: 0.85rem;
+    font-family: var(--font-ui);
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rp-ivory-soft);
+    background: rgba(20,17,13,0.6);
+    border: 1px solid var(--rp-line-dark-strong);
+    padding: 0.3rem 0.55rem;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+.rp-work__body {
+    padding: clamp(1.25rem, 2vw, 1.6rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    flex: 1;
+}
+.rp-work__title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.12;
+    margin: 0;
+    color: var(--rp-ivory-soft);
+}
+.rp-section--ivory .rp-work__title { color: var(--rp-brown-ink); }
+.rp-work__meta {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--rp-copper);
+    margin: 0;
+}
+.rp-work__read {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0.2rem 0 0;
+    opacity: 0.85;
+}
+.rp-work__cta {
+    margin-top: auto;
+    padding-top: 0.9rem;
+    font-family: var(--font-ui);
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rp-copper);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+.rp-work:hover .rp-work__cta { gap: 0.8rem; }
+
+@media (max-width: 900px) { .rp-works { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .rp-works { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   7. REPÈRES HISTORIQUES (Koch « stats » → repères culturels)
+   ========================================================================= */
+
+.rp-markers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rp-line-dark);
+    border: 1px solid var(--rp-line-dark);
+}
+.rp-section--ivory .rp-markers,
+.rp-section--ivory .rp-marker { /* on ivoire */ }
+.rp-section--ivory .rp-markers { background: var(--rp-line-paper); border-color: var(--rp-line-paper); }
+.rp-marker {
+    background: var(--rp-ink);
+    padding: clamp(1.6rem, 3vw, 2.4rem) clamp(1.1rem, 2vw, 1.6rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.rp-section--ink-2 .rp-marker { background: var(--rp-ink-2); }
+.rp-section--ivory .rp-marker { background: var(--rp-ivory); }
+.rp-marker__num {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--rp-ivory-soft);
+}
+.rp-section--ivory .rp-marker__num { color: var(--rp-brown-ink); }
+.rp-marker__label {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rp-copper);
+    margin: 0;
+}
+@media (max-width: 760px) { .rp-markers { grid-template-columns: repeat(2, 1fr); } }
+
+/* =========================================================================
+   8. MANIFESTE (Koch « quote » → grande respiration éditoriale)
+   ========================================================================= */
+
+/* Neutralise le style blockquote hérité du template (boîte tan + icône). */
+body.archiv-rp blockquote.rp-manifesto {
+    background: transparent;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+    color: inherit;
+}
+body.archiv-rp blockquote.rp-manifesto::before,
+body.archiv-rp blockquote.rp-manifesto::after { content: none; display: none; }
+body.archiv-rp .rp-manifesto p { color: inherit; width: auto; margin-bottom: 0; }
+
+.rp-manifesto {
+    text-align: center;
+    max-width: 50rem;
+    margin: 0 auto;
+}
+.rp-manifesto__mark {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    line-height: 0.6;
+    color: var(--rp-copper);
+    opacity: 0.6;
+}
+.rp-manifesto__text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.7rem, 4vw, 3rem);
+    line-height: 1.25;
+    color: var(--rp-ivory-soft);
+    margin: 1.2rem 0 0;
+}
+.rp-section--ivory .rp-manifesto__text { color: var(--rp-brown-ink); }
+.rp-manifesto__sig {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rp-copper);
+    margin: 1.8rem 0 0;
+}
+
+/* =========================================================================
+   9. CAHIERS ARCHIV (Koch « blog » → notes éditoriales)
+   ========================================================================= */
+
+.rp-cahiers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+}
+.rp-cahier {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: clamp(1.4rem, 2vw, 1.8rem);
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--rp-line-paper);
+    background: var(--rp-ivory-soft);
+    transition: border-color 0.5s var(--rp-ease), transform 0.5s var(--rp-ease);
+}
+.rp-section--ink .rp-cahier,
+.rp-section--ink-2 .rp-cahier {
+    background: var(--rp-ink-2);
+    border-color: var(--rp-line-dark);
+}
+.rp-cahier:hover { border-color: var(--rp-copper); transform: translateY(-3px); }
+.rp-cahier__tag {
+    font-family: var(--font-ui);
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rp-copper);
+    margin: 0;
+}
+.rp-cahier__title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.18;
+    margin: 0;
+    color: var(--rp-brown-ink);
+}
+.rp-section--ink .rp-cahier__title,
+.rp-section--ink-2 .rp-cahier__title { color: var(--rp-ivory-soft); }
+.rp-cahier__text {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.85;
+}
+.rp-cahier__more {
+    margin-top: auto;
+    padding-top: 0.5rem;
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--rp-copper);
+}
+@media (max-width: 960px) { .rp-cahiers { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .rp-cahiers { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   10. SOURCES & COLLECTIONS (bande institutionnelle)
+   ========================================================================= */
+
+.rp-sources {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: start;
+}
+.rp-sources__col h3 {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rp-copper);
+    margin: 0 0 1.1rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--rp-line-dark);
+}
+.rp-section--ivory .rp-sources__col h3 { border-bottom-color: var(--rp-line-paper); }
+.rp-sources__list { list-style: none; margin: 0; padding: 0; }
+.rp-sources__list li { margin: 0; }
+.rp-sources__list li + li { border-top: 1px solid var(--rp-line-dark); }
+.rp-section--ivory .rp-sources__list li + li { border-top-color: var(--rp-line-paper); }
+.rp-sources__list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    text-decoration: none;
+    color: inherit;
+    font-family: var(--font-body);
+    transition: color 0.4s var(--rp-ease), padding-left 0.4s var(--rp-ease);
+}
+.rp-sources__list a:hover { color: var(--rp-copper); padding-left: 0.4rem; }
+.rp-sources__list .rp-sources__hint {
+    font-family: var(--font-ui);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rp-stone);
+    flex: none;
+}
+
+@media (max-width: 720px) { .rp-sources { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+/* Bande de deux figures (cf. Koch « About » grid) ------------------------- */
+.rp-figs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1rem, 2.5vw, 2rem);
+    margin-top: clamp(2rem, 4vw, 3.2rem);
+}
+.rp-fig { margin: 0; }
+.rp-fig__frame {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #0F0D0A;
+    border: 1px solid var(--rp-line-paper);
+}
+.rp-section--ink .rp-fig__frame,
+.rp-section--ink-2 .rp-fig__frame { border-color: var(--rp-line-dark); }
+.rp-fig__frame img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    transition: transform 0.9s var(--rp-ease);
+}
+.rp-fig:hover .rp-fig__frame img { transform: scale(1.04); }
+.rp-fig__cap {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--rp-stone);
+    margin: 0.7rem 0 0;
+}
+.rp-fig__cap b {
+    color: var(--rp-copper);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.66rem;
+    margin-right: 0.5rem;
+}
+@media (max-width: 600px) { .rp-figs { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   12. PAGES INTÉRIEURES — élévation du système ARCHIV existant
+   -------------------------------------------------------------------------
+   On n'ajoute PAS de nouveau HTML : on élève les classes déjà en place
+   (.archiv-archive-hero, .archiv-museum-section--paper, .archiv-prose-block,
+   .archiv-period, .archiv-see-also) au niveau de finition Koch/RP, scopé
+   sous body.archiv-rp. Les grilles rendues en JS restent intactes.
+   ========================================================================= */
+
+/* Fonds : la page intérieure RP garde un corps encre, contenu sur ivoire. */
+body.archiv-rp .archiv-museum-section--paper,
+body.archiv-rp .archiv-section--paper,
+body.archiv-rp main.archiv-museum-section--paper {
+    background: var(--rp-ivory);
+    color: var(--rp-brown-ink);
+}
+
+/* ---- En-tête de page (hero éditorial Koch) ---- */
+body.archiv-rp .archiv-archive-hero {
+    background: var(--rp-ink);
+    border-bottom: 1px solid var(--rp-line-dark);
+}
+body.archiv-rp .archiv-archive-hero__grid {
+    padding-top: clamp(6rem, 13vh, 8.5rem);
+    padding-bottom: clamp(3rem, 6vw, 4.75rem);
+}
+body.archiv-rp .archiv-archive-hero .archiv-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--rp-copper);
+    letter-spacing: 0.24em;
+}
+body.archiv-rp .archiv-archive-hero .archiv-kicker::before {
+    content: "";
+    width: 1.85rem;
+    height: 1px;
+    background: var(--rp-copper);
+    opacity: 0.7;
+}
+body.archiv-rp .archiv-archive-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 7vw, 4.75rem);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: 0.01em;
+    color: var(--rp-ivory-soft);
+    margin: 0.9rem 0 0.9rem;
+    max-width: 18ch;
+}
+body.archiv-rp .archiv-archive-hero__sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--rp-copper);
+}
+body.archiv-rp .archiv-archive-hero__text {
+    color: var(--rp-text-muted, rgba(236, 227, 207, 0.74));
+}
+body.archiv-rp .archiv-archive-hero__specimen {
+    border-color: var(--rp-line-dark-strong);
+    background: rgba(20, 17, 13, 0.6);
+}
+
+/* ---- Chapeau de lecture ---- */
+body.archiv-rp .archiv-lead {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+    line-height: 1.5;
+    color: var(--rp-brown-ink);
+    font-weight: 500;
+}
+
+/* ---- Bloc prose : mesure et filets ---- */
+body.archiv-rp .archiv-prose-block h2 {
+    font-family: var(--font-display);
+    color: var(--rp-brown-ink);
+}
+
+/* ---- Lignes « période » (vie, chronologie) → rangées numérotées Koch ---- */
+body.archiv-rp .archiv-period {
+    display: grid;
+    grid-template-columns: minmax(7rem, 9rem) 1fr;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: baseline;
+    padding: clamp(1.5rem, 3vw, 2.2rem) 0;
+    border-top: 1px solid var(--rp-line-paper);
+    margin: 0;
+}
+body.archiv-rp .archiv-period:last-of-type { border-bottom: 1px solid var(--rp-line-paper); }
+body.archiv-rp .archiv-period-years {
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rp-copper);
+    margin: 0;
+    padding-top: 0.35rem;
+}
+body.archiv-rp .archiv-period h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-weight: 500;
+    line-height: 1.12;
+    margin: 0 0 0.5rem;
+    color: var(--rp-brown-ink);
+}
+body.archiv-rp .archiv-period p {
+    margin: 0;
+    color: var(--rp-brown-ink);
+    opacity: 0.9;
+    line-height: 1.65;
+}
+@media (max-width: 600px) {
+    body.archiv-rp .archiv-period { grid-template-columns: 1fr; gap: 0.4rem; }
+}
+
+/* ---- « Voir aussi » : bandeau institutionnel ---- */
+body.archiv-rp .archiv-see-also {
+    border-top: 1px solid var(--rp-line-paper);
+    padding-top: clamp(1.5rem, 3vw, 2.2rem);
+}
+body.archiv-rp .archiv-see-also .archiv-kicker {
+    color: var(--rp-copper);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+body.archiv-rp .archiv-see-also .archiv-kicker::before {
+    content: "";
+    width: 1.85rem; height: 1px;
+    background: var(--rp-copper); opacity: 0.7;
+}
+body.archiv-rp .archiv-see-also ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.5rem;
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+}
+body.archiv-rp .archiv-see-also a {
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--rp-copper-dim);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: border-color 0.4s var(--rp-ease);
+}
+body.archiv-rp .archiv-see-also a:hover { border-color: var(--rp-copper); }
+
+/* ---- Cartes œuvres : finition de survol cohérente RP ---- */
+body.archiv-rp .archiv-artwork-card,
+body.archiv-rp .archiv-portrait-obj {
+    transition: transform 0.5s var(--rp-ease);
+}
+body.archiv-rp .archiv-artwork-card:hover,
+body.archiv-rp .archiv-portrait-obj:hover { transform: translateY(-3px); }
+
+/* =========================================================================
+   11. RÉVÉLATION DOUCE AU DÉFILEMENT (CSS + IO, sobre)
+   ========================================================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+    body.archiv-rp [data-rp-reveal] {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.8s var(--rp-ease), transform 0.8s var(--rp-ease);
+        will-change: opacity, transform;
+    }
+    body.archiv-rp [data-rp-reveal].is-visible {
+        opacity: 1;
+        transform: none;
+    }
+}

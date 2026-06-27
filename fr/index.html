@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Albrecht Dürer — Archive numérique, œuvres, gravures et écrits | ARCHIV</title>
-    <meta name="description" content="Archive numérique consacrée à Albrecht Dürer : œuvres, gravures, autoportraits, voyages, écrits théoriques et héritage visuel de la Renaissance du Nord.">
+    <title>Albrecht Dürer — Archive numérique : œuvres, gravures et écrits | ARCHIV</title>
+    <meta name="description" content="Archive numérique muséale consacrée à Albrecht Dürer : œuvres, gravures, autoportraits, voyages, écrits théoriques et héritage de la Renaissance du Nord.">
     <meta property="og:site_name" content="ARCHIV — Albrecht Dürer">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Albrecht Dürer — Archive numérique | ARCHIV">
-    <meta property="og:description" content="Archive numérique consacrée à Albrecht Dürer : œuvres, gravures, autoportraits, voyages, écrits théoriques et héritage visuel.">
+    <meta property="og:description" content="Archive numérique consacrée à Albrecht Dürer : œuvres, gravures, autoportraits, voyages et écrits théoriques.">
     <meta property="og:locale" content="fr_FR">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Albrecht Dürer — Archive numérique | ARCHIV">
@@ -25,6 +25,7 @@
     <link rel="alternate" hreflang="fr" href="https://albrechtdurer.uk/fr/">
     <link rel="alternate" hreflang="en" href="https://albrechtdurer.uk/">
     <link rel="alternate" hreflang="x-default" href="https://albrechtdurer.uk/">
+
 
     <link rel="preload" as="image" href="../img/durer/portraits/durer-self-portrait-1500.webp" fetchpriority="high">
     <link rel="dns-prefetch" href="https://upload.wikimedia.org">
@@ -43,8 +44,9 @@
     <link rel="stylesheet" href="../css/archiv-premium-2026.css">
     <link rel="stylesheet" href="../css/archiv-images.css">
     <link rel="stylesheet" href="../css/archiv-production.css">
+    <link rel="stylesheet" href="../css/archiv-renaissance-premium.css">
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"WebSite","name":"ARCHIV — Albrecht Dürer","alternateName":"ARCHIV","url":"https://albrechtdurer.uk/","description":"Archive numérique consacrée à Albrecht Dürer : œuvres, gravures, autoportraits, voyages et traités.","inLanguage":"fr","publisher":{"@type":"Organization","name":"ARCHIV","url":"https://albrechtdurer.uk/"}}
+    {"@context":"https://schema.org","@type":"WebSite","name":"ARCHIV — Albrecht Dürer","alternateName":"ARCHIV","url":"https://albrechtdurer.uk/fr/","description":"Archive numérique consacrée à Albrecht Dürer : œuvres, gravures, autoportraits, voyages et traités.","inLanguage":"fr","publisher":{"@type":"Organization","name":"ARCHIV","url":"https://albrechtdurer.uk/"}}
     </script>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Organization","name":"ARCHIV","url":"https://albrechtdurer.uk/","description":"Archive numérique muséale consacrée à Albrecht Dürer (1471–1528).","sameAs":[]}
@@ -53,8 +55,8 @@
     {"@context":"https://schema.org","@type":"Person","name":"Albrecht Dürer","url":"https://albrechtdurer.uk/vie.html","birthDate":"1471-05-21","deathDate":"1528-04-06","birthPlace":{"@type":"Place","name":"Nuremberg"},"description":"Peintre, graveur, dessinateur et théoricien de la Renaissance du Nord."}
     </script>
 </head>
-<body class="archiv-site archiv-home" data-site-logo="../img/logo_Albrecht_Durer.svg" data-archiv-page="accueil">
-    <a class="archiv-skip-link" href="#archiv-main">Aller au contenu</a>
+<body class="archiv-site archiv-home archiv-rp" data-site-logo="../img/logo_Albrecht_Durer.svg" data-archiv-page="accueil">
+    <a class="archiv-skip-link" href="#archiv-main">Skip to content</a>
     <header class="archiv-museum-header" role="banner">
     <div class="archiv-page-shell archiv-museum-header__inner">
         <a class="archiv-museum-header__brand" href="/fr/">
@@ -90,16 +92,11 @@
             </ul>
         </nav>
         <div class="archiv-header-util">
-            <div class="archiv-lang-toggle" role="group" aria-label="Langue du site">
-                <a href="/fr/" hreflang="fr" lang="fr" class="archiv-lang-toggle__seg is-active" aria-current="page">
-                    <span class="archiv-lang-toggle__code" aria-hidden="true">Fr</span>
-                    <span class="visually-hidden">Français</span>
-                </a>
-                <a href="/" hreflang="en" lang="en" class="archiv-lang-toggle__seg">
-                    <span class="archiv-lang-toggle__code" aria-hidden="true">En</span>
-                    <span class="visually-hidden">English</span>
-                </a>
-            </div>
+            <nav class="archiv-lang" aria-label="Langue du site">
+                <a href="/fr/" hreflang="fr" lang="fr" class="archiv-lang__link is-active" aria-current="page">FR</a>
+                <span class="archiv-lang__sep" aria-hidden="true">·</span>
+                <a href="/" hreflang="en" lang="en" class="archiv-lang__link">EN</a>
+            </nav>
         </div>
         <button type="button" class="archiv-museum-header__toggle" aria-expanded="false" aria-controls="archiv-museum-nav-mobile" id="archiv-nav-open">
             <span class="archiv-museum-header__toggle-icon" aria-hidden="true"></span>
@@ -144,133 +141,309 @@
                 <li><a href="editions.html" class="archiv-nav-mobile-link" data-archiv-nav="editions">Éditions</a></li>
                 <li class="archiv-nav-mobile-lang">
                     <span class="archiv-nav-mobile-group__label">Langue</span>
-                    <div class="archiv-lang-toggle archiv-lang-toggle--block" role="group" aria-label="Langue du site">
-                        <a href="/fr/" hreflang="fr" lang="fr" class="archiv-lang-toggle__seg is-active" aria-current="page">
-                            <span class="archiv-lang-toggle__code" aria-hidden="true">Fr</span>
-                            <span class="visually-hidden">Français</span>
-                        </a>
-                        <a href="/" hreflang="en" lang="en" class="archiv-lang-toggle__seg">
-                            <span class="archiv-lang-toggle__code" aria-hidden="true">En</span>
-                            <span class="visually-hidden">English</span>
-                        </a>
-                    </div>
+                    <nav class="archiv-lang archiv-lang--wide" aria-label="Langue du site">
+                        <a href="/fr/" hreflang="fr" lang="fr" class="archiv-lang__link is-active" aria-current="page">FR</a>
+                        <span class="archiv-lang__sep" aria-hidden="true">·</span>
+                        <a href="/" hreflang="en" lang="en" class="archiv-lang__link">EN</a>
+                    </nav>
                 </li>
             </ul>
         </nav>
     </div>
 </div>
 <main id="archiv-main">
-        <header class="archiv-immersive-hero" aria-label="Albrecht Dürer">
-            <div class="archiv-immersive-hero__bg" role="presentation" style="background-image: url('../img/durer/portraits/durer-self-portrait-1500.webp');"></div>
-            <div class="archiv-immersive-hero__veil" aria-hidden="true"></div>
-            <div class="archiv-immersive-hero__inner">
-                <h1 class="archiv-immersive-hero__title">Albrecht Dürer</h1>
-                <p class="archiv-immersive-hero__subtitle">L'artiste qui fit de l'image une science</p>
-                <p class="archiv-immersive-hero__text">Peintre, graveur, dessinateur et théoricien, Dürer incarne la Renaissance du Nord : précision du regard, puissance du symbole et invention d'une image transmissible à travers l'Europe.</p>
-                <div class="archiv-immersive-hero__actions">
-                    <a href="#archive" class="archiv-btn">Explorer l'archive</a>
-                    <a href="oeuvres.html" class="archiv-btn archiv-btn--ghost">Voir les œuvres</a>
+        <!-- ===================================================== HERO -->
+        <header class="rp-hero" aria-label="Albrecht Dürer">
+            <div class="rp-hero__bg" role="presentation" style="background-image: url('../img/durer/portraits/durer-self-portrait-1500.webp');"></div>
+            <div class="rp-hero__veil" aria-hidden="true"></div>
+            <img class="rp-hero__monogram" src="../img/sigle_durer.svg" alt="" aria-hidden="true" width="116" height="116" decoding="async">
+            <div class="rp-hero__inner">
+                <div class="rp-hero__content">
+                    <p class="rp-eyebrow rp-hero__eyebrow">ARCHIV · 1471–1528 · Nuremberg</p>
+                    <h1 class="rp-hero__title">Albrecht Dürer<span class="rp-hero__title-sub">L'artiste qui a fait de l'image une science</span></h1>
+                    <p class="rp-hero__lead">Peintre, graveur, dessinateur et théoricien. Dürer a transformé l'image en une forme de connaissance reproductible, mesurée et transmissible — et a donné à la Renaissance du Nord son regard le plus précis.</p>
+                    <div class="rp-hero__actions">
+                        <a href="#archive" class="rp-btn rp-btn--solid">Explorer l'archive <span class="rp-btn__arrow" aria-hidden="true">→</span></a>
+                        <a href="oeuvres.html" class="rp-btn">Voir les œuvres</a>
+                    </div>
                 </div>
+                <a href="oeuvre.html?id=melencolia" class="rp-hero__card">
+                    <img class="rp-hero__card-img" src="../img/durer/prints/durer-melencolia-i-1514.webp" alt="Gravure de Dürer Melencolia I, 1514" loading="eager" decoding="async" width="64" height="78">
+                    <span class="rp-hero__card-body">
+                        <span class="rp-hero__card-label">De la collection</span>
+                        <span class="rp-hero__card-title">Melencolia I</span>
+                        <span class="rp-hero__card-meta">1514 · Gravure</span>
+                    </span>
+                </a>
             </div>
         </header>
 
-        <section id="archive" class="archiv-home-section archiv-home-section--paper archiv-home-pillars-section">
+        <!-- ============================================ 01 · À PROPOS -->
+        <section id="archive" class="rp-section rp-section--ivory">
             <div class="archiv-page-shell">
-                <div class="archiv-home-section__head">
-                    <p class="archiv-kicker">Structure</p>
-                    <h2 class="archiv-home-section__title">Les cinq piliers</h2>
-                    <p class="archiv-home-section__intro">Cinq axes pour lire Dürer : regard, estampe, image de soi, science du trait et circulation de l'œuvre en Europe.</p>
+                <div class="rp-head" data-rp-reveal>
+                    <div class="rp-head__num rp-num">01</div>
+                    <div class="rp-head__body">
+                        <p class="rp-eyebrow rp-eyebrow--plain">À propos de cette archive</p>
+                        <h2 class="rp-head__title">Une image devenue langage de précision</h2>
+                        <p class="rp-head__lead">Cette archive réunit la vie, l'œuvre, les gravures, les autoportraits, les voyages et les écrits théoriques d'Albrecht Dürer, et les organise autour d'une idée centrale : Dürer a transformé l'image en langage de précision, de transmission et de connaissance — mesurée par la main, multipliée par la presse, transmise à travers l'Europe.</p>
+                    </div>
                 </div>
-                <div class="archiv-home-pillars">
-                    <article class="archiv-home-pillar">
-                        <span class="archiv-home-pillar__num">01 — Regard</span>
-                        <a href="science.html">
-                            <h3>Regard</h3>
-                            <p>Observer le monde visible : animaux, végétaux, corps, textures et détails.</p>
-                        </a>
-                    </article>
-                    <article class="archiv-home-pillar">
-                        <span class="archiv-home-pillar__num">02 — Gravure</span>
-                        <a href="gravures.html">
-                            <h3>Gravure</h3>
-                            <p>Faire de l'estampe un médium majeur, reproductible et européen.</p>
-                        </a>
-                    </article>
-                    <article class="archiv-home-pillar">
-                        <span class="archiv-home-pillar__num">03 — Autoportrait</span>
-                        <a href="autoportraits.html">
-                            <h3>Autoportrait</h3>
-                            <p>Construire l'image de l'artiste comme auteur, figure et signature.</p>
-                        </a>
-                    </article>
-                    <article class="archiv-home-pillar">
-                        <span class="archiv-home-pillar__num">04 — Science</span>
-                        <a href="science.html">
-                            <h3>Science</h3>
-                            <p>Relier mesure, perspective, proportion et pensée géométrique.</p>
-                        </a>
-                    </article>
-                    <article class="archiv-home-pillar">
-                        <span class="archiv-home-pillar__num">05 — Transmission</span>
-                        <a href="voyages.html">
-                            <h3>Transmission</h3>
-                            <p>Faire circuler l'image par l'atelier, le monogramme et l'imprimé.</p>
-                        </a>
-                    </article>
+                <div class="rp-figs" data-rp-reveal>
+                    <figure class="rp-fig">
+                        <div class="rp-fig__frame">
+                            <img src="../img/durer/drawings/durer-young-hare-1502.webp" alt="Aquarelle de Dürer Le Jeune Lièvre, 1502, fourrure rendue avec une précision naturaliste" loading="lazy" decoding="async" width="640" height="400">
+                        </div>
+                        <figcaption class="rp-fig__cap"><b>Vision</b>Le Jeune Lièvre, 1502 — aquarelle et gouache</figcaption>
+                    </figure>
+                    <figure class="rp-fig">
+                        <div class="rp-fig__frame">
+                            <img src="../img/durer/drawings/durer-great-piece-of-turf-1503.webp" alt="Aquarelle de Dürer La Grande Touffe d'herbes, 1503, étude de graminées et de plantes" loading="lazy" decoding="async" width="640" height="400">
+                        </div>
+                        <figcaption class="rp-fig__cap"><b>Méthode</b>La Grande Touffe d'herbes, 1503 — étude à l'aquarelle</figcaption>
+                    </figure>
                 </div>
             </div>
         </section>
 
-        <section id="oeuvres-majeures" class="archiv-home-section archiv-home-section--paper">
+        <!-- ============================================ 02 · AXES -->
+        <section id="axes" class="rp-section rp-section--ink">
             <div class="archiv-page-shell">
-                <div class="archiv-home-section__head">
-                    <p class="archiv-kicker">Collection</p>
-                    <h2 class="archiv-home-section__title">Œuvres majeures</h2>
-                    <p class="archiv-home-section__intro">Quatre œuvres emblématiques — gravure, portrait et science du visible. Le catalogue complet réunit peinture, estampe et traités.</p>
+                <div class="rp-statement" data-rp-reveal>
+                    <p class="rp-eyebrow">02 — Les axes de l'œuvre</p>
+                    <p class="rp-statement__text" style="margin-top:1.4rem;">L'image,<br><span class="rp-accent">rendue mesurable.</span></p>
+                    <p class="rp-statement__lead rp-head__lead" style="margin-top:1.6rem;">Cinq axes pour lire Dürer — le regard, la gravure, l'autoportrait, la science du trait et la circulation de l'œuvre à travers l'Europe.</p>
                 </div>
-                <div id="archiv-home-featured" class="archiv-home-works__grid" data-ids="knight-death-devil,melencolia,self-portrait-1500,rhinoceros"></div>
-                <p class="mt-4 mb-0"><a href="oeuvres.html" class="archiv-text-link">Catalogue complet</a></p>
+                <div class="rp-axes" data-rp-reveal>
+                    <a class="rp-axis" href="science.html">
+                        <span class="rp-axis__num">01</span>
+                        <h3 class="rp-axis__title">Le regard</h3>
+                        <p class="rp-axis__text">Observer le monde visible : corps, animaux, végétaux, textures et le moindre détail.</p>
+                        <span class="rp-axis__icon" aria-hidden="true">→</span>
+                    </a>
+                    <a class="rp-axis" href="gravures.html">
+                        <span class="rp-axis__num">02</span>
+                        <h3 class="rp-axis__title">La gravure</h3>
+                        <p class="rp-axis__text">Faire de l'image un médium reproductible, européen et transmissible.</p>
+                        <span class="rp-axis__icon" aria-hidden="true">→</span>
+                    </a>
+                    <a class="rp-axis" href="autoportraits.html">
+                        <span class="rp-axis__num">03</span>
+                        <h3 class="rp-axis__title">L'autoportrait</h3>
+                        <p class="rp-axis__text">Construire l'artiste comme auteur, figure et signature.</p>
+                        <span class="rp-axis__icon" aria-hidden="true">→</span>
+                    </a>
+                    <a class="rp-axis" href="science.html">
+                        <span class="rp-axis__num">04</span>
+                        <h3 class="rp-axis__title">La science du trait</h3>
+                        <p class="rp-axis__text">Relier proportion, perspective, géométrie et pensée visuelle.</p>
+                        <span class="rp-axis__icon" aria-hidden="true">→</span>
+                    </a>
+                    <a class="rp-axis" href="voyages.html">
+                        <span class="rp-axis__num">05</span>
+                        <h3 class="rp-axis__title">La circulation</h3>
+                        <p class="rp-axis__text">Faire voyager l'image par l'atelier, l'estampe, le monogramme et les réseaux européens.</p>
+                        <span class="rp-axis__icon" aria-hidden="true">→</span>
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section id="explorer" class="archiv-home-section archiv-home-section--paper">
+        <!-- ==================================== 03 · ŒUVRES MAJEURES -->
+        <section id="oeuvres-majeures" class="rp-section rp-section--ivory">
             <div class="archiv-page-shell">
-                <div class="archiv-home-section__head">
-                    <p class="archiv-kicker">Parcours</p>
-                    <h2 class="archiv-home-section__title">Explorer l'archive</h2>
-                    <p class="archiv-home-section__intro">Trois entrées pour approfondir : biographie, gravures et écrits théoriques de Dürer.</p>
+                <div class="rp-head rp-head--split" data-rp-reveal>
+                    <div class="rp-head__num rp-num">03</div>
+                    <div class="rp-head__body">
+                        <p class="rp-eyebrow rp-eyebrow--plain">Collection</p>
+                        <h2 class="rp-head__title">Œuvres majeures</h2>
+                    </div>
+                    <div class="rp-head__action">
+                        <a href="oeuvres.html" class="rp-link">Catalogue complet <span aria-hidden="true">→</span></a>
+                    </div>
                 </div>
-                <div class="archiv-home-explore">
-                    <a href="vie.html" class="archiv-home-explore__item">
-                        <h3>La vie</h3>
-                        <p>Nuremberg, Italie, cours impériales, Pays-Bas.</p>
+                <div class="rp-works" data-rp-reveal>
+                    <a class="rp-work" href="oeuvre.html?id=melencolia">
+                        <div class="rp-work__frame">
+                            <img class="rp-work__img" src="../img/durer/prints/durer-melencolia-i-1514.webp" alt="Gravure de Dürer Melencolia I, figure ailée parmi des instruments et un carré magique, 1514" loading="lazy" decoding="async" width="400" height="500">
+                            <span class="rp-work__index">Gravure</span>
+                        </div>
+                        <div class="rp-work__body">
+                            <h3 class="rp-work__title">Melencolia I</h3>
+                            <p class="rp-work__meta">1514 · Gravure (burin)</p>
+                            <p class="rp-work__read">Une figure ailée assise parmi des outils, un polyèdre et une horloge — l'estampe la plus commentée de l'histoire, où l'artisanat, les mathématiques et la métaphysique se rejoignent.</p>
+                            <span class="rp-work__cta">Lire la fiche <span aria-hidden="true">→</span></span>
+                        </div>
                     </a>
-                    <a href="gravures.html" class="archiv-home-explore__item">
-                        <h3>Les gravures</h3>
-                        <p>Apocalypse, <em>Le Chevalier, la Mort et le Diable</em>, Melencolia.</p>
+                    <a class="rp-work" href="oeuvre.html?id=knight-death-devil">
+                        <div class="rp-work__frame">
+                            <img class="rp-work__img" src="../img/durer/prints/durer-knight-death-devil-1513.webp" alt="Gravure de Dürer Le Chevalier, la Mort et le Diable, 1513, cavalier en armure dans un paysage rocheux" loading="lazy" decoding="async" width="400" height="500">
+                            <span class="rp-work__index">Gravure</span>
+                        </div>
+                        <div class="rp-work__body">
+                            <h3 class="rp-work__title">Le Chevalier, la Mort et le Diable</h3>
+                            <p class="rp-work__meta">1513 · Gravure (burin)</p>
+                            <p class="rp-work__read">Un chevalier avance, indifférent à la Mort et au démon qui l'escortent — l'une des trois estampes maîtresses, une épreuve morale fixée dans le métal.</p>
+                            <span class="rp-work__cta">Lire la fiche <span aria-hidden="true">→</span></span>
+                        </div>
                     </a>
-                    <a href="science.html" class="archiv-home-explore__item">
-                        <h3>Science et proportion</h3>
-                        <p>Mesure, proportion, traités théoriques.</p>
+                    <a class="rp-work" href="oeuvre.html?id=rhinoceros">
+                        <div class="rp-work__frame">
+                            <img class="rp-work__img" src="../img/durer/prints/durer-rhinoceros-1515.webp" alt="Gravure sur bois de Dürer Le Rhinocéros, 1515, animal de profil aux plaques cuirassées" loading="lazy" decoding="async" width="400" height="500">
+                            <span class="rp-work__index">Bois</span>
+                        </div>
+                        <div class="rp-work__body">
+                            <h3 class="rp-work__title">Le Rhinocéros</h3>
+                            <p class="rp-work__meta">1515 · Gravure sur bois</p>
+                            <p class="rp-work__read">Un animal reconstitué d'après des récits, jamais vu par l'artiste — et pourtant l'image dominante de l'espèce pendant deux siècles.</p>
+                            <span class="rp-work__cta">Lire la fiche <span aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+                    <a class="rp-work" href="oeuvre.html?id=self-portrait-1500">
+                        <div class="rp-work__frame">
+                            <img class="rp-work__img" src="../img/durer/portraits/durer-self-portrait-1500.webp" alt="Autoportrait de Dürer de 1500, composition frontale christique, huile sur bois" loading="lazy" decoding="async" width="400" height="500">
+                            <span class="rp-work__index">Peinture</span>
+                        </div>
+                        <div class="rp-work__body">
+                            <h3 class="rp-work__title">Autoportrait à vingt-huit ans</h3>
+                            <p class="rp-work__meta">1500 · Huile sur bois</p>
+                            <p class="rp-work__read">Un autoportrait frontal et hiératique qui revendique pour l'artiste la dignité jadis réservée aux figures sacrées.</p>
+                            <span class="rp-work__cta">Lire la fiche <span aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+                    <a class="rp-work" href="oeuvre.html?id=apocalypse-four-riders">
+                        <div class="rp-work__frame">
+                            <img class="rp-work__img" src="../img/durer/prints/durer-four-horsemen-apocalypse-1498.webp" alt="Gravure sur bois de Dürer Les Quatre Cavaliers de l'Apocalypse, 1498" loading="lazy" decoding="async" width="400" height="500">
+                            <span class="rp-work__index">Bois</span>
+                        </div>
+                        <div class="rp-work__body">
+                            <h3 class="rp-work__title">Les Quatre Cavaliers</h3>
+                            <p class="rp-work__meta">1498 · Bois · Apocalypse</p>
+                            <p class="rp-work__read">La planche la plus violente du cycle de l'Apocalypse — l'œuvre qui porta la renommée de Dürer à travers l'Europe avant ses trente ans.</p>
+                            <span class="rp-work__cta">Lire la fiche <span aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+                    <a class="rp-work" href="science.html">
+                        <div class="rp-work__frame">
+                            <img class="rp-work__img" src="../img/durer/books/durer-underweysung-proportion-1525.webp" alt="Traité de Dürer sur les proportions, schémas gravés de la figure humaine, 1525" loading="lazy" decoding="async" width="400" height="500">
+                            <span class="rp-work__index">Traité</span>
+                        </div>
+                        <div class="rp-work__body">
+                            <h3 class="rp-work__title">Quatre livres sur les proportions</h3>
+                            <p class="rp-work__meta">1528 · Traité théorique</p>
+                            <p class="rp-work__read">L'œuvre ultime de Dürer : une géométrie systématique du corps humain, où le dessin devient mesure et la ligne devient preuve.</p>
+                            <span class="rp-work__cta">Science &amp; proportion <span aria-hidden="true">→</span></span>
+                        </div>
                     </a>
                 </div>
-                <p class="mt-4 mb-0 text-center"><a href="editions.html" class="archiv-text-link">Éditions ARCHIV</a> — tirages et dossiers numériques en préparation</p>
             </div>
         </section>
 
-        <section id="sources-principales" class="archiv-home-section archiv-home-section--paper">
+        <!-- ================================ REPÈRES HISTORIQUES -->
+        <section class="rp-section rp-section--ink rp-section--tight" aria-label="Repères historiques">
             <div class="archiv-page-shell">
-                <div class="archiv-home-section__head">
-                    <p class="archiv-kicker">Documentation</p>
-                    <h2 class="archiv-home-section__title">Sources principales</h2>
-                    <p class="archiv-home-section__intro">Chaque fiche renvoie aux collections de référence : Met, National Gallery of Art, British Museum, Albertina, Pinakothek, Prado, Louvre et Wikimedia Commons.</p>
+                <p class="rp-eyebrow" data-rp-reveal style="margin-bottom:2rem;">Repères historiques</p>
+                <div class="rp-markers" data-rp-reveal>
+                    <div class="rp-marker"><span class="rp-marker__num">1471–1528</span><p class="rp-marker__label">Vie</p></div>
+                    <div class="rp-marker"><span class="rp-marker__num">Nuremberg</span><p class="rp-marker__label">Naissance &amp; atelier</p></div>
+                    <div class="rp-marker"><span class="rp-marker__num">Italie</span><p class="rp-marker__label">Voyages · 1494 &amp; 1505</p></div>
+                    <div class="rp-marker"><span class="rp-marker__num">Pays-Bas</span><p class="rp-marker__label">Dernier voyage · 1520</p></div>
+                    <div class="rp-marker"><span class="rp-marker__num">Peinture</span><p class="rp-marker__label">Panneau &amp; retable</p></div>
+                    <div class="rp-marker"><span class="rp-marker__num">Gravure</span><p class="rp-marker__label">Burin &amp; bois</p></div>
+                    <div class="rp-marker"><span class="rp-marker__num">Proportion</span><p class="rp-marker__label">Traités · 1525–1528</p></div>
+                    <div class="rp-marker"><span class="rp-marker__num">AD</span><p class="rp-marker__label">Le monogramme</p></div>
                 </div>
-                <ul class="archiv-sources-list">
-                    <li><a href="sources.html" class="archiv-text-link">Méthode ARCHIV, inventaire et droits</a></li>
-                    <li><a href="sources.html#archiv-sources-inventory" class="archiv-text-link">Inventaire des images</a></li>
-                    <li><a href="vie.html" class="archiv-text-link">Biographie documentée</a></li>
-                    <li><a href="oeuvres.html" class="archiv-text-link">Catalogue des œuvres</a></li>
-                </ul>
+            </div>
+        </section>
+
+        <!-- ========================================= MANIFESTE -->
+        <section class="rp-section rp-section--ink-2 rp-section--bordered-top" aria-label="Note éditoriale">
+            <div class="archiv-page-shell">
+                <blockquote class="rp-manifesto" data-rp-reveal>
+                    <span class="rp-manifesto__mark" aria-hidden="true">“</span>
+                    <p class="rp-manifesto__text">Une œuvre où le regard devient méthode, et où la ligne devient connaissance.</p>
+                    <p class="rp-manifesto__sig">ARCHIV · Note éditoriale</p>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- ===================================== CAHIERS ARCHIV -->
+        <section id="cahiers" class="rp-section rp-section--ivory">
+            <div class="archiv-page-shell">
+                <div class="rp-head rp-head--split" data-rp-reveal>
+                    <div class="rp-head__num rp-num">04</div>
+                    <div class="rp-head__body">
+                        <p class="rp-eyebrow rp-eyebrow--plain">Cahiers</p>
+                        <h2 class="rp-head__title">Cahiers ARCHIV</h2>
+                    </div>
+                    <div class="rp-head__action">
+                        <a href="vie.html" class="rp-link">Lire la vie <span aria-hidden="true">→</span></a>
+                    </div>
+                </div>
+                <div class="rp-cahiers" data-rp-reveal>
+                    <a class="rp-cahier" href="vie.html">
+                        <p class="rp-cahier__tag">Essai</p>
+                        <h3 class="rp-cahier__title">Dürer et la naissance de l'artiste moderne</h3>
+                        <p class="rp-cahier__text">Comment le fils d'un orfèvre de Nuremberg a fait de l'auctorialité un sujet en soi.</p>
+                        <span class="rp-cahier__more">Lire dans l'archive →</span>
+                    </a>
+                    <a class="rp-cahier" href="gravures.html">
+                        <p class="rp-cahier__tag">Estampe</p>
+                        <h3 class="rp-cahier__title">La gravure comme technologie de transmission</h3>
+                        <p class="rp-cahier__text">La presse a transformé une image unique en événement européen.</p>
+                        <span class="rp-cahier__more">Lire dans l'archive →</span>
+                    </a>
+                    <a class="rp-cahier" href="autoportraits.html">
+                        <p class="rp-cahier__tag">Image</p>
+                        <h3 class="rp-cahier__title">L'autoportrait comme acte de signature</h3>
+                        <p class="rp-cahier__text">Du panneau de 1493 à l'image frontale de 1500, un pacte avec le regardeur.</p>
+                        <span class="rp-cahier__more">Lire dans l'archive →</span>
+                    </a>
+                    <a class="rp-cahier" href="science.html">
+                        <p class="rp-cahier__tag">Science</p>
+                        <h3 class="rp-cahier__title">Proportion, mesure et Renaissance du Nord</h3>
+                        <p class="rp-cahier__text">Là où le dessin rencontre la géométrie et le corps devient système.</p>
+                        <span class="rp-cahier__more">Lire dans l'archive →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================== SOURCES & COLLECTIONS -->
+        <section id="sources-principales" class="rp-section rp-section--ink">
+            <div class="archiv-page-shell">
+                <div class="rp-head" data-rp-reveal>
+                    <div class="rp-head__num rp-num">05</div>
+                    <div class="rp-head__body">
+                        <p class="rp-eyebrow rp-eyebrow--plain">Documentation</p>
+                        <h2 class="rp-head__title">Sources &amp; collections</h2>
+                        <p class="rp-head__lead">Chaque planche renvoie aux collections publiques qui conservent les originaux, ainsi qu'à la méthode, l'inventaire et les droits ARCHIV.</p>
+                    </div>
+                </div>
+                <div class="rp-sources" data-rp-reveal>
+                    <div class="rp-sources__col">
+                        <h3>Collections de référence</h3>
+                        <ul class="rp-sources__list">
+                            <li><a href="sources.html">The Metropolitan Museum of Art <span class="rp-sources__hint">New York</span></a></li>
+                            <li><a href="sources.html">National Gallery of Art <span class="rp-sources__hint">Washington</span></a></li>
+                            <li><a href="sources.html">The British Museum <span class="rp-sources__hint">Londres</span></a></li>
+                            <li><a href="sources.html">Albertina <span class="rp-sources__hint">Vienne</span></a></li>
+                            <li><a href="sources.html">Alte Pinakothek <span class="rp-sources__hint">Munich</span></a></li>
+                            <li><a href="sources.html">Museo del Prado &amp; Louvre <span class="rp-sources__hint">Madrid · Paris</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="rp-sources__col">
+                        <h3>Méthode &amp; documentation</h3>
+                        <ul class="rp-sources__list">
+                            <li><a href="sources.html">Méthode &amp; droits ARCHIV <span class="rp-sources__hint">Sources</span></a></li>
+                            <li><a href="sources.html#archiv-sources-inventory">Inventaire des images <span class="rp-sources__hint">Index</span></a></li>
+                            <li><a href="vie.html">Biographie documentée <span class="rp-sources__hint">Vie</span></a></li>
+                            <li><a href="oeuvres.html">Catalogue des œuvres <span class="rp-sources__hint">Œuvres</span></a></li>
+                            <li><a href="chronologie.html">Chronologie <span class="rp-sources__hint">1471–1528</span></a></li>
+                            <li><a href="editions.html">Éditions ARCHIV <span class="rp-sources__hint">En préparation</span></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -321,6 +494,27 @@
     <script src="../js/archiv-local-ready.js" defer></script>
     <script src="../js/archiv-images.js" defer></script>
     <script src="../js/archiv.js" defer></script>
+    <script>
+    /* ARCHIV Renaissance Premium — révélation douce au défilement (sobre) */
+    (function () {
+        var els = document.querySelectorAll('[data-rp-reveal]');
+        if (!els.length) return;
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce || !('IntersectionObserver' in window)) {
+            els.forEach(function (el) { el.classList.add('is-visible'); });
+            return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        els.forEach(function (el) { io.observe(el); });
+    })();
+    </script>
 
 </body>
 </html>

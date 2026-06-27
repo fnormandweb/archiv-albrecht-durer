@@ -44,8 +44,9 @@
     <link rel="stylesheet" href="../css/archiv-premium-2026.css">
     <link rel="stylesheet" href="../css/archiv-images.css">
     <link rel="stylesheet" href="../css/archiv-production.css">
+    <link rel="stylesheet" href="../css/archiv-renaissance-premium.css">
 </head>
-<body class="archiv-site" data-site-logo="../img/logo_Albrecht_Durer.svg" data-archiv-page="oeuvres">
+<body class="archiv-site archiv-rp" data-site-logo="../img/logo_Albrecht_Durer.svg" data-archiv-page="oeuvres">
 <a class="archiv-skip-link" href="#archiv-main">Aller au contenu</a>
 <header class="archiv-museum-header" role="banner">
     <div class="archiv-page-shell archiv-museum-header__inner">
@@ -82,16 +83,11 @@
             </ul>
         </nav>
         <div class="archiv-header-util">
-            <div class="archiv-lang-toggle" role="group" aria-label="Langue du site">
-                <a href="/fr/" hreflang="fr" lang="fr" class="archiv-lang-toggle__seg is-active" aria-current="page">
-                    <span class="archiv-lang-toggle__code" aria-hidden="true">Fr</span>
-                    <span class="visually-hidden">Français</span>
-                </a>
-                <a href="/" hreflang="en" lang="en" class="archiv-lang-toggle__seg">
-                    <span class="archiv-lang-toggle__code" aria-hidden="true">En</span>
-                    <span class="visually-hidden">English</span>
-                </a>
-            </div>
+            <nav class="archiv-lang" aria-label="Langue du site">
+                <a href="/fr/" hreflang="fr" lang="fr" class="archiv-lang__link is-active" aria-current="page">FR</a>
+                <span class="archiv-lang__sep" aria-hidden="true">·</span>
+                <a href="/" hreflang="en" lang="en" class="archiv-lang__link">EN</a>
+            </nav>
         </div>
         <button type="button" class="archiv-museum-header__toggle" aria-expanded="false" aria-controls="archiv-museum-nav-mobile" id="archiv-nav-open">
             <span class="archiv-museum-header__toggle-icon" aria-hidden="true"></span>
@@ -136,16 +132,11 @@
                 <li><a href="editions.html" class="archiv-nav-mobile-link" data-archiv-nav="editions">Éditions</a></li>
                 <li class="archiv-nav-mobile-lang">
                     <span class="archiv-nav-mobile-group__label">Langue</span>
-                    <div class="archiv-lang-toggle archiv-lang-toggle--block" role="group" aria-label="Langue du site">
-                        <a href="/fr/" hreflang="fr" lang="fr" class="archiv-lang-toggle__seg is-active" aria-current="page">
-                            <span class="archiv-lang-toggle__code" aria-hidden="true">Fr</span>
-                            <span class="visually-hidden">Français</span>
-                        </a>
-                        <a href="/" hreflang="en" lang="en" class="archiv-lang-toggle__seg">
-                            <span class="archiv-lang-toggle__code" aria-hidden="true">En</span>
-                            <span class="visually-hidden">English</span>
-                        </a>
-                    </div>
+                    <nav class="archiv-lang archiv-lang--wide" aria-label="Langue du site">
+                        <a href="/fr/" hreflang="fr" lang="fr" class="archiv-lang__link is-active" aria-current="page">FR</a>
+                        <span class="archiv-lang__sep" aria-hidden="true">·</span>
+                        <a href="/" hreflang="en" lang="en" class="archiv-lang__link">EN</a>
+                    </nav>
                 </li>
             </ul>
         </nav>
