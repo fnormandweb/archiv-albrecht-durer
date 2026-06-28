@@ -1,6 +1,8 @@
 /index4.html / 301
 /shop /editions.html 301
 /boutique /editions.html 301
+/edition.html /editions.html 301
+/edition /editions.html 301
 /en / 301
 /en/ / 301
 /en/* /:splat 301
