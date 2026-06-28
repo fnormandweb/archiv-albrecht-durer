@@ -14,7 +14,6 @@
     global.ARCHIV_SITE = {
         origin: "https://albrechtdurer.uk",
         home: "https://albrechtdurer.uk/",
-        homeFr: "https://albrechtdurer.uk/fr/",
         defaultOgImage: "https://albrechtdurer.uk/img/og/albrecht-durer-archive-og.jpg"
     };
 

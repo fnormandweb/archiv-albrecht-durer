@@ -174,6 +174,16 @@ html.rp-open .fullscreen-menu .menu-main-links { transform: translateY(0) !impor
     color: var(--color-brown); border-color: var(--color-brown);
     background-color: rgba(74, 52, 38, 0.07);
 }
+/* Icône bouton : on retire l'hexagone, on grossit la flèche.
+   La flèche Koch est en position:absolue (calée dans l'hexagone) ; sans
+   l'hexagone elle n'occupe plus d'espace → on la remet en flux normal. */
+.button-hexagon { display: none !important; }
+.button-arrow {
+    position: static !important;
+    width: 1.65em !important;
+    transition: transform 0.3s ease;
+}
+.main-button:hover .button-arrow { transform: translateX(0.18em); }
 
 /* Liens footer / divers */
 .footer a:hover .footer-link-2 > div,
@@ -305,14 +315,118 @@ html.rp-open .fullscreen-menu .menu-main-links { transform: translateY(0) !impor
 /* =========================================================================
    6b. FICHE ŒUVRE — hero sobre + œuvre présentée + lecture éditoriale
    ========================================================================= */
-/* Hero de fiche : plus court, l'œuvre floutée en ambiance (pas de crop gênant) */
+/* Hero de fiche : plus court ; l'œuvre elle-même en fond, discrète sous le
+   voile (comme les pages Works) — reconnaissable à droite, texte lisible à
+   gauche. Léger flou pour que le détail ne concurrence pas le titre. */
 .with-hero-styles.is-inner.is-oeuvre,
 .with-hero-styles.is-inner.is-oeuvre .fullscreen-hero-2 { min-height: 58vh; }
 .with-hero-styles.is-inner.is-oeuvre .is-hero-4-title { font-size: clamp(2.4rem, 5.2vw, 4.2rem); }
 .with-hero-styles.is-inner.is-oeuvre .ad-hero-bg img {
-    filter: blur(28px) brightness(0.42) saturate(0.85);
-    object-position: center; transform: scale(1.15);
+    filter: blur(2.5px) saturate(0.95);
+    object-position: center 28%; transform: scale(1.06);
 }
+/* Voile un peu plus enveloppant côté droit pour une intégration « discrète »
+   de l'œuvre (elle affleure sans dominer la fiche). */
+.with-hero-styles.is-inner.is-oeuvre .ad-hero-veil {
+    background:
+        linear-gradient(90deg, rgba(11,10,8,0.94) 0%, rgba(11,10,8,0.80) 38%, rgba(11,10,8,0.50) 70%, rgba(11,10,8,0.62) 100%),
+        linear-gradient(180deg, rgba(11,10,8,0.30) 0%, rgba(11,10,8,0.12) 32%, rgba(11,10,8,0.66) 100%);
+}
+
+/* =========================================================================
+   6c. TIMELINE ÉDITORIALE (pages Life / Science) — année · rail · nœud
+   Composant dédié (classes rp-tl-* / rp-pillar*), n'affecte aucune autre page.
+   Remplace le « mur de gros titres » par une chronologie claire à consulter.
+   ========================================================================= */
+.rp-timeline { list-style: none; margin: clamp(2.2rem, 4vw, 3.4rem) 0 0; padding: 0; max-width: 62rem; }
+.rp-tl-item {
+    display: grid; grid-template-columns: 6rem 1fr;
+    gap: clamp(1.3rem, 2.8vw, 2.4rem); align-items: start;
+}
+.rp-tl-year {
+    font-family: 'Big Shoulders Text', sans-serif; font-weight: 600;
+    font-size: 0.92rem; letter-spacing: 0.1em; color: var(--color-copper);
+    text-align: right; padding-top: 0.3rem; white-space: nowrap;
+}
+.rp-tl-body {
+    position: relative; border-left: 1px solid rgba(122, 87, 58, 0.30);
+    padding: 0 0 clamp(1.9rem, 3.4vh, 2.7rem) clamp(1.5rem, 2.8vw, 2.3rem);
+}
+.rp-tl-item:last-child .rp-tl-body { padding-bottom: 0; }
+.rp-tl-body::before {
+    content: ""; position: absolute; left: -5px; top: 0.5rem;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--color-paper); border: 1.5px solid var(--color-copper);
+    box-shadow: 0 0 0 5px var(--color-paper);
+    transition: background 0.3s ease;
+}
+.rp-tl-item:hover .rp-tl-body::before { background: var(--color-copper); }
+.rp-tl-title {
+    font-family: 'Caudex', serif; font-weight: 400;
+    font-size: clamp(1.18rem, 1.7vw, 1.5rem); line-height: 1.18;
+    color: var(--text-on-paper); margin: 0 0 0.5rem;
+}
+.rp-tl-text {
+    font-family: 'Caudex', serif; font-size: 0.98rem; line-height: 1.62;
+    color: var(--text-on-paper-soft); margin: 0; max-width: 40rem;
+}
+@media (max-width: 600px) {
+    .rp-tl-item { grid-template-columns: 1fr; gap: 0.35rem; }
+    .rp-tl-year { text-align: left; padding-top: 0; }
+    .rp-tl-body { border-left: none; padding-left: 0; }
+    .rp-tl-body::before { display: none; }
+}
+
+/* Piliers (intro Science) — trois principes scannables sous un filet cuivre */
+.rp-pillars {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.3rem, 2.6vw, 2.2rem); margin-top: clamp(1.9rem, 3.6vw, 2.8rem);
+}
+.rp-pillar { border-top: 2px solid var(--color-copper); padding-top: 0.95rem; }
+.rp-pillar__k {
+    font-family: 'Big Shoulders Text', sans-serif; text-transform: uppercase;
+    letter-spacing: 0.16em; font-size: 0.78rem; color: var(--color-copper);
+    margin: 0 0 0.55rem;
+}
+.rp-pillar__d {
+    font-family: 'Caudex', serif; font-size: 0.95rem; line-height: 1.58;
+    color: var(--text-on-paper-soft); margin: 0;
+}
+@media (max-width: 760px) { .rp-pillars { grid-template-columns: 1fr; gap: 1.4rem; } }
+
+/* Annuaire des collections (page Sources) — institutions cliquables vers leur
+   fonds en ligne. Filet cuivre + flèche externe, repli 1 colonne sur mobile. */
+.rp-sources {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.5rem, 2.8vw, 2.4rem) clamp(2rem, 4vw, 3.4rem);
+    margin-top: clamp(2rem, 4vw, 3rem);
+}
+.rp-source {
+    display: block; text-decoration: none;
+    border-top: 1px solid rgba(122, 87, 58, 0.28);
+    padding-top: 1rem; transition: border-color 0.3s ease;
+}
+.rp-source:hover { border-top-color: var(--color-copper); }
+.rp-source__city {
+    font-family: 'Big Shoulders Text', sans-serif; text-transform: uppercase;
+    letter-spacing: 0.16em; font-size: 0.72rem; color: var(--color-copper); margin: 0 0 0.5rem;
+}
+.rp-source__name {
+    font-family: 'Caudex', serif; font-size: clamp(1.1rem, 1.5vw, 1.32rem);
+    line-height: 1.2; color: var(--text-on-paper); margin: 0 0 0.45rem;
+    display: inline-flex; align-items: baseline; gap: 0.4rem; transition: color 0.3s ease;
+}
+.rp-source__name::after {
+    content: "\2197"; font-size: 0.74em; color: var(--color-copper);
+    opacity: 0.55; transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.rp-source:hover .rp-source__name { color: var(--color-copper); }
+.rp-source:hover .rp-source__name::after { opacity: 1; transform: translate(2px, -2px); }
+.rp-source__note {
+    font-family: 'Caudex', serif; font-size: 0.92rem; line-height: 1.55;
+    color: var(--text-on-paper-soft); margin: 0; max-width: 30rem;
+}
+@media (max-width: 680px) { .rp-sources { grid-template-columns: 1fr; } }
 
 .oe-grid {
     display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);

@@ -73,88 +73,10 @@
     <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.88</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/vie.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.82</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvres.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.82</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/gravures.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.82</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/autoportraits.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.78</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/science.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.78</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/voyages.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.74</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/chronologie.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.74</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/editions.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/sources.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.58</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/edition.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.48</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=adam-eve</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=adam-eve</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=adoration-magi</loc>
@@ -163,22 +85,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=adoration-magi</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=apocalypse-four-riders</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=apocalypse-four-riders</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=coat-of-arms-skull</loc>
@@ -187,22 +97,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=coat-of-arms-skull</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=dream-doctor</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=dream-doctor</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=ecce-homo</loc>
@@ -211,22 +109,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=ecce-homo</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=four-apostles</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=four-apostles</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=great-piece-of-turf</loc>
@@ -235,22 +121,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=great-piece-of-turf</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=hare</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=hare</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=knight-death-devil</loc>
@@ -259,22 +133,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=knight-death-devil</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=lansquenet</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=lansquenet</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=large-horse</loc>
@@ -283,22 +145,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=large-horse</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=large-passion-christ-mount</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=large-passion-christ-mount</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=large-passion-cycle</loc>
@@ -307,22 +157,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=large-passion-cycle</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=large-passion-last-supper</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=large-passion-last-supper</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=life-of-virgin-cycle</loc>
@@ -331,22 +169,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=life-of-virgin-cycle</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=life-of-virgin-nativity</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=life-of-virgin-nativity</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=melencolia</loc>
@@ -355,22 +181,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=melencolia</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=nemesis</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=nemesis</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=prayer-hands</loc>
@@ -379,22 +193,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=prayer-hands</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=rhinoceros</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=rhinoceros</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=saint-jerome</loc>
@@ -403,22 +205,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=saint-jerome</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=self-portrait-1493</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=self-portrait-1493</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=self-portrait-1498</loc>
@@ -427,22 +217,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=self-portrait-1498</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=self-portrait-1500</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=self-portrait-1500</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=small-passion-cycle</loc>
@@ -451,22 +229,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=small-passion-cycle</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=st-eustace</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=st-eustace</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=st-paul</loc>
@@ -475,22 +241,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=st-paul</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=travel-drawing-antwerp</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=travel-drawing-antwerp</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=underweysung</loc>
@@ -499,22 +253,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=underweysung</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=virgin-pear</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=virgin-pear</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/oeuvre.html?id=winged-roller</loc>
@@ -523,22 +265,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/oeuvre.html?id=winged-roller</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.56</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/edition.html?id=durer-proportion-planche</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/edition.html?id=durer-proportion-planche</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.46</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/edition.html?id=image-science-dossier</loc>
@@ -547,22 +277,10 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/edition.html?id=image-science-dossier</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.46</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/edition.html?id=knight-tirage-archive</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/edition.html?id=knight-tirage-archive</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.46</priority>
   </url>
   <url>
     <loc>https://albrechtdurer.uk/edition.html?id=melencolia-i-tirage-archive</loc>
@@ -571,33 +289,15 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/edition.html?id=melencolia-i-tirage-archive</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.46</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/edition.html?id=rhinoceros-tirage-archive</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://albrechtdurer.uk/fr/edition.html?id=rhinoceros-tirage-archive</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.46</priority>
-  </url>
-  <url>
     <loc>https://albrechtdurer.uk/edition.html?id=saint-jerome-tirage-archive</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://albrechtdurer.uk/fr/edition.html?id=saint-jerome-tirage-archive</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.46</priority>
   </url>
 </urlset>
