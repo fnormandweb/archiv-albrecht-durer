@@ -145,6 +145,19 @@ html.rp-open .fullscreen-menu .menu-image { z-index: 1 !important; }
 html.rp-open .fullscreen-menu .menu-column-1 { z-index: 3 !important; }
 html.rp-open .fullscreen-menu .menu-column-2 { position: relative !important; z-index: 3 !important; }
 html.rp-open .fullscreen-menu .close-button { z-index: 6 !important; }
+/* Bouton « fermer » : carré au lieu de l'hexagone (on masque l'hexagone SVG
+   et on trace un carré net en CSS, dans le même esprit muséal). */
+.close-hexagon { display: none !important; }
+.close-button { border-radius: 0; }
+.close-button-icon { position: relative; z-index: 1; }
+.close-button::before {
+    content: ""; position: absolute; pointer-events: none;
+    width: 3.6em; height: 3.6em;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    border: 1px solid rgba(198, 161, 91, 0.42);
+    transition: border-color 0.25s ease;
+}
+.close-button:hover::before { border-color: rgba(198, 161, 91, 0.85); }
 /* Petite respiration : les liens montent légèrement à l'ouverture */
 .fullscreen-menu .menu-main-links { transition: transform 0.4s cubic-bezier(0.22,1,0.36,1) 0.04s; }
 html.rp-open .fullscreen-menu .menu-main-links { transform: translateY(0) !important; }
