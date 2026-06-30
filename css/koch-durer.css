@@ -519,3 +519,54 @@ html.rp-open .fullscreen-menu .menu-main-links { transform: translateY(0) !impor
     margin-top: 0.7rem;
 }
 .rp-footer-id .footer-contact-link-block:hover .footer-contact-link-text { color: var(--color-copper); }
+
+/* =========================================================================
+   8. RAFFINEMENT « BURIN » — finition premium au millimètre
+   (détails universels : sélection, défilement, focus, typographie, palette)
+   ========================================================================= */
+
+/* 8.1 Rendu du texte plus net sur fond encre */
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+
+/* 8.2 Sélection de texte : cuivre sur ivoire (fin du surlignage bleu navigateur) */
+::selection { background: var(--color-copper); color: var(--color-paper); text-shadow: none; }
+
+/* 8.3 Défilement doux (respecte prefers-reduced-motion) */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* 8.4 Barre de défilement fine, encre + sépia (au lieu du gris système) */
+html { scrollbar-color: #3c2d20 var(--color-ink); scrollbar-width: thin; }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--color-ink); }
+::-webkit-scrollbar-thumb { background: #3c2d20; border: 3px solid var(--color-ink); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-sepia); }
+
+/* 8.5 Focus clavier : liseré cuivre net (accessibilité + finition) */
+:focus-visible { outline: 2px solid var(--color-copper); outline-offset: 3px; }
+a:focus:not(:focus-visible), button:focus:not(:focus-visible),
+.w-inline-block:focus:not(:focus-visible) { outline: none; }
+
+/* 8.6 Typographie : équilibrage des titres (aucun orphelin) + rag soigné des
+   paragraphes — le détail « millimètre » qui distingue les sites primés. */
+.heading, .is-basic-title, .is-grid-title-1, .is-grid-title-2, .is-hero-4-title,
+.is-fullscreen-hero-title, h1, h2, h3,
+.rp-tl-title, .gal-cap-title, .is-contact-form-title { text-wrap: balance; }
+.basic-paragraph, .hero-lead, .paragraph-width, .paragraph-width-2,
+.rp-tl-text, .rp-pillar__d, .rp-source__note, .blog-short-description-1 { text-wrap: pretty; }
+
+/* 8.7 Neutraliser les roses « finance » résiduels (#c99b8f) → cuivre / laiton.
+   Couleur littérale non couverte par le remap des variables ; présente dans
+   nos pages sur la carte hero, les boutons burger, le bord du menu, le logo. */
+.hero-case-border { border-color: rgba(181, 121, 69, 0.40) !important; }
+.hero-case-circle { border-color: rgba(198, 161, 91, 0.50) !important; }
+.nav-menu-button, .footer-menu-button { border-right-color: rgba(198, 161, 91, 0.34) !important; }
+.nav-menu-button:hover, .footer-menu-button:hover { border-color: rgba(198, 161, 91, 0.55) !important; }
+.menu-bg-1 { border-right-color: rgba(198, 161, 91, 0.26) !important; }
+.brand:hover { border-color: rgba(198, 161, 91, 0.30) !important; }
+
+/* 8.8 Carte « From the collection » du hero : profondeur (la décolle du fond) */
+.hero-case { box-shadow: 0 34px 64px -34px rgba(0, 0, 0, 0.72); }
