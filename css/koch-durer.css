@@ -570,3 +570,12 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible),
 
 /* 8.8 Carte « From the collection » du hero : profondeur (la décolle du fond) */
 .hero-case { box-shadow: 0 34px 64px -34px rgba(0, 0, 0, 0.72); }
+
+/* 8.9 Capitale ornée (drop cap) sur l'intro éditoriale — initiale enluminée,
+   contraste serif Caudex / corps Source Sans, esprit manuscrit de la Renaissance. */
+.rp-dropcap::first-letter {
+    font-family: 'Caudex', serif; font-weight: 400;
+    font-size: 3.4em; line-height: 0.72;
+    float: left; margin: 0.06em 0.14em 0 0;
+    color: var(--color-copper);
+}
