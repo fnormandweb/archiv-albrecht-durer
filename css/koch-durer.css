@@ -618,3 +618,30 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible),
     color: var(--text-on-ink-soft); font-size: clamp(0.95rem, 1.25vw, 1.08rem);
     line-height: 1.6; max-width: 30rem; margin: 1.5rem auto 0;
 }
+
+/* =========================================================================
+   10. PAGES INTÉRIEURES — apparition au scroll + galerie plus tactile
+   ========================================================================= */
+/* Apparition : la classe .rp-r n'est posée par JS que sur les éléments sous la
+   ligne de flottaison (cf. js/rp-reveal.js) — donc jamais de flash ni de
+   contenu masqué au-dessus du pli. */
+.rp-r {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+.rp-r.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+    .rp-r { opacity: 1; transform: none; transition: none; }
+}
+
+/* Galerie : profondeur au survol (cadre qui s'enfonce + ombre portée discrète),
+   en complément du zoom d'image et de la bordure cuivre déjà présents. */
+.gal-card:hover .gal-frame {
+    box-shadow: inset 0 0 0 1px rgba(243, 235, 221, 0.06),
+                inset 0 0 50px rgba(0, 0, 0, 0.42),
+                0 28px 54px -30px rgba(0, 0, 0, 0.72);
+}
+.gal-card:hover .gal-cap-meta { color: var(--color-sepia); }
