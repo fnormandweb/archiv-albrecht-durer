@@ -579,3 +579,42 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible),
     float: left; margin: 0.06em 0.14em 0 0;
     color: var(--color-copper);
 }
+
+/* =========================================================================
+   9. MOMENT SIGNATURE — le monogramme AD se grave (burin) puis s'emplit d'or
+   ========================================================================= */
+.rp-signature {
+    background: var(--color-ink);
+    border-top: 1px solid var(--color-border-dark);
+    padding: clamp(4.5rem, 11vh, 8.5rem) 0;
+    text-align: center;
+}
+.rp-signature .container { display: flex; flex-direction: column; align-items: center; }
+.rp-signature__mark { width: clamp(82px, 8.5vw, 122px); height: auto; display: block; overflow: visible; }
+/* défaut (sans JS / reduced-motion) : monogramme plein, sans tracé */
+.sig-path { fill: #c5a47e; fill-opacity: 1; stroke: var(--color-copper); stroke-width: 0; }
+/* armé par JS : remplissage caché instantanément, contour prêt à se tracer */
+.rp-signature.is-armed .sig-path { fill-opacity: 0; stroke-width: 0.9; }
+/* lecture : le contour se trace (burin) puis le remplissage d'or apparaît */
+.rp-signature.is-playing .sig-path {
+    fill-opacity: 1;
+    transition: stroke-dashoffset 1.7s cubic-bezier(0.6, 0, 0.3, 1),
+                fill-opacity 0.9s ease 1.15s;
+}
+@media (prefers-reduced-motion: reduce) {
+    .rp-signature.is-armed .sig-path { fill-opacity: 1; stroke-width: 0; }
+}
+.rp-signature__name {
+    font-family: 'Caudex', serif; font-size: clamp(1.5rem, 2.3vw, 2.05rem);
+    color: var(--color-paper); letter-spacing: 0.015em; margin: 1.7rem 0 0;
+}
+.rp-signature__years {
+    font-family: 'Big Shoulders Text', sans-serif; text-transform: uppercase;
+    letter-spacing: 0.34em; text-indent: 0.34em; font-size: 0.8rem;
+    color: var(--color-brass); margin: 0.85rem 0 0;
+}
+.rp-signature__line {
+    font-family: 'Caudex', serif; font-style: italic;
+    color: var(--text-on-ink-soft); font-size: clamp(0.95rem, 1.25vw, 1.08rem);
+    line-height: 1.6; max-width: 30rem; margin: 1.5rem auto 0;
+}

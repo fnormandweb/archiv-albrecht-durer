@@ -920,6 +920,18 @@
 </div>
 </div>
 </section>
+<section class="rp-signature" aria-label="Albrecht Dürer">
+<div class="container">
+<svg class="rp-signature__mark" viewBox="0 0 139.7 137.67" role="img" aria-label="Monogramme AD d'Albrecht Dürer" xmlns="http://www.w3.org/2000/svg">
+<path class="sig-path" d="M137.5,52.24c9.95,36.85-14.86,75.68-52.75,83.83-27.12,5.83-54.33-4.61-70.79-26.2C-12.55,75.06.56,27.69,37.55,8.2,56.42-1.75,78.62-2.84,98.06,6.01c19.42,8.84,33.87,25.62,39.44,46.23ZM99.48,127.78c22.68-11.39,37.7-34.51,37.15-60.04-.55-25.63-16.66-48.67-39.74-58.97C66.29-4.9,30.87,6.61,13.15,34.58-1.98,58.47-.01,88.67,18.13,110.4c19.73,23.64,53.34,31.44,81.35,17.38Z"/>
+<path class="sig-path" d="M103.16,109.67c-1.19-.32,2.75-1.05,3.1-1.93.24-.59.2-1.83.16-2.83l-15.97-55.71-42.36.12-16.16,53.81c-.3,1.76-.39,3.77.27,4.87,1.57.65,2.1.74,3.57,1.78l-13.43-.05c2.78-1.69,4.65-1.93,5.43-4.68L49.49,28.73l-11.99-.03c-3.17,0-2.78,3.16-4.67,3.69l.13-11.55c1.99,2.12,2.66,3.32,4.95,3.32l63.24-.03c2.34,0,3.63-1.17,5.42-3.05v11.24c-1.55-2.13-2.18-3.65-4.36-3.65l-12.16-.02,8.22,29.76,10.7,35.68,3.47,11.45c.75,2.48,2.47,2.74,5.09,4.25l-13.12.18c-.26,0-1.04-.25-1.26-.31ZM88.86,44.55l-4.75-15.88-28.99.02-5.07,15.85h38.81Z"/>
+<path class="sig-path" d="M48.94,109.84c1.33-1.37,3.5-1.48,4.39-2.5l.7-8.48-.04-33.88c0-2.34-1.01-3.66-3.26-4.07l-.84-.15c-.19-.03-.3-.8-.12-.84l.91-.19,21.03-.02c12.66.16,22.78,9.3,24.22,21.74,1.8,15.54-8.56,28.52-25.18,28.46l-21.8-.07ZM86.79,96.65c3.95-8.92,3.19-19.08-2.51-27.03-3.48-4.86-8.57-8.07-14.62-7.8l-9.65.44-.17,36.6.51,7.53c11,3.14,21.76.82,26.44-9.74Z"/>
+</svg>
+<p class="rp-signature__name">Albrecht Dürer</p>
+<p class="rp-signature__years">1471 — 1528</p>
+<p class="rp-signature__line">Where the gaze becomes method, and the line becomes knowledge.</p>
+</div>
+</section>
 <div class="footer">
 <div class="footer-row-1">
 <div class="container">
@@ -1032,6 +1044,37 @@
   var text = card.querySelector('.hero-case-text'); if (text) text.textContent = w.t;
   var img = card.querySelector('.hero-case-image img');
   if (img) { img.setAttribute('srcset', ''); img.setAttribute('src', w.img); img.setAttribute('alt', w.t + ' — Albrecht Dürer'); }
+})();
+</script>
+<script>
+/* Section signature : le monogramme se grave (tracé) puis s'emplit d'or, au scroll.
+   Robuste : reste plein si JS/IO absent ou reduced-motion ; filet de sécurité
+   pour ne jamais rester invisible si l'observer ne se déclenche pas. */
+(function () {
+  var sec = document.querySelector('.rp-signature');
+  if (!sec) return;
+  var paths = sec.querySelectorAll('.sig-path');
+  if (!paths.length) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) return; /* reste rempli par défaut */
+  var played = false;
+  function play() {
+    if (played) return; played = true;
+    sec.classList.add('is-playing');
+    void sec.offsetWidth; /* reflow : amorce la transition sans dépendre de rAF */
+    paths.forEach(function (p) { p.style.strokeDashoffset = '0'; });
+  }
+  paths.forEach(function (p) {
+    var len = p.getTotalLength();
+    p.style.strokeDasharray = len;
+    p.style.strokeDashoffset = len;
+  });
+  sec.classList.add('is-armed');
+  var io = new IntersectionObserver(function (entries, obs) {
+    if (entries[0].isIntersecting) { obs.disconnect(); play(); }
+  }, { threshold: 0.3, rootMargin: '0px 0px -8% 0px' });
+  io.observe(sec);
+  setTimeout(play, 7000); /* filet de sécurité : révèle même si l'IO ne fire pas */
 })();
 </script>
 </body>
